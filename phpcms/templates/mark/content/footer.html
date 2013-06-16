@@ -1,24 +1,38 @@
-<div class="footer">
-<p class="info">
-{pc:content action="category" catid="1" num="15" siteid="$siteid" order="listorder ASC"}
-{loop $data $r}
-<a href="{$r[url]}" target="_blank">{$r[catname]}</a> |  
-{/loop}
-{/pc}
-<a href="{APP_PATH}index.php?m=link" target="_blank">友情链接</a>
-<br />
-Powered by <strong><a href="http://www.phpcms.cn" target="_blank">PHPCMS</a></strong> <em>{get_pc_version(1)}</em> &copy; 2011 <img src="{IMG_PATH}copyright.gif"/>{tjcode()}{php echo runhook('glogal_footer')}
-</p>
+<div class="layout footer">
+	<div class="friendLink" id="footerTabs">
+		<ul class="linkTitle">
+			<li><a href="#footerTabs-1" class="active">友情链接</a></li>
+			<li><a href="#footerTabs-2">合作伙伴</a></li>
+		</ul>
+		<div>
+			<ul id="footerTabs-1" class="linkContents clear">
+				{pc:get sql="SELECT * FROM mk_link where typeid=56 and linktype=0 and passed =1" num="54"}
+				{loop $data $link}
+				<li><a href="{$link[url]}" title="{$link[name]}">{$link[name]}</a></li>
+				{/loop}
+				{/pc}
+			</ul>
+			<ul id="footerTabs-2" class="linkContents clear">
+				{pc:get sql="SELECT * FROM mk_link where typeid=56 and linktype=1 and passed =1" num="54"}
+				{loop $data $link}
+				<li>
+					<a href="{$link[url]}" title="{$link[name]}">
+						<img src="{$link[logo]}" alt="{$link[name]}">
+					</a>
+				</li>
+				{/loop}
+				{/pc}
+			</ul>
+		</div>
+	</div>
 </div>
-<script type="text/javascript">
-$(function(){
-	$(".picbig").each(function(i){
-		var cur = $(this).find('.img-wrap').eq(0);
-		var w = cur.width();
-		var h = cur.height();
-	   $(this).find('.img-wrap img').LoadImage(true, w, h,'{IMG_PATH}msg_img/loading.gif');
-	});
-})
+<script>
+	seajs.use(['ui'], function(){
+		$('#footerTabs').tabs();
+	})
 </script>
+<div class="layout sdinfoBottom">
+	<iframe src="http://www.sdinfo.net/include/indexfloor1.htm" frameborder="0" height="120" width="1000"></iframe>
+</div>
 </body>
 </html>

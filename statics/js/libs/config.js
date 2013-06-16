@@ -1,7 +1,7 @@
 // sea.js config base
 // From https://statics.dnspod.cn/yantai/js/config.js
 // 配置 jquery 并放入预加载项中
-ixdcw.seajsBase = ixdcw.domain.cssjs + 'js/';
+
 var alias = {
 	// sea module
 	'jquery': 'libs/jquery/1.10.0/jquery',
@@ -50,7 +50,7 @@ var alias = {
 
 };
 for (var a in alias) {
-	alias[a] = ixdcw.seajsBase + alias[a];
+	alias[a] = mk.seajsBase + alias[a];
 }
 
 seajs.config({

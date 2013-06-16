@@ -6,85 +6,66 @@
 	<meta name="keywords" content="{$SEO['keyword']}">
 	<meta name="description" content="{$SEO['description']}">
 	<link href="{CSS_PATH}style.css" rel="stylesheet" type="text/css" />
-	<link href="{CSS_PATH}default_blue.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="{JS_PATH}jquery.min.js"></script>
-<script type="text/javascript" src="{JS_PATH}jquery.sgallery.js"></script>
-<script type="text/javascript" src="{JS_PATH}search_common.js"></script>
+	<script>
+		var mk = mk || {};
+		mk.seajsBase = '{JS_PATH}';
+	</script>
+	<script src="{JS_PATH}libs/seajs/2.0.0/sea.js" data-config="config"></script>
 </head>
 <body>
-<div class="body-top">
-    <div class="content">
-    {pc:content  action="position" posid="9" order="id" num="10" cache="3600"}
-    		<div id="announ">
-                 <ul>
-                 {loop $data $k $v}
-                      <li><a href="{$v[url]}">{$v[title]}</a></li>
-                      {/loop}
-                 </ul>
-            </div>
-     {/pc}
-	 {php echo runhook('glogal_header')}
-<script type="text/javascript">
-$(function(){
-	startmarquee('announ',22,1,500,3000);
-})
-</script>
-            <div class="login lh24 blue"><a href="{APP_PATH}index.php?m=content&c=rss&siteid={get_siteid()}" class="rss ib">rss</a><span class="rt"><script type="text/javascript">document.write('<iframe src="{APP_PATH}index.php?m=member&c=index&a=mini&forward='+encodeURIComponent(location.href)+'&siteid={get_siteid()}" allowTransparency="true"  width="500" height="24" frameborder="0" scrolling="no"></iframe>')</script></span></div>
-    </div>
-</div>
-<div class="header">
-	<div class="logo"><a href="{siteurl($siteid)}/"><img src="{IMG_PATH}v9/logo.jpg" /></a></div>
-
-    <div class="search">
-    	<div class="tab" id="search">
-			{php $j=0}
-			{php $search_model = getcache('search_model_'.$siteid, 'search');}
-			{loop $search_model $k=>$v}
-			{php $j++;}
-				<a href="javascript:;" onclick="setmodel({$v['typeid']}, $(this));" style="outline:medium none;" hidefocus="true" {if $j==1 && $typeid=$v['typeid']} class="on" {/if}>{$v['name']}</a>{if $j != count($search_model)}<span> | </span>{/if}
-			{/loop}
-			{php unset($j);}
+<div class="layout header">
+	<div class="top">
+		<a href="#">立即登录</a>|
+		<a href="#">加入我们</a>
+		<a href="#" class="fr"><img src="{IMG_PATH}topQQ.jpg" alt="#"></a>
+		<a href="#" class="fr"><img src="{IMG_PATH}topSina.jpg" alt="#"></a>
+	</div>
+	<div class="sdinfoTop">
+		<iframe src="http://www.sdinfo.net/include/indexhead1.htm" frameborder="0" height="65" width="1000"></iframe>
+	</div>
+	<div class="sdinfo fc">
+		<div class="logo">
+			<a href="#"><img src="{IMG_PATH}logo.jpg" alt=""></a>
 		</div>
-
-        <div class="bd">
-            <form action="{APP_PATH}index.php" method="get" target="_blank">
-				<input type="hidden" name="m" value="search"/>
-				<input type="hidden" name="c" value="index"/>
-				<input type="hidden" name="a" value="init"/>
-				<input type="hidden" name="typeid" value="{$typeid}" id="typeid"/>
-				<input type="hidden" name="siteid" value="{$siteid}" id="siteid"/>
-                <input type="text" class="text" name="q" id="q"/><input type="submit" value="搜 索" class="button" />
-            </form>
-        </div>
-    </div>
-
-    <div class="banner"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=1"></script></div>
-    <div class="bk3"></div>
-    <div class="nav-bar">
-    	<map>
-    	{pc:content action="category" catid="0" num="25" siteid="$siteid" order="listorder ASC"}
-        	<ul class="nav-site">
-			<li><a href="{siteurl($siteid)}"><span>首页</span></a></li>
-			{loop $data $r}
-			<li class="line">|</li>
-			<li><a href="{$r[url]}"><span>{$r[catname]}</span></a></li>
-			{/loop}
-            </ul>
-        {/pc}
-		{php echo runhook('glogal_menu')}
-        </map>
-    </div> 
-	
-	{if $top_parentid}
-    <div class="subnav">
-		{pc:content action="category" catid="$top_parentid" num="15" siteid="$siteid" order="listorder ASC"}
-			{loop $data $r}
-			<a href="{$r[url]}">{$r[catname]}</a><span> | </span>
-			{/loop}
-        {/pc}
-		<a href="{APP_PATH}index.php?m=video&c=index&a=album">视频专辑</a> <span> | </span>
-    	{if $modelid}<a href="{APP_PATH}index.php?m=content&c=search&catid={$catid}">搜索</a>{/if}
-    </div>
-	{/if}
+		<div class="search">
+			<form action="post" name="search">
+				<ul>
+					<li class="sel">全部</li>
+					<li><input type="text" name="kw" class="searchInput"></li>
+					<li><a class="searchButton" href="javascript:document.form[search].submit()">搜索</a></li>
+				</ul>
+			</form>
+		</div>
+		<div class="hot">
+			<strong>热门搜索</strong>:
+			<a href="#">西游记</a>
+			<a href="#">西游记</a>
+			<a href="#">西游记</a>
+		</div>
+		<div class="fav">
+			<a href="#">设为首页</a>
+			<a href="#">收藏本站</a>
+		</div>
+	</div>
 </div>
+<div class="layout">
+	<ul class="nav">
+		<li><a href="#">首页</a></li>
+		<li class="line"></li>
+		<li><a href="#">资讯评测</a></li>
+		<li class="line"></li>
+		<li><a href="#">商家行情</a></li>
+		<li class="line"></li>
+		<li><a href="#">配件导购</a></li>
+		<li class="line"></li>
+		<li><a href="#">资费套餐</a></li>
+		<li class="line"></li>
+		<li><a href="#">商家优惠</a></li>
+		<li class="line"></li>
+		<li><a href="#">交易平台</a></li>
+		<li class="line"></li>
+		<li><a href="#">通讯应用</a></li>
+		<li class="line"></li>
+		<li><a href="#">通讯交流</a></li>
+	</ul>
 </div>
