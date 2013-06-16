@@ -334,7 +334,7 @@ class html {
 		$style = $this->sitelist[$siteid]['default_style'];
 		ob_start();
 		include template('content','index',$style);
-		return $this->createhtml($file, 1);
+		//return $this->createhtml($file, 1);
 	}
 	/**
 	 * 单网页
