@@ -397,6 +397,26 @@ body {
   font-size: 14px;
   font-weight: bold;
 }
+.titleTab span a{
+	color: #fff;
+}
+.titleTabNone{
+	height: 29px;
+	padding-left: 10px;
+}
+.titleTabNone span{
+	display: inline-block;
+	height: 28px;
+	line-height: 28px;
+	color: #FF8120;
+	font-family: '微软雅黑', 'Arial', '宋体';
+	padding-right: 10px;
+	font-size: 14px;
+	font-weight: bold;
+}
+.titleTabNone span a{
+	color: #FF8120;
+}
 .wrapGrey {
   border: 1px solid #ccc;
   border-top: none;
@@ -621,6 +641,14 @@ body {
 .page a {
   border: 1px solid #FFB35D;
   background: #FFF6DD;
+  display: inline-block;
+  height: 20px;
+  line-height: 22px;
+  padding: 0 5px;
+}
+.page span {
+  border: 1px solid #ccc;
+  background: #fff;
   display: inline-block;
   height: 20px;
   line-height: 22px;
@@ -2592,4 +2620,7 @@ body {
 }
 .pages .active {
   color: #cccccc;
+}
+.bdbOrange{
+	border-bottom: 1px solid #FF8120;
 }
