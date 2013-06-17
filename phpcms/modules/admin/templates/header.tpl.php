@@ -22,6 +22,11 @@ if(isset($show_dialog)) {
 <script language="javascript" type="text/javascript" src="<?php echo JS_PATH?>jquery.min.js"></script>
 <script language="javascript" type="text/javascript" src="<?php echo JS_PATH?>admin_common.js"></script>
 <script language="javascript" type="text/javascript" src="<?php echo JS_PATH?>styleswitch.js"></script>
+<script>
+	var mk = mk || {};
+	mk.seajsBase = '<?php echo JS_PATH?>';
+</script>
+<script src="<?php echo JS_PATH?>libs/seajs/2.0.0/sea.js" data-config="config"></script>
 <?php if(isset($show_validator)) { ?>
 <script language="javascript" type="text/javascript" src="<?php echo JS_PATH?>formvalidator.js" charset="UTF-8"></script>
 <script language="javascript" type="text/javascript" src="<?php echo JS_PATH?>formvalidatorregex.js" charset="UTF-8"></script>

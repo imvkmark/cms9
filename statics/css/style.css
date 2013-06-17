@@ -807,6 +807,9 @@ body {
   height: 32px;
   border-bottom: 1px solid #ccc;
 }
+.friendLink .linkTitle li{
+	float: left;
+}
 .friendLink .linkTitle a {
   display: inline-block;
   padding: 0 20px;
@@ -817,10 +820,10 @@ body {
   font-family: '微软雅黑', 'Arial', '宋体';
   position: relative;
 }
-.friendLink .linkTitle .active {
+.friendLink .linkTitle .ui-tabs-active {
   border-bottom: 1px solid #fff;
 }
-.friendLink .linkContents {
+.friendLink .linkContents, .friendLink .linkContents-logo {
   padding: 10px 19px;
 }
 .friendLink .linkContents li {
@@ -829,6 +832,20 @@ body {
   float: left;
   line-height: 23px;
   height: 23px;
+}
+.friendLink .linkContents-logo {
+	display: none;
+}
+.friendLink .linkContents-logo li {
+	width: 102px;
+	overflow: hidden;
+	float: left;
+	line-height: 47px;
+	height: 47px;
+}
+.friendLink .linkContents-logo li img{
+	width: 100px;
+	height: 45px;
 }
 .friendLink .linkContents li a {
   color: #656565;
