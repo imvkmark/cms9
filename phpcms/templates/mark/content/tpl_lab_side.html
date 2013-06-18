@@ -1,0 +1,39 @@
+<div class="adSide">
+	{template "content", "tpl_lab_rightad1"}
+</div>
+<div class="iContent hotPhone">
+	<h3 class="titleGrey">
+		手机热门产品排行
+	</h3>
+	<div class="hotPhoneList">
+		{pc:get sql="select p.title, p.url,pd.price from mk_hits h, mk_phone p, mk_phone_data pd where h.hitsid = concat('c-13-',p.id) and p.id = pd.id and p.catid=10 order by h.monthviews desc, p.updatetime desc"}
+		<ul class="listNum">
+			{loop $data $key $val}
+			<li><span class="price">￥:{$val[price]}</span><a href="{$val['url']}">{$val['title']}</a></li>
+			{/loop}
+		</ul>
+		{/pc}
+	</div>
+</div>
+<div class="adSide mt8">
+	{template "content", "tpl_lab_rightad2"}
+</div>
+<div class="iContent userCommentWrapper">
+	<h3 class="titleGrey">
+		----网友交流热帖----
+	</h3>
+	<div class="userComments">
+		<ul class="listBlueDot">
+			<li><a href="#">甘肃永昌69人因不明原因致急性肠胃炎</a></li>
+			<li><a href="#">甘肃永昌69人因不明原因致急性肠胃炎</a></li>
+			<li><a href="#">习近平赴芦山看望受灾民众：非常牵挂大家</a></li>
+			<li><a href="#">习近平赴芦山看望受灾民众：非常牵挂大家</a></li>
+			<li><a href="#">辽宁鞍海公路两辆客车迎面相撞致多人死伤</a></li>
+			<li><a href="#">辽宁鞍海公路两辆客车迎面相撞致多人死伤</a></li>
+			<li><a href="#">网贴称温州苍南村民下跪抗议强拆被殴打</a></li>
+			<li><a href="#">日本拟抽地下水入海抑制反应堆污染水增加</a></li>
+			<li><a href="#">长沙女孩坠落下水道2月后遗体在岳阳发现</a></li>
+			<li><a href="#">外交部证实朝方未获赎金 要求此类事件不再发生</a></li>
+		</ul>
+	</div>
+</div>
