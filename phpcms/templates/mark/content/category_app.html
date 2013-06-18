@@ -1,0 +1,457 @@
+{template "content", "header"}
+{template "content", "tpl_selectPhone"}
+{template "content", "tpl_topAd1"}
+{template "content", "tpl_topAd2"}
+{php $poApp = true}
+{template "content", "tpl_position"}
+<div class="layout appIdx focus clear">
+	<div class="focus">
+		<div class="focus-left">
+			<script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=15"></script>
+		</div>
+		<div class="focus-center">
+			<div class="content">
+				<div class="firstFocus">
+					<h3><span class="cat">游戏</span><a href="">标题标题</a></h3>
+					<p class="info">介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍 [<a class="more" href="#"> 查看详细 </a> ]</p>
+				</div>
+				<div class="firstFocus">
+					<h3><span class="cat">游戏</span><a href="">标题标题</a></h3>
+					<p class="info">介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍 [<a class="more" href="#"> 查看详细 </a> ]</p>
+				</div>
+				<div class="infolist">
+					<ul class="listGreyDot">
+
+						<li><a href="#">标题标题</a></li>
+						<li><a href="#">标题标题</a></li>
+						<li><a href="#">标题标题</a></li>
+						<li><a href="#">标题标题</a></li>
+						<li><a href="#">标题标题</a></li>
+						<li><a href="#">标题标题</a></li>
+						<li><a href="#">标题标题</a></li>
+						<li><a href="#">标题标题</a></li>
+						<li><a href="#">标题标题</a></li>
+						<li><a href="#">标题标题</a></li>
+						<li><a href="#">标题标题</a></li>
+						<li><a href="#">标题标题</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="focus-right">
+			<h3 class="titleGrey">
+				推荐APP
+			</h3>
+			<div class="wrapGrey appFocusSuggest clear">
+				{pc:content  action="position" posid="18" order="listorder DESC" num="6"}
+				<ul>
+					{loop $data $key $val}
+					<a class="item" href="{$val['url']}">
+						<img src="{$val['thumb']}" alt="{$val['title']}">
+						<span>{$val['title']}</span>
+					</a>
+					{/loop}
+				</ul>
+				{/pc}
+			</div>
+			<div class="ad">
+				<script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=16"></script>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="suggestToday layout">
+	<div class="appTitle">
+		<h3>今日推荐</h3>
+	</div>
+	<div class="wrapGrey content">
+		<ul class="appTab">
+			<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+			<li class="active"><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+			<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+			<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+			<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+			<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+			<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+			<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+		</ul>
+		<div class="clear">
+			<div class="item">
+				<img src="APPimg" alt="">
+				<h4><a href="#">标题标题</a></h4>
+				<span class="star">评分:</span>
+				<span class="cat">分类:安全</span>
+			</div>
+			<div class="item">
+				<img src="APPimg" alt="">
+				<h4><a href="#">标题标题</a></h4>
+				<span class="star">评分:</span>
+				<span class="cat">分类:安全</span>
+			</div>
+			<div class="item">
+				<img src="APPimg" alt="">
+				<h4><a href="#">标题标题</a></h4>
+				<span class="star">评分:</span>
+				<span class="cat">分类:安全</span>
+			</div>
+			<div class="item">
+				<img src="APPimg" alt="">
+				<h4><a href="#">标题标题</a></h4>
+				<span class="star">评分:</span>
+				<span class="cat">分类:安全</span>
+			</div>
+			<div class="item">
+				<img src="APPimg" alt="">
+				<h4><a href="#">标题标题</a></h4>
+				<span class="star">评分:</span>
+				<span class="cat">分类:安全</span>
+			</div>
+			<div class="item">
+				<img src="APPimg" alt="">
+				<h4><a href="#">标题标题</a></h4>
+				<span class="star">评分:</span>
+				<span class="cat">分类:安全</span>
+			</div>
+			<div class="item">
+				<img src="APPimg" alt="">
+				<h4><a href="#">标题标题</a></h4>
+				<span class="star">评分:</span>
+				<span class="cat">分类:安全</span>
+			</div>
+			<div class="item">
+				<img src="APPimg" alt="">
+				<h4><a href="#">标题标题</a></h4>
+				<span class="star">评分:</span>
+				<span class="cat">分类:安全</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="layout appCatWrap clear">
+	<div class="col-main-left">
+		<div class="catSuggest">
+			<div class="appTitle">
+				<h3><span class="appIcon appIconMac">&nbsp;</span>今日推荐</h3>
+			</div>
+			<div class="items wrapGrey">
+				<ul class="appTab">
+					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+					<li class="active"><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+				</ul>
+				<div class="clear">
+					{for $i=1 ;$i<=12; $i++}
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					{/for}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-main-right">
+		<div class="hotphonecase">
+			<h3 class="titleGrey">手机推荐排行榜</h3>
+			<div class="clear wrapGrey">
+				<p class="caseTab">
+					<a href="#">热门推荐</a>
+					<a href="#" class="active">新品推荐</a>
+				</p>
+				<div class="caseSuggest">
+					{for $i=0; $i<4; $i++}
+					<div class="suggestItem">
+						<div class="imgWrapper">
+							<img src="http://www.www.cc/template/tpl/qilu/images/imgHotPhone.jpg" alt="#">
+						</div>
+						<a class="suggestTitle" href="">眼镜蛇耳机</a>
+						<span class="suggestPrice">￥30.00</span>
+					</div>
+					{/for}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="layout appCatWrap clear">
+	<div class="col-main-left">
+		<div class="catSuggest">
+			<div class="appTitle">
+				<h3><span class="appIcon appIconAndriod">&nbsp;</span>今日推荐</h3>
+			</div>
+			<div class="items wrapGrey">
+				<ul class="appTab">
+					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+					<li class="active"><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+				</ul>
+				<div class="clear">
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-main-right">
+		<div class="hotapp">
+			<h3 class="titleGrey">软件下载周排行榜</h3>
+			<div class="appDown wrapGrey">
+				<ul class="listAppDown">
+					<li class="bignum">
+						<a href="#"><img src="http://www.www.cc/template/tpl/qilu/images/app/15.jpg" alt=""></a>
+						<a href="#" class="title">愤怒的小鸟</a>
+						<p>软件类型:游戏</p>
+						<p>收费方式:免费</p>
+					</li>
+					<li class="bignum">
+						<a href="#"><img src="http://www.www.cc/template/tpl/qilu/images/app/14.jpg" alt=""></a>
+						<a href="#" class="title">愤怒的小鸟</a>
+						<p>软件类型:游戏</p>
+						<p>收费方式:免费</p>
+					</li>
+					<li class="bignum">
+						<a href="#"><img src="http://www.www.cc/template/tpl/qilu/images/app/2.jpg" alt=""></a>
+						<a href="#" class="title">愤怒的小鸟</a>
+						<p>软件类型:游戏</p>
+						<p>收费方式:免费</p>
+					</li>
+					<li><a href="#">愤怒的小鸟</a></li>
+					<li><a href="#">愤怒的小鸟</a></li>
+					<li><a href="#">愤怒的小鸟</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="layout appCatWrap clear">
+	<div class="col-main-left">
+		<div class="catSuggest">
+			<div class="appTitle">
+				<h3><span class="appIcon appIconWp">&nbsp;</span>今日推荐</h3>
+			</div>
+			<div class="items wrapGrey">
+				<ul class="appTab">
+					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+					<li class="active"><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+				</ul>
+				<div class="clear">
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-main-right">
+		<h3 class="titleGrey">
+			热门手机
+		</h3>
+		<div class="wrapGrey">
+			<ul class="listNum">
+				<li><a href="#">标题标题</a></li>
+				<li><a href="#">标题标题</a></li>
+				<li><a href="#">标题标题</a></li>
+				<li><a href="#">标题标题</a></li>
+				<li><a href="#">标题标题</a></li>
+				<li><a href="#">标题标题</a></li>
+				<li><a href="#">标题标题</a></li>
+				<li><a href="#">标题标题</a></li>
+				<li><a href="#">标题标题</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="layout appCatWrap clear">
+	<div class="col-main-left">
+		<div class="catSuggest">
+			<div class="appTitle">
+				<h3><span class="appIcon appIconWp">&nbsp;</span>今日推荐</h3>
+			</div>
+			<div class="items wrapGrey">
+				<ul class="appTab">
+					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+					<li class="active"><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+				</ul>
+				<div class="clear">
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+					<div class="item">
+						<img src="APPimg" alt="">
+						<span>分类:安全</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-main-right">
+		<h3 class="titleGrey">
+			热门手机
+		</h3>
+		<div class="wrapGrey">
+			<ul class="listBlueDot">
+				<li><a href="#">标题标题</a></li>
+				<li><a href="#">标题标题</a></li>
+				<li><a href="#">标题标题</a></li>
+				<li><a href="#">标题标题</a></li>
+				<li><a href="#">标题标题</a></li>
+				<li><a href="#">标题标题</a></li>
+				<li><a href="#">标题标题</a></li>
+				<li><a href="#">标题标题</a></li>
+				<li><a href="#">标题标题</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+{template "content","footer"}
