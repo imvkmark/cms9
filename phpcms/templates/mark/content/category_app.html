@@ -4,6 +4,16 @@
 {template "content", "tpl_topAd2"}
 {php $poApp = true}
 {template "content", "tpl_position"}
+<?php
+$linkageApp = getcache(3384, 'linkage');
+$linkageApp = $linkageApp['data'];
+$laApp = array();
+foreach($linkageApp as $k => $v):
+	if ($v[parentid]==0):
+		$laApp[] = $v;
+	endif;
+endforeach;
+?>
 <div class="layout appIdx focus clear">
 	<div class="focus">
 		<div class="focus-left">
@@ -21,7 +31,6 @@
 				</div>
 				<div class="infolist">
 					<ul class="listGreyDot">
-
 						<li><a href="#">标题标题</a></li>
 						<li><a href="#">标题标题</a></li>
 						<li><a href="#">标题标题</a></li>
@@ -65,115 +74,72 @@
 	<div class="appTitle">
 		<h3>今日推荐</h3>
 	</div>
-	<div class="wrapGrey content">
+	<div class="wrapGrey content" id="suggestApp">
 		<ul class="appTab">
-			<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-			<li class="active"><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-			<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-			<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-			<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-			<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-			<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-			<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
+			{pc:content action="category" catid="14" num="10" siteid="$siteid" order="listorder ASC"}
+			{loop $data $r}
+			<li><a href="#suggestApp-{$r[catid]}">{$r[catname]}<span>&nbsp;</span></a></li>
+			{/loop}
+			{/pc}
 		</ul>
-		<div class="clear">
-			<div class="item">
-				<img src="APPimg" alt="">
-				<h4><a href="#">标题标题</a></h4>
-				<span class="star">评分:</span>
-				<span class="cat">分类:安全</span>
-			</div>
-			<div class="item">
-				<img src="APPimg" alt="">
-				<h4><a href="#">标题标题</a></h4>
-				<span class="star">评分:</span>
-				<span class="cat">分类:安全</span>
-			</div>
-			<div class="item">
-				<img src="APPimg" alt="">
-				<h4><a href="#">标题标题</a></h4>
-				<span class="star">评分:</span>
-				<span class="cat">分类:安全</span>
-			</div>
-			<div class="item">
-				<img src="APPimg" alt="">
-				<h4><a href="#">标题标题</a></h4>
-				<span class="star">评分:</span>
-				<span class="cat">分类:安全</span>
-			</div>
-			<div class="item">
-				<img src="APPimg" alt="">
-				<h4><a href="#">标题标题</a></h4>
-				<span class="star">评分:</span>
-				<span class="cat">分类:安全</span>
-			</div>
-			<div class="item">
-				<img src="APPimg" alt="">
-				<h4><a href="#">标题标题</a></h4>
-				<span class="star">评分:</span>
-				<span class="cat">分类:安全</span>
-			</div>
-			<div class="item">
-				<img src="APPimg" alt="">
-				<h4><a href="#">标题标题</a></h4>
-				<span class="star">评分:</span>
-				<span class="cat">分类:安全</span>
-			</div>
-			<div class="item">
-				<img src="APPimg" alt="">
-				<h4><a href="#">标题标题</a></h4>
-				<span class="star">评分:</span>
-				<span class="cat">分类:安全</span>
-			</div>
+		{pc:content action="category" catid="14" num="10" siteid="$siteid" order="listorder ASC"}
+		{loop $data $r}
+		<div class="clear" id="suggestApp-{$r[catid]}">
+			{pc:get sql="select a.title, a.appcat, a.url, a.thumb from mk_app a ,mk_position_data p where p.posid = 18 and p.catid=$r[catid] and a.id = p.id" num="8"}
+				{loop $data $key $val}
+				<div class="item">
+					<img src="{$val['thumb']}" alt="{$val[title]}">
+					<h4><a href="{$val['url']}">{$val[title]}</a></h4>
+					<span class="star">评分:</span>
+					<span class="cat">分类:{$linkageApp[$val[appcat]][name]}</span>
+				</div>
+				{/loop}
+			{/pc}
 		</div>
+		{/loop}
+		{/pc}
 	</div>
 </div>
 
 <div class="layout appCatWrap clear">
 	<div class="col-main-left">
-		<div class="catSuggest">
-			<div class="appTitle">
-				<h3><span class="appIcon appIconMac">&nbsp;</span>今日推荐</h3>
-			</div>
-			<div class="items wrapGrey">
-				<ul class="appTab">
-					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-					<li class="active"><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-				</ul>
-				<div class="clear">
-					{for $i=1 ;$i<=12; $i++}
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					{/for}
-				</div>
-			</div>
-		</div>
+		{php $cid = 18}
+		{template "content", "tpl_app_suggest"}
 	</div>
 	<div class="col-main-right">
 		<div class="hotphonecase">
 			<h3 class="titleGrey">手机推荐排行榜</h3>
-			<div class="clear wrapGrey">
-				<p class="caseTab">
-					<a href="#">热门推荐</a>
-					<a href="#" class="active">新品推荐</a>
-				</p>
-				<div class="caseSuggest">
-					{for $i=0; $i<4; $i++}
+			<div class="clear wrapGrey" id="phoneSuggest">
+				<ul class="caseTab">
+					<li><a href="#phoneSuggest-hot">热门推荐</a></li>
+					<li><a href="#phoneSuggest-new">新品推荐</a></li>
+				</ul>
+				{pc:get sql="select p.title,p.thumb, p.url,pd.price from mk_hits h, mk_phone p, mk_phone_data pd where h.hitsid = concat('c-13-',p.id) and p.id = pd.id and p.catid=10 order by h.monthviews desc, p.updatetime desc" num=4}
+				<div class="caseSuggest" id="phoneSuggest-hot">
+					{loop $data $key $val}
 					<div class="suggestItem">
 						<div class="imgWrapper">
-							<img src="http://www.www.cc/template/tpl/qilu/images/imgHotPhone.jpg" alt="#">
+							<img src="{$val['thumb']}" alt="{$val['title']}">
 						</div>
-						<a class="suggestTitle" href="">眼镜蛇耳机</a>
-						<span class="suggestPrice">￥30.00</span>
+						<a class="suggestTitle" href="{$val['url']}">{$val['title']}</a>
+						<span class="suggestPrice">￥{$val['price']}</span>
 					</div>
-					{/for}
+					{/loop}
 				</div>
+				{/pc}
+				{pc:content  action="lists" catid="10" order="updatetime DESC" num="4" moreinfo="1"}
+				<div class="caseSuggest" id="phoneSuggest-new">
+					{loop $data $key $val}
+					<div class="suggestItem">
+						<div class="imgWrapper">
+							<img src="{$val['thumb']}" alt="{$val['title']}">
+						</div>
+						<a class="suggestTitle" href="{$val['url']}">{$val['title']}</a>
+						<span class="suggestPrice">￥{$val['price']}</span>
+					</div>
+					{/loop}
+				</div>
+				{/pc}
 			</div>
 		</div>
 	</div>
@@ -181,98 +147,29 @@
 
 <div class="layout appCatWrap clear">
 	<div class="col-main-left">
-		<div class="catSuggest">
-			<div class="appTitle">
-				<h3><span class="appIcon appIconAndriod">&nbsp;</span>今日推荐</h3>
-			</div>
-			<div class="items wrapGrey">
-				<ul class="appTab">
-					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-					<li class="active"><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-				</ul>
-				<div class="clear">
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-				</div>
-			</div>
-		</div>
+		{php $cid = 16}
+		{template "content", "tpl_app_suggest"}
 	</div>
 	<div class="col-main-right">
 		<div class="hotapp">
 			<h3 class="titleGrey">软件下载周排行榜</h3>
 			<div class="appDown wrapGrey">
 				<ul class="listAppDown">
+					{php $acids = $CATEGORYS[14]['arrchildid']}
+					{pc:get sql="select a.title,a.fee, a.url,a.appcat, a.thumb from mk_hits h, mk_app a where h.hitsid = concat('c-15-',a.id) and a.catid in ($acids) order by h.monthviews desc, a.updatetime desc" num="6"}
+					{loop $data $key $val}
+					{if $key<3}
 					<li class="bignum">
-						<a href="#"><img src="http://www.www.cc/template/tpl/qilu/images/app/15.jpg" alt=""></a>
-						<a href="#" class="title">愤怒的小鸟</a>
-						<p>软件类型:游戏</p>
-						<p>收费方式:免费</p>
+						<a href="{$val['url']}"><img src="{$val['thumb']}" alt="{$val['title']}"></a>
+						<a href="{$val['url']}" class="title">{$val['title']}</a>
+						<p>软件类型:{$laApp[$val[appcat]][name]}</p>
+						<p>收费方式:{if a.fee}收费{else}免费{/if}</p>
 					</li>
-					<li class="bignum">
-						<a href="#"><img src="http://www.www.cc/template/tpl/qilu/images/app/14.jpg" alt=""></a>
-						<a href="#" class="title">愤怒的小鸟</a>
-						<p>软件类型:游戏</p>
-						<p>收费方式:免费</p>
-					</li>
-					<li class="bignum">
-						<a href="#"><img src="http://www.www.cc/template/tpl/qilu/images/app/2.jpg" alt=""></a>
-						<a href="#" class="title">愤怒的小鸟</a>
-						<p>软件类型:游戏</p>
-						<p>收费方式:免费</p>
-					</li>
-					<li><a href="#">愤怒的小鸟</a></li>
-					<li><a href="#">愤怒的小鸟</a></li>
-					<li><a href="#">愤怒的小鸟</a></li>
+					{else}
+					<li><a href="{$val['url']}">{$val['title']}</a></li>
+					{/if}
+					{/loop}
+					{/pc}
 				</ul>
 			</div>
 		</div>
@@ -281,163 +178,27 @@
 
 <div class="layout appCatWrap clear">
 	<div class="col-main-left">
-		<div class="catSuggest">
-			<div class="appTitle">
-				<h3><span class="appIcon appIconWp">&nbsp;</span>今日推荐</h3>
-			</div>
-			<div class="items wrapGrey">
-				<ul class="appTab">
-					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-					<li class="active"><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-				</ul>
-				<div class="clear">
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-				</div>
-			</div>
-		</div>
+		{php $cid = 15}
+		{template "content", "tpl_app_suggest"}
 	</div>
 	<div class="col-main-right">
 		<h3 class="titleGrey">
 			热门手机
 		</h3>
 		<div class="wrapGrey">
-			<ul class="listNum">
-				<li><a href="#">标题标题</a></li>
-				<li><a href="#">标题标题</a></li>
-				<li><a href="#">标题标题</a></li>
-				<li><a href="#">标题标题</a></li>
-				<li><a href="#">标题标题</a></li>
-				<li><a href="#">标题标题</a></li>
-				<li><a href="#">标题标题</a></li>
-				<li><a href="#">标题标题</a></li>
-				<li><a href="#">标题标题</a></li>
-			</ul>
+			{template "content", "tpl_phone_hotlist9"}
 		</div>
 	</div>
 </div>
 
 <div class="layout appCatWrap clear">
 	<div class="col-main-left">
-		<div class="catSuggest">
-			<div class="appTitle">
-				<h3><span class="appIcon appIconWp">&nbsp;</span>今日推荐</h3>
-			</div>
-			<div class="items wrapGrey">
-				<ul class="appTab">
-					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-					<li class="active"><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-					<li><a href="#">安卓游戏<span>&nbsp;</span></a></li>
-				</ul>
-				<div class="clear">
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-					<div class="item">
-						<img src="APPimg" alt="">
-						<span>分类:安全</span>
-					</div>
-				</div>
-			</div>
-		</div>
+		{php $cid = 17}
+		{template "content", "tpl_app_suggest"}
 	</div>
 	<div class="col-main-right">
 		<h3 class="titleGrey">
-			热门手机
+			--网友交流热帖--
 		</h3>
 		<div class="wrapGrey">
 			<ul class="listBlueDot">
@@ -454,4 +215,64 @@
 		</div>
 	</div>
 </div>
+
+
+
+<div class="layout appCatWrap clear">
+	<div class="col-main-left">
+		{php $cid = 20}
+		{template "content", "tpl_app_suggest"}
+	</div>
+	<div class="col-main-right">
+		<div class="hotphonecase">
+			<h3 class="titleGrey">---手机配件排行榜---</h3>
+			<div class="clear wrapGrey" id="fitSuggest">
+				<ul class="caseTab">
+					<li><a href="#fitSuggest-hot">热门推荐</a></li>
+					<li><a href="#fitSuggest-new">新品推荐</a></li>
+				</ul>
+				{pc:get sql="select p.title,p.thumb, p.url,pd.price from mk_hits h, mk_phone p, mk_phone_data pd where h.hitsid = concat('c-13-',p.id) and p.id = pd.id and p.catid=10 order by h.monthviews desc, p.updatetime desc" num=4}
+				<div class="caseSuggest" id="fitSuggest-hot">
+					{loop $data $key $val}
+					<div class="suggestItem">
+						<div class="imgWrapper">
+							<img src="{$val['thumb']}" alt="{$val['title']}">
+						</div>
+						<a class="suggestTitle" href="{$val['url']}">{$val['title']}</a>
+						<span class="suggestPrice">￥{$val['price']}</span>
+					</div>
+					{/loop}
+				</div>
+				{/pc}
+				{pc:content  action="lists" catid="10" order="updatetime DESC" num="4" moreinfo="1"}
+				<div class="caseSuggest" id="fitSuggest-new">
+					{loop $data $key $val}
+					<div class="suggestItem">
+						<div class="imgWrapper">
+							<img src="{$val['thumb']}" alt="{$val['title']}">
+						</div>
+						<a class="suggestTitle" href="{$val['url']}">{$val['title']}</a>
+						<span class="suggestPrice">￥{$val['price']}</span>
+					</div>
+					{/loop}
+				</div>
+				{/pc}
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<script>
+	seajs.use(['ui'], function(){
+		$('#suggestApp').tabs();
+		$('#tabSuggest-18').tabs();
+		$('#tabSuggest-16').tabs();
+		$('#tabSuggest-15').tabs();
+		$('#tabSuggest-17').tabs();
+		$('#phoneSuggest').tabs();
+		$('#fitSuggest').tabs();
+	});
+</script>
 {template "content","footer"}

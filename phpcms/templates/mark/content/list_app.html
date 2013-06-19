@@ -2,31 +2,34 @@
 {template "content", "tpl_selectPhone"}
 {template "content", "tpl_topAd1"}
 {template "content", "tpl_topAd2"}
-{php $poLab = true}
+{php $poApp = true}
 {template "content", "tpl_position"}
-<div class="layout unicomList clear">
+{template "content", "tpl_app_config"}
+<div class="layout article articleReview appReview clear">
 	<div class="col-list-left">
-		<div class="searchList">
-			<div class="items clear">
-				{pc:content action="lists" catid="$catid" num="12" page="$page" moreinfo="1"}
-				{loop $data $r}
-				<div class="item">
-					<a class="img" href="{$r[url]}"><img src="{$r[thumb]}" alt="{$r[title]}"></a>
-					<a class="title" href="{$r[url]}">{$r[title]}<strong>{$r[second_title]}</strong></a>
-					<p class="price">
-						<span class="old">￥:{$r[market_price]}</span>
-						<span class="new">￥:{$r[price]}</span>
-						<span class="tips">{$r[sign]}</span>
+		<div class="items">
+			{pc:content action="lists" catid="$catid" num="20" page="$page"}
+			{loop $data $v}
+			<div class="item clear">
+				<div class="img">
+					<a href="{$v[url]}">
+						<img src="{$v[thumb]}" alt="{$v[title]}">
+					</a>
+				</div>
+				<div class="info">
+					<h3><a href="{$v[url]}">{$v[title]}</a></h3>
+					<p class="intro">
+						{$v[description]} <a href="{$v[url]}" class="more">查看详情&gt;&gt;</a>
 					</p>
 				</div>
-				{/loop}
-				{/pc}
 			</div>
-			{template 'content', 'tpl_pages'}
+			{/loop}
+			{/pc}
 		</div>
+		{template 'content', 'tpl_pages'}
 	</div>
-	<div class="col-list-right pt8">
+	<div class="col-list-right">
 		{template "content", "tpl_lab_side"}
 	</div>
 </div>
-{template "content", "footer"}
+{template "content","footer"}

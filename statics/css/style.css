@@ -313,6 +313,12 @@ body {
 .listNum li a:hover {
   color: #5a5a5a;
 }
+.listNum li .price {
+	float: right;
+	padding-right: 1em;
+	font-size: 14px;
+	color: darkred;
+}
 .listRoundNum {
   background: url('../images/bgListRoundNum.jpg') no-repeat 0 0px;
 }
@@ -1790,6 +1796,12 @@ body {
 .appTab .active span {
   background-position: right 0;
 }
+.appTab .ui-state-active a {
+	background-position: 0 0;
+}
+.appTab .ui-state-active span {
+	background-position: right 0;
+}
 .appTitle {
   background: url('../images/bgAppTitle.jpg') no-repeat right 0;
   height: 30px;
@@ -1952,13 +1964,13 @@ body {
   line-height: 25px;
   width: 25px;
 }
-.appIconWp {
+.appIconWp, .appIcon16, .appIcon17 {
   background-position: 0 0;
 }
-.appIconAndriod {
+.appIconAndriod,.appIcon15 {
   background-position: -25px 0;
 }
-.appIconMac {
+.appIconMac,.appIcon18 {
   background-position: -50px 0;
 }
 .appDetail {
@@ -2051,10 +2063,10 @@ body {
 }
 .appDetail .picList .imgWrapper {
   border: 1px solid #ccc;
+  padding-left: 190px;
 }
 .appDetail .picList .imgWrapper img {
-  width: 300px;
-  margin-left: 150px;
+
 }
 .appDetail .picList .imgSlider {
   width: 690px;
@@ -2491,6 +2503,7 @@ body {
   height: 23px;
   border-bottom: 1px solid #ccc;
   background: #f2f0f1;
+  margin: 10px 0;
 }
 .hotphonecase .caseTab a {
   display: inline-block;
@@ -2500,7 +2513,7 @@ body {
   float: left;
   text-align: center;
 }
-.hotphonecase .caseTab .active {
+.hotphonecase .caseTab .active a, .hotphonecase .caseTab .ui-state-active a {
   position: relative;
   color: #fff;
   background: url('../images/bgMenuNarrow.jpg') no-repeat center 0;
@@ -2670,4 +2683,10 @@ body {
 	color: #959595;
 	text-align: center;
 	margin-left: 0;
+}
+.appReview .img img {
+	width: 90px;
+	height: 90px;
+	border: 1px solid #ccc;
+	padding:5px;
 }

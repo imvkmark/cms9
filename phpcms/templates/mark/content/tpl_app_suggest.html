@@ -1,0 +1,30 @@
+<div class="catSuggest">
+	<div class="appTitle">
+		<h3><span class="appIcon appIcon{$cid}">&nbsp;</span>{$CATEGORYS[$cid][catname]}</h3>
+	</div>
+	<div class="items wrapGrey" id="tabSuggest-{$cid}">
+		{php $count=0;}
+		<ul class="appTab">
+			{loop $laApp $k $v}
+			{if $count++ < 7}
+			<li><a href="#tabSuggest-{$cid}-{$v[linkageid]}">{$v[name]}<span>&nbsp;</span></a></li>
+			{/if}
+			{/loop}
+		</ul>
+		{php $count=0;}
+		{loop $laApp $k $v}
+		{if $count++ < 7}
+		<div class="clear" id="tabSuggest-{$cid}-{$v[linkageid]}">
+			{pc:get sql="select a.title, a.appcat, a.url,a.thumb from mk_app a where a.appcat in ($v[arrchildid]) and catid=$cid" num="12"}
+			{loop $data $key $val}
+			<div class="item">
+				<a href="{$val[url]}"><img src="{$val['thumb']}" alt="{$val[title]}"></a>
+				<span><a href="{$val[url]}">{$val[title]}</a></span>
+			</div>
+			{/loop}
+			{/pc}
+		</div>
+		{/if}
+		{/loop}
+	</div>
+</div>

@@ -6,13 +6,7 @@
 		手机热门产品排行
 	</h3>
 	<div class="hotPhoneList">
-		{pc:get sql="select p.title, p.url,pd.price from mk_hits h, mk_phone p, mk_phone_data pd where h.hitsid = concat('c-13-',p.id) and p.id = pd.id and p.catid=10 order by h.monthviews desc, p.updatetime desc"}
-		<ul class="listNum">
-			{loop $data $key $val}
-			<li><span class="price">￥:{$val[price]}</span><a href="{$val['url']}">{$val['title']}</a></li>
-			{/loop}
-		</ul>
-		{/pc}
+		{template "content", "tpl_phone_hotlist10"}
 	</div>
 </div>
 <div class="adSide mt8">

@@ -1,0 +1,10 @@
+<?php
+$linkageApp = getcache(3384, 'linkage');
+$linkageApp = $linkageApp['data'];
+$laApp = array();
+foreach($linkageApp as $k => $v):
+if ($v[parentid]==0):
+$laApp[] = $v;
+endif;
+endforeach;
+?>

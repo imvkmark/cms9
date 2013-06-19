@@ -1,5 +1,5 @@
-{if $poLab==true}
 <div class="layout position">
+{if $poLab==true}
 	您当前的位置是:
 	<a href="{siteurl($siteid)}">{$SEO['site_title']}</a> <span class="cutter">&gt;</span>
 	<a href="{$CATEGORYS[12][url]}">{$CATEGORYS[11][catname]}</a><span class="cutter">&gt;</span>
@@ -7,10 +7,8 @@
 	{if $title}
 	<span class="cutter">&gt;</span> {$title}
 	{/if}
-</div>
 {/if}
 {if $poApp==true}
-<div class="layout position">
-	您当前的位置是: {catpos($catid)}
-</div>
+	您当前的位置是: {catpos($catid)} {if $title}{$title}{/if}
 {/if}
+</div>

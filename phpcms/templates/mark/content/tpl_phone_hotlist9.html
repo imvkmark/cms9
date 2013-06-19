@@ -1,0 +1,7 @@
+{pc:get sql="select p.title, p.url,pd.price from mk_hits h, mk_phone p, mk_phone_data pd where h.hitsid = concat('c-13-',p.id) and p.id = pd.id and p.catid=10 order by h.monthviews desc, p.updatetime desc" cache="0" num="9"}
+<ul class="listNum">
+	{loop $data $key $val}
+	<li><span class="price">￥:{$val[price]}</span><a href="{$val['url']}">{$val['title']}</a></li>
+	{/loop}
+</ul>
+{/pc}
