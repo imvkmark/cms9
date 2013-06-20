@@ -101,6 +101,10 @@ class down {
 		$endtime = SYS_TIME - $starttime;
 		if($endtime > 3600) showmessage(L('url_invalid'));
 		if($m) $fileurl = trim($s).trim($fileurl);
+		//更新下载次数
+		$MODEL = getcache('model','commons'); //读取缓存文件
+		$this->db->table_name = $this->db->db_tablepre.$MODEL[$modelid]['tablename'];  //获取下载模型的主表名 "v9_download"
+		$fid = $this->db->update(array('downhits'=>'+=1'), 'id='.$downid);
 		//远程文件
 		if(strpos($fileurl, ':/') && (strpos($fileurl, pc_base::load_config('system','upload_url')) === false)) { 
 			header("Location: $fileurl");
