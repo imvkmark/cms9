@@ -57,20 +57,26 @@ show 页面调试
 
 linkage 联动菜单
 ---------------
-	Array
-	(
-	    [linkageid] => 3397
-	    [name] => 游戏
-	    [style] =>
-	    [parentid] => 0
-	    [child] => 1
-	    [arrchildid] => 3397,3435,3436,3437,3438,3439,3440,3441,3442,3443
-	    [keyid] => 3384
-	    [listorder] => 0
-	    [description] =>
-	    [setting] =>
-	    [siteid] => 0
-	)
+    [title] => 手机品牌
+    [style] => 0
+    [siteid] => 0
+    [data] => Array
+        (
+        [3361] => Array
+        (
+            [linkageid] => 3361
+            [name] => 小米
+            [style] =>
+            [parentid] => 0
+            [child] => 0
+            [arrchildid] => 3361
+            [keyid] => 3360
+            [listorder] => 0
+            [description] =>
+            [setting] =>
+            [siteid] => 0
+        )
+    )
 
 seajs
 -----

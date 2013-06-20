@@ -1,0 +1,68 @@
+<?php
+$lbrand = getcache(3360, 'linkage');
+$lsystem = getcache(3379, 'linkage');
+$ldesign = getcache(3444, 'linkage');
+$lprice  = array(
+	'1'=>"1-499",
+	'500'=>"500-1000",
+	'1000'=>"1000-1500",
+	'1500'=>"1500-2000",
+	'2000'=>"2000-3000",
+	'3000'=>"3000-5000",
+	'5000'=>"5000以上",
+);
+$lfields = getcache('model_field_'.$modelid,'model');
+$ltypes = optionsToArray($lfields['mtype']['options']);
+$lnets = optionsToArray($lfields['mnet']['options']);
+$uty=intval($_GET['uty']);
+$ubr=intval($_GET['ubr']);
+$upr=intval($_GET['upr']);
+$ude=intval($_GET['ude']);
+$une=intval($_GET['une']);
+$usy=intval($_GET['usy']);
+$uod = isset($_GET['uod']) ? intval($_GET['uod']) : 1;
+$condition = '';
+if ($uty) $condition .= " and p.mtype=$uty";
+if ($ubr) $condition .= " and p.brand=$ubr";
+if ($upr) {
+	if ($upr == 1) $condition .= " and 1<= pd.price and pd.price <= 500";
+	if ($upr == 500) $condition .= " and 500<= pd.price and pd.price <= 1000";
+	if ($upr == 1000) $condition .= " and 1000<= pd.price and pd.price <= 1500";
+	if ($upr == 1500) $condition .= " and 1500<= pd.price and pd.price <= 2000";
+	if ($upr == 2000) $condition .= " and 2000<= pd.price and pd.price <= 3000";
+	if ($upr == 3000) $condition .= " and 3000<= pd.price and pd.price <= 5000";
+	if ($upr == 5000) $condition .= " and 5000<= pd.price";
+}
+if ($ude) $condition .= " and p.design=$ude";
+if ($une) $condition .= " and p.mnet=$une";
+if ($usy) $condition .= " and p.sys=$uty";
+$lorders = array(
+	'1' => 'p.listorder desc',
+	'2' => 'p.updatetime desc',
+	'3' => 'pd.price desc',
+);
+?>
+<script>
+	function go(param, value, tripFile) {
+		var stringObj = window.location.href;
+		if (typeof tripFile == 'undefined'){
+			tripFile = window.location.pathname;
+		}
+		var lstr = "&";
+
+		if (stringObj.indexOf(tripFile+'?') == -1) {
+			lstr = "?";
+		}
+		stringObj = stringObj.replace(/page=[0-9]*/, '');
+		var reg = new RegExp(param + "=[0-9a-zA-Z,-]*", "g"); //创建正则RegExp对象
+		var urlGo = "";
+		var ch = stringObj.indexOf(param+'=');
+		if (ch == -1) {
+			urlGo = urlGo + stringObj + lstr + param + "=" + value;
+		}
+		if (ch != -1) {
+			urlGo = stringObj.replace(reg, param + "=" + value);
+		}
+		window.location = urlGo;
+	}
+</script>

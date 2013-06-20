@@ -1,0 +1,151 @@
+{template "content", "header"}
+{template "content", "tpl_selectPhone"}
+{template "content", "tpl_topAd1"}
+{template "content", "tpl_topAd2"}
+{php $poApp = true}
+{template "content", "tpl_position"}
+{template "content", "tpl_phone_config"}
+
+<div class="layout">
+	<div class="titleTab">
+		<span>手机大全</span>
+	</div>
+</div>
+
+<div class="layout selection">
+	<dl class="iItem clear">
+		<dt class="iTitle">
+			{$lbrand[title]}:
+		</dt>
+		<dd>
+			<span class="iAll">
+				<a href="javascript:go('ubr','');"{if !$ubr} class="active"{/if}>不限</a>
+			</span>
+			{loop $lbrand[data] $v}
+			<a href="javascript:go('ubr',{$v[linkageid]});"{if $ubr==$v[linkageid]} class="active"{/if}>{$v[name]}<span></span></a>
+			{/loop}
+		</dd>
+	</dl>
+	<dl class="iItem clear">
+		<dt class="iTitle">
+			价格范围:
+		</dt>
+		<dd>
+			<span class="iAll">
+				<a href="javascript:go('upr','');" {if !$upr} class="active"{/if}>不限</a>
+			</span>
+			{loop $lprice $k $v}
+			<a href="javascript:go('upr',{$k});"{if $upr==$k} class="active"{/if}>{$v}<span></span></a>
+			{/loop}
+			<span class="iCustomPrice">
+				<a href="#" class="customPrice"></a>
+			</span>
+		</dd>
+	</dl>
+	<dl class="iItem clear">
+		<dt class="iTitle">
+			外观设计:
+		</dt>
+		<dd>
+			<span class="iAll">
+				<a href="javascript:go('ude','');" {if !$ude} class="active"{/if}>不限</a>
+			</span>
+			{loop $ldesign[data] $k $v}
+			<a href="javascript:go('ude',{$v[linkageid]});"{if $ude==$v[linkageid]} class="active"{/if}>{$v[name]}<span></span></a>
+			{/loop}
+		</dd>
+	</dl>
+	<dl class="iItem clear">
+		<dt class="iTitle">
+			手机类型:
+		</dt>
+		<dd>
+			<span class="iAll">
+				<a href="javascript:go('uty','');" {if !$uty} class="active"{/if}>不限</a>
+			</span>
+			{loop $ltypes $v}
+			<a href="javascript:go('uty',{$v[key]});"{if $uty==$v[key]} class="active"{/if}>{$v[val]}<span><span></a>
+			{/loop}
+		</dd>
+	</dl>
+	<dl class="iItem clear">
+		<dt class="iTitle">
+			手机网络:
+		</dt>
+		<dd>
+			<span class="iAll">
+				<a href="javascript:go('une','');" {if !$une} class="active"{/if}>不限</a>
+			</span>
+			{loop $lnets $v}
+			<a href="javascript:go('une',{$v[key]});"{if $une==$v[key]} class="active"{/if}>{$v[val]}<span><span></a>
+			{/loop}
+		</dd>
+	</dl>
+	<dl class="iItem clear">
+		<dt class="iTitle">
+			操作系统:
+		</dt>
+		<dd>
+			<span class="iAll">
+				<a href="javascript:go('usy','');"{if empty($usy)} class="active"{/if}>不限</a>
+			</span>
+			{loop $lsystem[data] $k $v}
+			<a href="javascript:go('usy',{$v[linkageid]});"{if $usy==$v[linkageid]} class="active"{/if}>{$v[name]}<span></span></a>
+			{/loop}
+		</dd>
+	</dl>
+</div>
+
+
+
+<div class="layout">
+	<div class="searchList clear">
+		<div class="col-list-left">
+			<div class="iContent">
+				<div class="iOrderAPage clear">
+					<div class="iOrder">
+						排序:
+						<a href="javascript:go('uod', 1)" {if $uod==1}class="active"{/if}>关注度 高→低</a>
+						<a href="javascript:go('uod', 2)" {if $uod==2}class="active"{/if}>时间 新→旧</a>
+						<a href="javascript:go('uod', 3)" {if $uod==3}class="active"{/if}>价格 低→高</a>
+					</div>
+					<div class="iShorPage page">
+						1/ 555
+						<a href="#" class="prevDisabled"><span>上一页</span></a>
+						<a href="#" class="next"><span>下一页</span></a>
+					</div>
+				</div>
+				<div class="iItems clear">
+				{php $order = $lorders[$uod]}
+				{php $sql = "select p.description, p.title, p.thumb, p.url,pd.price from mk_phone p , mk_phone_data pd where p.id=pd.id $condition order by $order";}
+
+				{pc:get sql="$sql" num="9" order="$order"}
+					{loop $data $v}
+					<div class="iItem">
+						<a href="#" class="img"><img src="{$v[thumb]}" alt="{$v[title]}"></a>
+						<a href="#" class="title">{$v[title]}</a>
+						<span class="price">￥:{$v[price]}</span>
+						<p class="desc">{$v[description]}</p>
+						<a href="#" class="comment">已有39人评论</a>
+						<p class="others">
+							<a href="{$v[fid]}" class="bbs">论坛</a>
+							<a href="#" class="params">参数</a>
+							<a href="#" class="picture">图片</a>
+							<a href="#" class="compare">对比</a>
+						</p>
+					</div>
+					{/loop}
+				{/pc}
+				</div>
+				<div class="listPages page">
+					{template 'content', 'tpl_pages'}
+				</div>
+
+			</div>
+		</div>
+		<div class="col-list-right">
+			{template "content", "tpl_lab_side"}
+		</div>
+	</div>
+</div>
+{template "content","footer"}

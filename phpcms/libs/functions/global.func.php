@@ -1692,4 +1692,16 @@ function appScore($direction) {
 	}
 	return implode('&nbsp;', $img);
 }
-?>
+
+function optionsToArray($options) {
+	$arr = explode("\n", $options);
+	$new = array();
+	foreach($arr as $v) {
+		$tmp = explode('|', $v);
+		$new[] = array(
+			'key'=>$tmp[1],
+			'val'=>$tmp[0]
+		);
+	}
+	return $new;
+}
