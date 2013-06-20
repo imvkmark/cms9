@@ -21,9 +21,9 @@
 					<h2>{$title}</h2>
 					<h3>介绍</h3>
 					<p>{$content}</p>
-					<span class="score">综合评分: <img src="images/imgStar4.jpg" alt="#"></span>
+					<span class="score">综合评分: <span class="appScore">{if !$score}{appScore(4)}{else}{appScore($score)}{/if}</span></span>
 					<p>
-						<a class="dowload" href="{$file[0][fileurl]}"></a>
+						<span class="dowload ">{$downfile[0]}</span>
 						<!--<a class="downPhone" href=""></a>-->
 					</p>
 				</div>
@@ -35,15 +35,15 @@
 			</div>
 			<div class="detail wrapGrey">
 				<div class="nav clear">
-					<a class="prev" href="#"></a>
+					<!--<a class="prev" href="#"></a>-->
 					<h4>迷你冲刺</h4>
-					<a class="next" href="#"></a>
+					<!--<a class="next" href="#"></a>-->
 				</div>
 				<div class="imgSlider">
 					<div class="imgWrapper">
 						<ul class="diaporama1">
 							{loop $pics $pic}
-							<li><a href="#"><img src="{$pic[url]}" alt="{$pic[alt]}"></a></li>
+							<li><img src="{$pic[url]}" alt="{$pic[alt]}"></li>
 							{/loop}
 						</ul>
 					</div>
@@ -58,47 +58,16 @@
 			});
 		})</script>
 		<div class="appComment">
-			<div class="appTitle">
-				<h3>应用点评</h3>
-			</div>
-			<div class="appSubmit wrapGrey">
-				<dl class="clear">
-					<dt>登录名</dt>
-					<dd><input type="text"> <label class="pass" for="pass">密码</label>
-						<input type="text" id="pass"> <label for="anonymous" class="anonymous"> 匿名发表 </label><input id="anonymous" type="checkbox"><a class="quickReg" href="#">快速注册</a>
-					</dd>
-				</dl>
-				<dl class="clear">
-					<dt>推荐指数</dt>
-					<dd>
-						<img src="{DT_PROJECT}images/imgStar4.jpg" alt="#">
-					</dd>
-				</dl>
-				<dl class="clear">
-					<dt>评论内容:</dt>
-					<dd>
-						<textarea name="comment" id="" cols="30" rows="10"></textarea>
-					</dd>
-				</dl>
-				<dl class="clear">
-					<dt>验证码</dt>
-					<dd>
-						<input type="text" name="#" size="4" id=""/>
-						<img src="{DT_PROJECT}images/captcha.jpg" alt="#">
-					</dd>
-				</dl>
-				<dl class="clear">
-					<dt>&nbsp;</dt>
-					<dd><a class="appSubmitBtn" href=""></a></dd>
-				</dl>
-			</div>
+			{if $allow_comment && module_exists('comment')}
+			<iframe src="{APP_PATH}index.php?m=comment&c=index&a=init&commentid={id_encode("content_$catid",$id,$siteid)}&iframe=1" width="100%" height="100%" id="comment_iframe" frameborder="0" scrolling="no"></iframe>
+			{/if}
 		</div>
 		<div class="appUserLike">
 			<div class="appTitle">
 				<h3>喜欢该应用的用户还喜欢</h3>
 			</div>
 			<div class="items wrapGrey clear">
-				{pc:content action="lists" catid="$catid" num="20" page="0"}
+				{pc:content action="lists" catid="$catid" num="12" page="0"}
 				{loop $data $v}
 				<a class="item" href="{$v[url]}">
 					<img src="{$v[thumb]}" alt="{$v[title]}">
@@ -116,38 +85,44 @@
 				<div class="wrapGrey iContent">
 					<img src="{$thumb}" class="appImg" alt="{$title}">
 					<p class="appInfo">
-						应用价格:{if $fee}收费{else}免费{/if} <br>
-						应用大小:免费 <br>
-						应用价格:免费 <br>
-						应用价格: <a href="#">免费</a> <br>
-						应用价格:免费 <br>
+						应用价格: {if $fee}收费{else}免费{/if} <br>
+						应用大小: {$filesize} <br>
+						应用分类: {$appcat} <br>
+						{if $manufactor}开发厂商: <a href="{$manuflink}">$manufactor</a> <br>{/if}
+						更新时间: <?php echo preg_replace("/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})/", '$1年 $2月 $3日',$updatetime);?>&nbsp;&nbsp; <br>
+						下载次数: {$downhits}
 					</p>
 				</div>
 			</div>
 			<div class="appSideList">
 				<h3 class="titleGrey">游戏应用下载排行</h3>
 				<div class="wrapGrey iContent">
-
+					{php $gameIn = $linkageApp[3397][arrchildid]}
+					{pc:get sql="select url, title, thumb, downhits,score from mk_app where appcat in($gameIn) order by downhits desc" cache="0" num="8"}
+					{loop $data $v}
 					<div class="item">
-						<img class="appImg" src="ppImg()}" alt="#">
-						<h4><a href="#">R::getTitle(1)}</a></h4>
-						<span>评分: <img class="star" src="DT_PROJECT}images/imgAppStar4.jpg" alt="#"></span>
-						<span>下载数量:32333</span>
+						<img class="appImg" src="{$v[thumb]}" alt="{$v[title]}">
+						<h4><a href="{$v[url]}">{$v[title]}</a></h4>
+						<span class="appScore">评分: {if !$score}{appScore(4)}{else}{appScore($score)}{/if}</span>
+						<span>下载数量:{$v[downhits]}</span>
 					</div>
-
+					{/loop}
+					{/pc}
 				</div>
 			</div>
 			<div class="appSideList">
 				<h3 class="titleGrey">应用下载排行</h3>
 				<div class="wrapGrey iContent">
-					{for $i=1; $i<=6; $i++}
+					{pc:get sql="select url, title, thumb, downhits,score from mk_app order by downhits desc" cache="0" num="8"}
+					{loop $data $v}
 					<div class="item">
-						<img class="appImg" src="::appImg()}" alt="#">
-						<h4><a href="#">R::getTitle(1)}</a></h4>
-						<span>评分: <img class="star" src="{DT_PROJECT}images/imgAppStar4.jpg" alt="#"></span>
-						<span>类别: <a href="#">游戏</a></span>
+						<img class="appImg" src="{$v[thumb]}" alt="{$v[title]}">
+						<h4><a href="{$v[url]}">{$v[title]}</a></h4>
+						<span class="appScore">评分: {if !$score}{appScore(4)}{else}{appScore($score)}{/if}</span>
+						<span>下载数量:{$v[downhits]}</span>
 					</div>
-					{/for}
+					{/loop}
+					{/pc}
 				</div>
 			</div>
 		</div>

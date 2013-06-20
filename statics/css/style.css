@@ -2035,6 +2035,10 @@ body {
   height: 40px;
   display: inline-block;
 }
+.appDetail .dowload  a{
+	display: block;
+	height: 40px;
+}
 .appDetail .picList {
   margin-top: 8px;
 }
@@ -2134,6 +2138,7 @@ body {
   display: inline-block;
   width: 135px;
   height: 36px;
+  border:none;
 }
 .appDetail .appUserLike {
   margin-top: 8px;
@@ -2689,4 +2694,8 @@ body {
 	height: 90px;
 	border: 1px solid #ccc;
 	padding:5px;
+}
+.appScore img{
+	width: 8px;
+	height: 8px;
 }

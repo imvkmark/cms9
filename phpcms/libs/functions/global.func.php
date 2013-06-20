@@ -1682,5 +1682,14 @@ function get_vid($contentid = 0, $catid = 0, $isspecial = 0) {
 		return $minite.":".$secend;
 	}
 
- } 
+ }
+
+
+function appScore($direction) {
+	$img = array();
+	for($i=0; $i< $direction; $i++) {
+		$img[] = '<img src="'.CSS_PATH.'/images/raty/star-on.png" />';
+	}
+	return implode('&nbsp;', $img);
+}
 ?>

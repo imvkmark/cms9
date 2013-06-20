@@ -50,3 +50,32 @@ show 页面调试
 	      ),
 	    )
     )
+
+时间替换
+-------
+	<?php echo preg_replace("/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})/", '$1年 $2月 $3日  $4:$5',$inputtime);?>&nbsp;&nbsp;
+
+linkage 联动菜单
+---------------
+	Array
+	(
+	    [linkageid] => 3397
+	    [name] => 游戏
+	    [style] =>
+	    [parentid] => 0
+	    [child] => 1
+	    [arrchildid] => 3397,3435,3436,3437,3438,3439,3440,3441,3442,3443
+	    [keyid] => 3384
+	    [listorder] => 0
+	    [description] =>
+	    [setting] =>
+	    [siteid] => 0
+	)
+
+seajs
+-----
+	<script>
+		var mk = mk || {};
+		mk.seajsBase = '{JS_PATH}';
+	</script>
+	<script src="{JS_PATH}libs/seajs/2.0.0/sea.js" data-config="config"></script>

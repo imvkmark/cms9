@@ -24,6 +24,18 @@ function direction($direction) {
 		break;
 	}
 }
+
+/**
+ * 方向生成
+ * @param $direction
+ */
+function directionPing($direction) {
+	$img = array();
+	for($i=0; $i< $direction; $i++) {
+		$img[] = '<img src="'.CSS_PATH.'/images/raty/star-on.png" />';
+	}
+	return implode('&nbsp;', $img);
+}
  
 /**
  * 通过API接口调用标题和URL数据

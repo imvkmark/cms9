@@ -24,6 +24,7 @@ var alias = {
 	'ms-filter': 'libs/multiselect/1.13/jquery.multiselect.filter.min',
 	'kinslideshow': 'libs/kinslideshow/1.2.1/kinslideshow',
 	'jd': 'libs/jDiaporama/2.0.0/jquery.jDiaporama',
+	'raty': 'libs/raty/2.5.2/jquery.raty',
 
 	// css
 	'uploadify-css': 'libs/uploadify/3.2.0/uploadify.css',
