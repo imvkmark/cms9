@@ -207,30 +207,6 @@ class content extends admin {
 		}
 	}
 
-	public function phone() {
-//		$this->db->
-		$adefault = $_REQUEST['adefault'];
-		$phone_db = pc_base::load_model('content_model');
-		$phone_db->set_model(13);
-		$all = $phone_db->select('', 'title, id');
-		$phones = array();
-		foreach($all as $v) {
-			if ($v['id'] == $adefault) {
-				$phones[] = array(
-					'pname' => $v['title'],
-					'pid'=> $v['id'],
-					'sel' => 1
-				);
-			}else {
-				$phones[] = array(
-					'pname' => $v['title'],
-					'pid'=> $v['id'],
-				);
-			}
-
-		}
-		echo json_encode(array('errNo'=>0, 'phones'=>$phones));
-	}
 	public function edit() {
 			//设置cookie 在附件添加处调用
 			param::set_cookie('module', 'content');
