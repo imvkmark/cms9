@@ -25,6 +25,7 @@ var alias = {
 	'kinslideshow': 'libs/kinslideshow/1.2.1/kinslideshow',
 	'jd': 'libs/jDiaporama/2.0.0/jquery.jDiaporama',
 	'raty': 'libs/raty/2.5.2/jquery.raty',
+	'fancybox': 'libs/fancybox/2.1.5/jquery.fancybox',
 
 	// css
 	'uploadify-css': 'libs/uploadify/3.2.0/uploadify.css',
@@ -36,6 +37,7 @@ var alias = {
 	'ms-css': 'libs/multiselect/1.13/jquery.multiselect.css',
 	'ms-filter-css': 'libs/multiselect/1.13/jquery.multiselect.filter.css',
 	'jd-css': 'libs/jDiaporama/2.0.0/style.css',
+	'fancybox-css': 'libs/fancybox/2.1.5/jquery.fancybox.css',
 	// lang
 	'ke-zh_CN':'libs/kindeditor/4.1.7/lang/zh_CN.js',
 
