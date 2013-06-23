@@ -1685,23 +1685,3 @@ function get_vid($contentid = 0, $catid = 0, $isspecial = 0) {
  }
 
 
-function appScore($direction) {
-	$img = array();
-	for($i=0; $i< $direction; $i++) {
-		$img[] = '<img src="'.CSS_PATH.'/images/raty/star-on.png" />';
-	}
-	return implode('&nbsp;', $img);
-}
-
-function optionsToArray($options) {
-	$arr = explode("\n", $options);
-	$new = array();
-	foreach($arr as $v) {
-		$tmp = explode('|', $v);
-		$new[] = array(
-			'key'=>$tmp[1],
-			'val'=>$tmp[0]
-		);
-	}
-	return $new;
-}

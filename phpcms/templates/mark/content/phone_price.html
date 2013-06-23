@@ -1,0 +1,92 @@
+{template "content", "header"}
+{template "content", "tpl_selectPhone"}
+{template "content", "tpl_topAd1"}
+{template "content", "tpl_topAd2"}
+{template "content", "phone_menu"}
+<div class="layout productCommon productPrices clear">
+	<div class="col-product-left">
+		<h4 class="priceTitle">{$phone[title]} 价格走势图</h4>
+		<div class="priceTrend clear">
+			<div class="col-priceTrend-left">
+				<p>参考价:<span class="priceMain">{$phone[price]}</span>
+					<!--<span class="mainIntro">[行货]</span>-->
+				</p>
+				<!--<p class="otherPrice">-->
+					<!--欧版:￥:4350 <br>港版:￥:4150 <br>厂商指导价￥:4550-->
+				<!--</p>-->
+			</div>
+			<!--<div class="col-priceTrend-center">-->
+				<!--<img src="{DT_PROJECT}images/imgPriceTrend.jpg" alt="">-->
+			<!--</div>-->
+			<!--<div class="col-priceTrend-right">-->
+				<!--<img src="{DT_PROJECT}images/imgAttentionTrend.jpg" alt="">-->
+			<!--</div>-->
+		</div>
+		<div class="tips">
+			价格仅供参考, 购买时以当地实际销售产品为主
+		</div>
+		<div class="productSaler">
+			<ul class="salerTitle clear">
+				<li class="a">经销商</li>
+				<li class="b">报价/报价时间</li>
+				<li class="c">信誉评价等级</li>
+				<li class="d">联系方式</li>
+				<li class="e">服务保障</li>
+				<li class="f">QQ</li>
+				<li class="g">
+					<!--支付宝-->
+				</li>
+			</ul>
+			{pc:get sql="select * from mk_price p, mk_price_data pd where p.id=pd.id and pd.phoneid=$phone[id]" num="20" page="$page"}
+			{loop $data $k $v}
+			<ul class="salerInfo clear">
+				<li class="a">
+					<a href="javascrip:void(0)" class="title">{$v[shopname]}</a>
+					{if $v[issuggest]}
+					<span class="titleAppend">推荐商家</span>
+					{/if}
+				</li>
+				<li class="b">
+					<span class="price">￥:{$v[price]}</span>
+					<span class="time">
+						<?php echo preg_replace("/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})/", '$2-$3 $4:$5',$inputtime);?>&nbsp;&nbsp;
+					</span>
+				</li>
+				<li class="c">
+					{if $v[star]}
+						{mkStar($v[star])}
+					{/if}
+				</li>
+				<li class="d">
+					{$v[tel]}
+				</li>
+				<li class="e">
+					<div style="padding-top: 5px;">
+						{$v[description]}
+					</div>
+				</li>
+				<li class="f">
+					{if $v[qq]}
+					<a href="Tencent://Message/?Uin={$v[qq]}"><img src="{IMG_PATH}imgQQ.jpg" alt="{$v[qq]}"></a>
+					{/if}
+				</li>
+				<li class="g">
+					<!--<a href="#"><img src="{DT_PROJECT}images/imgAli.jpg" alt=""></a>-->
+				</li>
+			</ul>
+			{/loop}
+			<div class="listPages page">
+				{$pages}
+			</div>
+			{/pc}
+		</div>
+	</div>
+	<div class="col-product-right">
+		{template 'content','phone_side_intro'}
+		{template 'content','phone_side_hot'}
+		{template 'content','phone_side_suggest'}
+		{template 'content','phone_side_ad'}
+		{template 'content','phone_side_viewother'}
+	</div>
+</div>
+{template "content","footer"}

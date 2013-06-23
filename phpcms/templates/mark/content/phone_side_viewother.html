@@ -1,0 +1,16 @@
+<div class="productSideViewOther">
+	<h3>其他网友还看过</h3>
+	<div class="items">
+		{pc:get sql="select p.id, p.title,p.thumb, pd.price from mk_phone p, mk_phone_data pd where p.id = pd.id order by rand()" num="8"}
+		{loop $data $k $v}
+		<div class="item">
+			<a href="{phoneUrl('main',$v[id])}">
+				{mkThumb($v[thumb], 'alt="'.$v[title].'"')}
+			</a>
+			<a href="{phoneUrl('main',$v[id])}" class="title">{$v[title]}</a>
+			<span class="price">￥:{$v[price]}</span>
+		</div>
+		{/loop}
+		{/pc}
+	</div>
+</div>

@@ -9,6 +9,12 @@
 	{/if}
 {/if}
 {if $poApp==true}
-	您当前的位置是: {catpos($catid)} {if $title}{$title}{/if}
+	您当前的位置是:
+	<a href="{siteurl($siteid)}">{$SEO['site_title']}</a> <span class="cutter">&gt;</span>
+	<a href="{$CATEGORYS[29][url]}">{$CATEGORYS[28][catname]}</a><span class="cutter">&gt;</span>
+	<a href="{$CATEGORYS[$catid][url]}">{$CATEGORYS[$catid][catname]}</a>
+	{if $title}
+	<span class="cutter">&gt;</span> {$title}
+	{/if}
 {/if}
 </div>

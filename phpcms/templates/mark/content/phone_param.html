@@ -1,0 +1,95 @@
+{template "content", "header"}
+{template "content", "tpl_selectPhone"}
+{template "content", "tpl_topAd1"}
+{template "content", "tpl_topAd2"}
+{template "content", "phone_menu"}
+<div class="layout productParams productCommon clear">
+	<div class="col-product-left">
+		<div class="paramsImportant" id="paramTab">
+			<ul class="title clear">
+				<li><a href="#paramTab-important">重要参数</a></li>
+				<li><a href="#paramTab-peijian">标准配件</a></li>
+				<li><a href="#paramTab-service">售后服务</a></li>
+			</ul>
+			<div class="content" id="paramTab-important">
+				<ul class="paramPart clear">
+					{$param[important]}
+				</ul>
+			</div>
+			<div class="content" id="paramTab-peijian">
+				<ul class="paramPart clear">
+					{$param[peijian]}
+				</ul>
+			</div>
+			<div class="content" id="paramTab-service">
+				<ul class="paramPart clear">
+					{$param[service]}
+				</ul>
+			</div>
+		</div>
+		<script>
+			seajs.use(['ui'],function(){
+				$('#paramTab').tabs();
+			})
+		</script>
+		<h3 class="paramsTitle">{$phone[title]} 详细参数</h3>
+		<div class="allParams">
+			{if $param[basic]}
+			<dl class="paramItem clear">
+				<dt>基本参数</dt>
+				<dd>{$param[basic]}</dd>
+			</dl>
+			{/if}
+			{if $param[hard]}
+			<dl class="paramItem clear">
+				<dt>硬件参数</dt>
+				<dd>{$param[hard]}</dd>
+			</dl>
+			{/if}
+			{if $param[basicfun]}
+			<dl class="paramItem clear">
+				<dt>基本功能</dt>
+				<dd>{$param[basicfun]}</dd>
+			</dl>
+			{/if}
+			{if $param[feature]}
+			<dl class="paramItem clear">
+				<dt>产品特性</dt>
+				<dd>{$param[feature]}</dd>
+			</dl>
+			{/if}
+			{if $param[photo]}
+			<dl class="paramItem clear">
+				<dt>拍照功能</dt>
+				<dd>{$param[photo]}</dd>
+			</dl>
+			{/if}
+			{if $param[fun]}
+			<dl class="paramItem clear">
+				<dt>娱乐功能</dt>
+				<dd>{$param[fun]}</dd>
+			</dl>
+			{/if}
+			{if $param[datas]}
+			<dl class="paramItem clear">
+				<dt>数据功能</dt>
+				<dd>{$param[datas]}</dd>
+			</dl>
+			{/if}
+			{if $param[other]}
+			<dl class="paramItem clear">
+				<dt>其他功能</dt>
+				<dd>{$param[other]}</dd>
+			</dl>
+			{/if}
+		</div>
+	</div>
+	<div class="col-product-right">
+		{template 'content','phone_side_intro'}
+		{template 'content','phone_side_hot'}
+		{template 'content','phone_side_suggest'}
+		{template 'content','phone_side_ad'}
+		{template 'content','phone_side_viewother'}
+	</div>
+</div>
+{template "content","footer"}

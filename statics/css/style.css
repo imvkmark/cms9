@@ -162,6 +162,9 @@ body {
 .mt8 {
   margin-top: 8px;
 }
+.mr8{
+  margin-right: 8px;
+}
 .pt8{
 	padding-top: 8px;
 }
@@ -511,6 +514,17 @@ body {
 .selection .iCustomPrice {
   display: inline-block;
 }
+.selection .iCustomPrice form{
+	position: absolute;
+	width: 140px;
+	border: 1px solid rgb(166, 209, 243);
+	z-index: 10;
+	display: block;
+	top: 24px;
+	left: 5px;
+	padding-left: 5px;
+	background: #fff;
+}
 .selection .customPrice,
 .selection .customPriceActive {
   background: url('../images/bgCustomPrice.jpg') no-repeat 0 0;
@@ -572,6 +586,7 @@ body {
 }
 .searchList .iItem .img img {
   width: 185px;
+  height: 139px;
 }
 .searchList .iItem .title {
   display: block;
@@ -1218,6 +1233,13 @@ body {
 .productCommon .commonBBox dl dd a:hover {
   color: #fd7b03;
 }
+.productCommon .commonBBox dl dd .active {
+	background: #fd7b03;
+	color: #fff;
+}
+.productCommon .commonBBox dl dd .active:hover {
+	color: #ccc;
+}
 .productCommon .commonBBox dl dd a span {
   color: #999;
 }
@@ -1440,6 +1462,11 @@ body {
   background: #fff;
   border-bottom: 1px solid #fff;
   color: #353336;
+}
+.productParams .paramsImportant .title .ui-state-active a {
+	background: #fff;
+	border-bottom: 1px solid #fff;
+	color: #353336;
 }
 .productParams .paramsImportant .content {
   z-index: 8;
@@ -1745,8 +1772,21 @@ body {
   height: 90px;
   border: 1px solid #2F8CCF;
 }
+.articleReview .imgr  {
+	float: right;
+}
+.articleReview .imgn  {
+	float: none;
+}
 .articleReview .info {
   margin-left: 130px;
+}
+.articleReview .infol {
+	margin-left: 10px;
+}
+.articleReview .infon {
+	margin-left: 0px;
+	float: none;
 }
 .articleReview .iContent {
   border: 1px solid #ccc;
@@ -1764,6 +1804,27 @@ body {
 .articleReview .userCommentWrapper .userComments {
   padding: 3px 10px;
 }
+.articleReview .items p.more{
+	height: 44px;
+	line-height: 44px;
+	border-top: 1px solid #EF6D15;
+	margin: 0;
+	font-size: 14px;
+	text-align: center;
+}
+.articleReview p.more .btn {
+	background: url('../images/bgPiclistBtn.jpg') no-repeat 0 0;
+	width: 170px;
+	height: 30px;
+	display: inline-block;
+	line-height: 30px;
+	color: #8C3200;
+	font-weight: bold;
+}
+.articleReview .btn:hover {
+	color: #fd7b03;
+}
+
 .appTab {
   height: 29px;
   background: url('../images/bgAppTab.jpg') repeat-x 0 -71px;

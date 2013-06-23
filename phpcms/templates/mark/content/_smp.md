@@ -85,3 +85,42 @@ seajs
 		mk.seajsBase = '{JS_PATH}';
 	</script>
 	<script src="{JS_PATH}libs/seajs/2.0.0/sea.js" data-config="config"></script>
+
+点击量排行
+--------
+	{pc:get sql="select p.title, p.url,pd.price from mk_hits h, mk_phone p, mk_phone_data pd where h.hitsid = concat('c-13-',p.id) and p.id = pd.id and p.catid=10 order by h.monthviews desc, p.updatetime desc" cache="0" num="9"}
+	<ul class="listNum">
+		{loop $data $key $val}
+		<li><span class="price">￥:{$val[price]}</span><a href="{$val['url']}">{$val['title']}</a></li>
+		{/loop}
+	</ul>
+	{/pc}
+
+随机排行
+-------
+
+	{pc:get sql="select p.id, p.title,p.thumb, pd.price from mk_phone p, mk_phone_data pd where p.id = pd.id order by rand()" num="8"}
+	{loop $data $k $v}
+	<div class="item">
+		<a href="{phoneUrl('main',$v[id])}"><img src="{$v[thumb]}" alt="{$v[title]}"></a>
+		<a href="{phoneUrl('main',$v[id])}" class="title">{$v[title]}</a>
+		<span class="price">{$v[price]}</span>
+	</div>
+	{/loop}
+	{/pc}
+
+无图片
+-------
+
+	{if $v[thumb]}
+		<img src="{$v[thumb]}" alt="{$v[title]}">
+	{else}
+		<img src="{IMG_PATH}web/nopic.jpg" alt="{$v[title]}">
+	{/if}
+
+	{mkThumb($v[thumb], 'alt="'.$v[title].'"')}
+
+
+万能字段
+-------
+	{FUNC(sendQuery~~{FIELD_VALUE})}

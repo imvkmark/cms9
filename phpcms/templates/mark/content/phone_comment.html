@@ -1,0 +1,20 @@
+{template "content", "header"}
+{template "content", "tpl_selectPhone"}
+{template "content", "tpl_topAd1"}
+{template "content", "tpl_topAd2"}
+{template "content", "phone_menu"}
+<div class="layout productCommon clear">
+	<div class="col-product-left productPiclist">
+		{if module_exists('comment')}
+		<iframe src="{APP_PATH}index.php?m=comment&c=index&a=init&commentid={id_encode("content_10",$phone['id'],$siteid)}&iframe=1" width="100%" height="100%" id="comment_iframe" frameborder="0" scrolling="no"></iframe>
+		{/if}
+	</div>
+	<div class="col-product-right">
+		{template 'content','phone_side_intro'}
+		{template 'content','phone_side_hot'}
+		{template 'content','phone_side_suggest'}
+		{template 'content','phone_side_ad'}
+		{template 'content','phone_side_viewother'}
+	</div>
+</div>
+{template "content","footer"}

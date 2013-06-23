@@ -1,0 +1,12 @@
+	<div class="productSideIntro">
+		<a href="#" class="img imgn">
+			{if $v[thumb]}
+			<img src="{$v[thumb]}" alt="{$v[title]}">
+			{else}
+			<img src="{IMG_PATH}web/nopic.jpg" alt="{$v[title]}">
+			{/if}
+		</a>
+		<span class="priceWrapper">参考价格<span class="price">{$phone[price]}</span></span>
+		<span class="info infon">{$phone[description]}</span>
+		<a class="infoMore" href="{phoneUrl('param', $phone['id'])}">查看产品详情信息&gt;&gt;</a>
+	</div>

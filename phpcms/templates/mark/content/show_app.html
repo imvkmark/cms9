@@ -79,53 +79,7 @@
 		</div>
 	</div>
 	<div class="col-app-right">
-		<div class="side">
-			<div class="appIntro">
-				<h3 class="titleGrey">{$title}</h3>
-				<div class="wrapGrey iContent">
-					<img src="{$thumb}" class="appImg" alt="{$title}">
-					<p class="appInfo">
-						应用价格: {if $fee}收费{else}免费{/if} <br>
-						应用大小: {$filesize} <br>
-						应用分类: {$appcat} <br>
-						{if $manufactor}开发厂商: <a href="{$manuflink}">$manufactor</a> <br>{/if}
-						更新时间: <?php echo preg_replace("/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})/", '$1年 $2月 $3日',$updatetime);?>&nbsp;&nbsp; <br>
-						下载次数: {$downhits}
-					</p>
-				</div>
-			</div>
-			<div class="appSideList">
-				<h3 class="titleGrey">游戏应用下载排行</h3>
-				<div class="wrapGrey iContent">
-					{php $gameIn = $linkageApp[3397][arrchildid]}
-					{pc:get sql="select url, title, thumb, downhits,score from mk_app where appcat in($gameIn) order by downhits desc" cache="0" num="8"}
-					{loop $data $v}
-					<div class="item">
-						<img class="appImg" src="{$v[thumb]}" alt="{$v[title]}">
-						<h4><a href="{$v[url]}">{$v[title]}</a></h4>
-						<span class="appScore">评分: {if !$score}{appScore(4)}{else}{appScore($score)}{/if}</span>
-						<span>下载数量:{$v[downhits]}</span>
-					</div>
-					{/loop}
-					{/pc}
-				</div>
-			</div>
-			<div class="appSideList">
-				<h3 class="titleGrey">应用下载排行</h3>
-				<div class="wrapGrey iContent">
-					{pc:get sql="select url, title, thumb, downhits,score from mk_app order by downhits desc" cache="0" num="8"}
-					{loop $data $v}
-					<div class="item">
-						<img class="appImg" src="{$v[thumb]}" alt="{$v[title]}">
-						<h4><a href="{$v[url]}">{$v[title]}</a></h4>
-						<span class="appScore">评分: {if !$score}{appScore(4)}{else}{appScore($score)}{/if}</span>
-						<span>下载数量:{$v[downhits]}</span>
-					</div>
-					{/loop}
-					{/pc}
-				</div>
-			</div>
-		</div>
+		{template "content","tpl_app_side"}
 	</div>
 </div>
 <script language="JavaScript" src="{APP_PATH}api.php?op=count&id={$id}&modelid={$modelid}"></script>

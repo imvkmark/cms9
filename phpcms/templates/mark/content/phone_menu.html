@@ -1,0 +1,15 @@
+<div class="layout productMenu">
+	<div class="brand clear">
+		<img src="{IMG_PATH}logo/{$phone[brand]}.jpg" alt="">
+		<h3>{$phone[title]}</h3>
+	</div>
+	<ul class="productMenu clear">
+		<li {if !$t || $t=='main'}class="active"{/if}><a href="{phoneUrl('main', $phone['id'])}">综述</a></li>
+		<li {if $t=='param'}class="active"{/if}><a href="{phoneUrl('param', $phone['id'])}">参数</a></li>
+		<li {if $t=='price'}class="active"{/if}><a href="{phoneUrl('price', $phone['id'])}">报价</a></li>
+		<li {if $t=='comment'}class="active"{/if}><a href="{phoneUrl('comment', $phone['id'])}">点评</a></li>
+		<li {if $t=='ping'}class="active"{/if}><a href="{phoneUrl('ping', $phone['id'])}">评测行情</a></li>
+		<li {if $t=='pics'}class="active"{/if}><a href="{phoneUrl('pics', $phone['id'])}">图片</a></li>
+		<li><a href="{phoneUrl('bbs', $phone['id'])}">论坛</a></li>
+	</ul>
+</div>

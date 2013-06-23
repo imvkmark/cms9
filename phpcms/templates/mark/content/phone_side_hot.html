@@ -1,0 +1,12 @@
+<div class="productSideHot">
+	<h3>热门手机排行</h3>
+	<div class="iContent">
+		{pc:get sql="select p.id, p.title, p.url,pd.price from mk_hits h, mk_phone p, mk_phone_data pd where h.hitsid = concat('c-13-',p.id) and p.id = pd.id and p.catid=10 order by h.monthviews desc, p.updatetime desc" cache="0" num="9"}
+		<ul class="listRoundNum">
+			{loop $data $key $val}
+			<li><a href="{phoneUrl('main', $val[id])}">{$val['title']}</a></li>
+			{/loop}
+		</ul>
+		{/pc}
+	</div>
+</div>

@@ -1,0 +1,72 @@
+{template "content", "header"}
+{template "content", "tpl_selectPhone"}
+{template "content", "tpl_topAd1"}
+{template "content", "tpl_topAd2"}
+{template "content", "phone_menu"}
+<div class="layout productCommon clear">
+	<div class="col-product-left productPiclist">
+		<div class="commonBBox">
+			<h3 class="title">图片分类</h3>
+			<div>
+				<dl class="clear">
+					<dt>图片分类:</dt>
+					<dd>
+						<a href="javascript:go('uPic', 0)" {if $uPic == 0}class="active"{/if}>全部图片</a>
+						{loop $picTypes $k $v}
+						<a href="javascript:go('uPic', {$k})" {if $uPic == $k}class="active"{/if}>{$v[name]}</a>
+						{/loop}
+					</dd>
+				</dl>
+			</div>
+		</div>
+		{if $uPic}
+		<!--单类别图片-->
+		<div class="commonOBox mt8">
+			{pc:get sql="select * from mk_picture p, mk_picture_data pd where p.id=pd.id and pd.phoneid=$phone[id] and p.piccat=$uPic" num="20" page="$page" cache="0"}
+			<h3 class="title">{$picTypes[$uPic][name]} </h3>
+			<div class="items clear">
+				{loop $data $k $v}
+				<a class="fancybox" rel="gallery-{$uPic}" href="{$v[pic]}" title="{$v[title]}">
+					<img src="{thumb($v[pic], 120, 90)}" alt="{$v[title]}">
+					<span>{$v[title]}</span>
+				</a>
+				{/loop}
+			</div>
+			<div class="listPages page">
+				{$pages}
+			</div>
+			{/pc}
+		</div>
+		{else}
+		{loop $picTypes $kc $vc}
+		<div class="commonOBox mt8">
+			{php $sql="select * from mk_picture p, mk_picture_data pd where p.id=pd.id and pd.phoneid=$phone[id] and p.piccat=$kc"}
+			{pc:get sql="$sql" num="8"}
+			<h3 class="title">{$picTypes[$k][name]} </h3>
+			<div class="items clear">
+				{loop $data $k $v}
+				<a class="fancybox" rel="gallery-{$kc}" href="{$v[pic]}" title="{$v[title]}">
+					<img src="{thumb($v[pic], 120, 90)}" alt="{$v[title]}">
+					<span>{$v[title]}</span>
+				</a>
+				{/loop}
+			</div>
+			{/pc}
+			<p class="more"><a href="javascript:go('uPic', {$kc});" class="btn">更多{$vc[name]}&gt;&gt;</a></p>
+		</div>
+		{/loop}
+		{/if}
+		<script>seajs.use(['fancybox','fancybox-css'], function(fancybox){
+			console.log(fancybox);
+			$(".fancybox").fancybox();
+		})</script>
+	</div>
+	<div class="col-product-right">
+		{template 'content','phone_side_intro'}
+		{template 'content','phone_side_hot'}
+		{template 'content','phone_side_suggest'}
+		{template 'content','phone_side_ad'}
+		{template 'content','phone_side_viewother'}
+	</div>
+</div>
+{template "content","footer"}

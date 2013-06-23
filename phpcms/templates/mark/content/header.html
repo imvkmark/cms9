@@ -11,12 +11,13 @@
 		mk.seajsBase = '{JS_PATH}';
 	</script>
 	<script src="{JS_PATH}libs/seajs/2.0.0/sea.js" data-config="config"></script>
+	<script src="{JS_PATH}libs/fun.js" data-config="config"></script>
 </head>
 <body>
 <div class="layout header">
 	<div class="top">
-		<a href="#">立即登录</a>|
-		<a href="#">加入我们</a>
+		<a href="index.php?m=member&c=index&a=login">立即登录</a>|
+		<a href="index.php?m=member&c=index&a=register&siteid=1">加入我们</a>
 		<a href="#" class="fr"><img src="{IMG_PATH}topQQ.jpg" alt="#"></a>
 		<a href="#" class="fr"><img src="{IMG_PATH}topSina.jpg" alt="#"></a>
 	</div>
@@ -25,7 +26,7 @@
 	</div>
 	<div class="sdinfo fc">
 		<div class="logo">
-			<a href="#"><img src="{IMG_PATH}logo.jpg" alt=""></a>
+			<a href="{APP_PATH}"><img src="{IMG_PATH}logo.jpg" alt="{$SEO['title']}"></a>
 		</div>
 		<div class="search">
 			<form action="post" name="search">
@@ -52,7 +53,7 @@
 	<ul class="nav">
 		<li><a href="#">首页</a></li>
 		<li class="line"></li>
-		<li><a href="#">资讯评测</a></li>
+		<li><a href="{$CATEGORYS[12][url]}">资讯评测</a></li>
 		<li class="line"></li>
 		<li><a href="#">商家行情</a></li>
 		<li class="line"></li>
@@ -60,12 +61,12 @@
 		<li class="line"></li>
 		<li><a href="#">资费套餐</a></li>
 		<li class="line"></li>
-		<li><a href="#">商家优惠</a></li>
+		<li><a href="{$CATEGORYS[9][url]}">{$CATEGORYS[9][catname]}</a></li>
 		<li class="line"></li>
 		<li><a href="#">交易平台</a></li>
 		<li class="line"></li>
-		<li><a href="#">通讯应用</a></li>
+		<li><a href="{$CATEGORYS[14][url]}">{$CATEGORYS[14][catname]}</a></li>
 		<li class="line"></li>
-		<li><a href="#">通讯交流</a></li>
+		<li><a href="{$CATEGORYS[29][url]}">通讯交流</a></li>
 	</ul>
 </div>

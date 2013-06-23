@@ -1,0 +1,94 @@
+{template "content", "header"}
+{template "content", "tpl_selectPhone"}
+{template "content", "tpl_topAd1"}
+{template "content", "tpl_topAd2"}
+{template "content", "phone_menu"}
+<div class="layout productCommon article articleReview clear">
+	<div class="col-product-left">
+		<div class="commonBBox">
+			<h3 class="title">评测分类</h3>
+			<div>
+				<dl class="clear">
+					<dt>全部分类:</dt>
+					<dd>
+						{php $cids = explode(',',$CATEGORYS[11][arrchildid])}
+						{php array_shift($cids)}
+						<a href="javascript:go('uCid', 0)" {if $uCid == 0}class="active"{/if}>全部分类</a>
+						{loop $cids $cid}
+						<a href="javascript:go('uCid', {$cid})" {if $uCid == $cid}class="active"{/if}>{$CATEGORYS[$cid][catname]}</a>
+						{/loop}
+					</dd>
+				</dl>
+			</div>
+		</div>
+		{if $uCid}
+		<!--单类别图片-->
+		<div class="commonOBox mt8">
+			{pc:get sql="select * from mk_lab p, mk_lab_data pd where p.id=pd.id and pd.phoneid=$phone[id] and p.catid=$uCid" num="10" page="$page" cache="0"}
+			<h3 class="title">{$picTypes[$uPic][name]} </h3>
+			<div class="items clear">
+				{loop $data $k $v}
+				<div class="item clear">
+					<div class="img imgr">
+						<a href="{$v[url]}">
+							<img src="{$v[thumb]}" alt="{$v[title]}">
+						</a>
+					</div>
+					<div class="info infol">
+						<h3><a href="{$v[url]}">{$v[title]}</a></h3>
+						<div class="pub">
+							<strong>{$v[username]}</strong><span class="time">发布于 {date("d 日 H 时", $v[inputtime])}</span>
+						</div>
+						<p class="intro">
+							{$v[description]} <a href="{$v[url]}" class="more">查看详情&gt;&gt;</a>
+						</p>
+					</div>
+				</div>
+				{/loop}
+			</div>
+			<div class="listPages page">
+				{$pages}
+			</div>
+			{/pc}
+		</div>
+		{else}
+		{loop $cids $cid}
+		<div class="commonOBox mt8">
+			{php $sql="select * from mk_lab p, mk_lab_data pd where p.id=pd.id and pd.phoneid=$phone[id] and p.catid=$cid"}
+			{pc:get sql="$sql" num="8"}
+			<h3 class="title">{$CATEGORYS[$cid][catname]} </h3>
+			<div class="items clear">
+				{loop $data $k $v}
+				<div class="item clear">
+					<div class="img imgr mr8">
+						<a href="{$v[url]}">
+							<img src="{$v[thumb]}" alt="{$v[title]}">
+						</a>
+					</div>
+					<div class="info infol">
+						<h3><a href="{$v[url]}">{$v[title]}</a></h3>
+						<div class="pub">
+							<strong>{$v[username]}</strong><span class="time">发布于 {date("d 日 H 时", $v[inputtime])}</span>
+						</div>
+						<p class="intro">
+							{$v[description]} <a href="{$v[url]}" class="more">查看详情&gt;&gt;</a>
+						</p>
+					</div>
+				</div>
+				{/loop}
+			</div>
+			{/pc}
+			<p class="more" style="text-align: center"><a href="javascript:go('uCid', {$cid});" class="btn">更多{$CATEGORYS[$cid][catname]}&gt;&gt;</a></p>
+		</div>
+		{/loop}
+		{/if}
+	</div>
+	<div class="col-product-right">
+		{template 'content','phone_side_intro'}
+		{template 'content','phone_side_hot'}
+		{template 'content','phone_side_suggest'}
+		{template 'content','phone_side_ad'}
+		{template 'content','phone_side_viewother'}
+	</div>
+</div>
+{template "content","footer"}

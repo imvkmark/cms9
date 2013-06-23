@@ -37,11 +37,29 @@
 			{loop $lprice $k $v}
 			<a href="javascript:go('upr',{$k});"{if $upr==$k} class="active"{/if}>{$v}<span></span></a>
 			{/loop}
-			<span class="iCustomPrice">
-				<a href="#" class="customPrice"></a>
+			<span id="selectPrice" class="iCustomPrice" style="position: relative;cursor: pointer">
+				<a class="customPrice"></a>
+				<form style="display: none;" action="?" method="get">
+					<input type="hidden" name="m" value="content" >
+					<input type="hidden" name="c" value="index" >
+					<input type="hidden" name="a" value="lists" >
+					<input type="hidden" name="catid"  value="10" >
+					<input type="hidden" name="upr"  value="0" >
+					<input type="text" name="pMin" style="width:35px;">
+					<input type="text" name="pMax" style="width: 35px;">
+					<input type="submit" style="border:1px solid #ccc;" value="确定" >
+				</form>
 			</span>
 		</dd>
 	</dl>
+	<script>
+		seajs.use([], function(){
+			$('#selectPrice a').click(function(){
+				$(this).toggleClass('customPriceActive', 'customPrice');
+				$('#selectPrice').find('form').toggle();
+			})
+		})
+	</script>
 	<dl class="iItem clear">
 		<dt class="iTitle">
 			外观设计:
@@ -96,8 +114,6 @@
 	</dl>
 </div>
 
-
-
 <div class="layout">
 	<div class="searchList clear">
 		<div class="col-list-left">
@@ -109,38 +125,41 @@
 						<a href="javascript:go('uod', 2)" {if $uod==2}class="active"{/if}>时间 新→旧</a>
 						<a href="javascript:go('uod', 3)" {if $uod==3}class="active"{/if}>价格 低→高</a>
 					</div>
+					{php $pageNext = $page+1}
+					{php $pagePrev = $page-1}
 					<div class="iShorPage page">
-						1/ 555
-						<a href="#" class="prevDisabled"><span>上一页</span></a>
-						<a href="#" class="next"><span>下一页</span></a>
+						<a href="javascript:go('page', {$pagePrev})" class="prev"><span>上一页</span></a>
+						<a href="javascript:go('page', {$pageNext})" class="next"><span>下一页</span></a>
 					</div>
 				</div>
+				{pc:get sql="select p.id, p.description, p.title, p.thumb, p.url,pd.price from mk_phone p , mk_phone_data pd where p.id=pd.id $condition" page="$page" num="9" cache="0" order="$lorders[$uod]"}
 				<div class="iItems clear">
-				{php $order = $lorders[$uod]}
-				{php $sql = "select p.description, p.title, p.thumb, p.url,pd.price from mk_phone p , mk_phone_data pd where p.id=pd.id $condition order by $order";}
-
-				{pc:get sql="$sql" num="9" order="$order"}
 					{loop $data $v}
 					<div class="iItem">
-						<a href="#" class="img"><img src="{$v[thumb]}" alt="{$v[title]}"></a>
-						<a href="#" class="title">{$v[title]}</a>
+						<a href="{phoneUrl('main', $v[id])}" class="img">
+							{if $v[thumb]}
+							<img src="{$v[thumb]}" alt="{$v[title]}">
+							{else}
+							<img src="{IMG_PATH}web/nopic.jpg" alt="{$v[title]}">
+							{/if}
+						</a>
+						<a href="{phoneUrl('main', $v[id])}" class="title">{$v[title]}</a>
 						<span class="price">￥:{$v[price]}</span>
 						<p class="desc">{$v[description]}</p>
-						<a href="#" class="comment">已有39人评论</a>
+						<a href="{phoneUrl('comment', $v[id])}" class="comment">已有39人评论</a>
 						<p class="others">
-							<a href="{$v[fid]}" class="bbs">论坛</a>
-							<a href="#" class="params">参数</a>
-							<a href="#" class="picture">图片</a>
-							<a href="#" class="compare">对比</a>
+							<a href="{phoneUrl('bbs', $v[id])}" class="bbs">论坛</a>
+							<a href="{phoneUrl('param', $v[id])}" class="params">参数</a>
+							<a href="{phoneUrl('pics', $v[id])}" class="picture">图片</a>
+							<a href="javascript:addCompare({$v[id]})" class="compare">对比</a>
 						</p>
 					</div>
 					{/loop}
-				{/pc}
 				</div>
 				<div class="listPages page">
 					{template 'content', 'tpl_pages'}
 				</div>
-
+				{/pc}
 			</div>
 		</div>
 		<div class="col-list-right">

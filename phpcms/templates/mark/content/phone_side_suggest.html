@@ -1,0 +1,15 @@
+<div class="productSideSuggest">
+	<h3>推荐商家</h3>
+	<div class="items">
+		{php $cds = " and pd.phoneid=$phone[id]";}
+		{php $sql = "select p.price, p.description,p.shopname, p.id, p.tel from mk_price p , mk_price_data pd where p.id=pd.id $cds";}
+		{pc:get sql="$sql" num="9" order="p.inputtime desc"}
+		{loop $data $k $v}
+		<div class="item{if $k%2} odd{/if}">
+			<h4><a href="javascript:void(0)">{$v[shopname]}</a></h4>
+			<p><span class="price">￥:{$v[price]}</span> <span class="phone">{$v[tel]}</span></p>
+		</div>
+		{/loop}
+		{/pc}
+	</div>
+</div>

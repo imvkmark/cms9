@@ -1,0 +1,46 @@
+{template "content", "header"}
+{template "content", "tpl_selectPhone"}
+{template "content", "tpl_topAd1"}
+{template "content", "tpl_topAd2"}
+{php $poApp = true}
+{template "content", "tpl_position"}
+<div class="layout clear bdbOrange">
+	{php $cids = explode(',',$CATEGORYS[28][arrchildid])}
+	{php array_shift($cids)}
+	{loop $cids $cid}
+	<div class="{if $catid == $cid}titleTab{else}titleTabNone{/if} fl">
+		<span><a href="{$CATEGORYS[$cid][url]}" >{$CATEGORYS[$cid][catname]}</a></span>
+	</div>
+	{/loop}
+</div>
+<div class="layout article articleReview clear">
+	<div class="col-list-left">
+		<div class="items">
+			{pc:content action="lists" catid="$catid" num="20" page="$page"}
+			{loop $data $v}
+			<div class="item clear">
+				<div class="img">
+					<a href="{$v[url]}">
+						{mkThumb($v[thumb], 'alt="'.$v[title].'"')}
+					</a>
+				</div>
+				<div class="info">
+					<h3><a href="{$v[url]}">{$v[title]}</a></h3>
+					<div class="pub">
+						<strong>{$v[username]}</strong><span class="time">发布于 {date("d 日 H 时", $v[inputtime])}</span>
+					</div>
+					<p class="intro">
+						{$v[description]} <a href="{$v[url]}" class="more">查看详情&gt;&gt;</a>
+					</p>
+				</div>
+			</div>
+			{/loop}
+			{/pc}
+		</div>
+		{template 'content', 'tpl_pages'}
+	</div>
+	<div class="col-list-right">
+		{template "content", "tpl_lab_side"}
+	</div>
+</div>
+{template "content", "footer"}

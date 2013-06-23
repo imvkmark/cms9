@@ -30,6 +30,7 @@ class index {
 		$CATEGORYS = getcache('category_content_'.$siteid,'commons');
 		include template('content','index',$default_style);
 	}
+
 	//内容页
 	public function show() {
 		$catid = intval($_GET['catid']);
@@ -277,6 +278,78 @@ class index {
 			$SEO = seo($siteid, 0, $title,$setting['meta_description'],$keywords);
 			include template('content',$template);
 		}
+	}
+
+	public function phone() {
+
+//		common start
+		if(isset($_GET['siteid'])) {
+			$siteid = intval($_GET['siteid']);
+		} else {
+			$siteid = 1;
+		}
+		$siteid = $GLOBALS['siteid'] = max($siteid,1);
+		define('SITEID', $siteid);
+		$_userid = $this->_userid;
+		$_username = $this->_username;
+		$_groupid = $this->_groupid;
+		//SEO
+		$SEO = seo($siteid);
+		$sitelist  = getcache('sitelist','commons');
+		$default_style = $sitelist[$siteid]['default_style'];
+		$CATEGORYS = getcache('category_content_'.$siteid,'commons');
+		$page = intval($_GET['page']);
+//      common end
+
+		$t = $_GET['t'];
+		$id = $_GET['id'];
+		if (!$id || !$t) {
+			showmessage('错误链接, 请联系管理员');
+		}
+		$lbrand = getcache(3360, 'linkage');
+		$brands = $lbrand['data'];
+
+		$tablename = $this->db->table_name = 'mk_phone';
+		$r = $this->db->get_one(array('id'=>$id));
+		if(!$r || $r['status'] != 99) showmessage(L('info_does_not_exists'),'blank');
+
+		$this->db->table_name = $tablename.'_data';
+		$r2 = $this->db->get_one(array('id'=>$id));
+		$phone = $r2 ? array_merge($r,$r2) : $r;
+		switch($t) {
+			case 'pics':
+				$uPic = $_GET['uPic'];
+				$lpics =  getcache(3457, 'linkage');
+				$picTypes = $lpics['data'];
+
+				include template('content', 'phone_pics');
+				break;
+			case 'ping':
+				$uCid = $_GET['uCid'];
+				include template('content', 'phone_ping');
+				break;
+			case 'param':
+				$this->db->table_name = 'mk_param_data';
+				$r2 = $this->db->get_one(array('phoneid'=>$phone['id']));
+				$this->db->table_name = 'mk_param';
+				$r = $this->db->get_one(array('id'=>$r2['id']));
+				$param = $r2 ? array_merge($r,$r2) : $r;
+				if(!$r || $r['status'] != 99) showmessage(L('info_does_not_exists'),'blank');
+
+				include template('content', 'phone_param');
+				break;
+			case 'comment':
+				include template('content', 'phone_comment');
+				break;
+			case 'price':
+				include template('content', 'phone_price');
+				break;
+			case 'main':
+			default:
+				include template('content', 'phone_main');
+
+		}
+
 	}
 	
 	//JSON 输出

@@ -20,6 +20,8 @@ $upr=intval($_GET['upr']);
 $ude=intval($_GET['ude']);
 $une=intval($_GET['une']);
 $usy=intval($_GET['usy']);
+$pMax=intval($_GET['pMax']);
+$pMin=intval($_GET['pMin']);
 $uod = isset($_GET['uod']) ? intval($_GET['uod']) : 1;
 $condition = '';
 if ($uty) $condition .= " and p.mtype=$uty";
@@ -32,6 +34,9 @@ if ($upr) {
 	if ($upr == 2000) $condition .= " and 2000<= pd.price and pd.price <= 3000";
 	if ($upr == 3000) $condition .= " and 3000<= pd.price and pd.price <= 5000";
 	if ($upr == 5000) $condition .= " and 5000<= pd.price";
+} else {
+	if ($pMax) $condition .= " and pd.price <= " . $pMax;
+	if ($pMin) $condition .= " and ".$pMin." <= pd.price ";
 }
 if ($ude) $condition .= " and p.design=$ude";
 if ($une) $condition .= " and p.mnet=$une";
@@ -39,30 +44,6 @@ if ($usy) $condition .= " and p.sys=$uty";
 $lorders = array(
 	'1' => 'p.listorder desc',
 	'2' => 'p.updatetime desc',
-	'3' => 'pd.price desc',
+	'3' => 'pd.price asc',
 );
 ?>
-<script>
-	function go(param, value, tripFile) {
-		var stringObj = window.location.href;
-		if (typeof tripFile == 'undefined'){
-			tripFile = window.location.pathname;
-		}
-		var lstr = "&";
-
-		if (stringObj.indexOf(tripFile+'?') == -1) {
-			lstr = "?";
-		}
-		stringObj = stringObj.replace(/page=[0-9]*/, '');
-		var reg = new RegExp(param + "=[0-9a-zA-Z,-]*", "g"); //创建正则RegExp对象
-		var urlGo = "";
-		var ch = stringObj.indexOf(param+'=');
-		if (ch == -1) {
-			urlGo = urlGo + stringObj + lstr + param + "=" + value;
-		}
-		if (ch != -1) {
-			urlGo = stringObj.replace(reg, param + "=" + value);
-		}
-		window.location = urlGo;
-	}
-</script>

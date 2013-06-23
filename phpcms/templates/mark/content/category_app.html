@@ -21,36 +21,27 @@ endforeach;
 		</div>
 		<div class="focus-center">
 			<div class="content">
+				{pc:content  action="position" posid="19" order="listorder DESC" num="2"}
+				{loop $data $key $val}
 				<div class="firstFocus">
-					<h3><span class="cat">游戏</span><a href="">标题标题</a></h3>
-					<p class="info">介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍 [<a class="more" href="#"> 查看详细 </a> ]</p>
+					<h3><span class="cat">{$CATEGORYS[$val[catid]][catname]}</span><a href="{$val[url]}">{$val[title]}</a></h3>
+					<p class="info">{str_cut($val[description], 150)} [<a class="more" href="{$val[url]}"> 查看详细 </a> ]</p>
 				</div>
-				<div class="firstFocus">
-					<h3><span class="cat">游戏</span><a href="">标题标题</a></h3>
-					<p class="info">介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍 [<a class="more" href="#"> 查看详细 </a> ]</p>
-				</div>
+				{/loop}
+				{/pc}
 				<div class="infolist">
 					<ul class="listGreyDot">
-						<li><a href="#">标题标题</a></li>
-						<li><a href="#">标题标题</a></li>
-						<li><a href="#">标题标题</a></li>
-						<li><a href="#">标题标题</a></li>
-						<li><a href="#">标题标题</a></li>
-						<li><a href="#">标题标题</a></li>
-						<li><a href="#">标题标题</a></li>
-						<li><a href="#">标题标题</a></li>
-						<li><a href="#">标题标题</a></li>
-						<li><a href="#">标题标题</a></li>
-						<li><a href="#">标题标题</a></li>
-						<li><a href="#">标题标题</a></li>
+						{pc:content  action="lists" catid="28" order="listorder DESC" num="12"}
+						{loop $data $key $val}
+						<li><a href="{$val[url]}">{$val[title]}</a></li>
+						{/loop}
+						{/pc}
 					</ul>
 				</div>
 			</div>
 		</div>
 		<div class="focus-right">
-			<h3 class="titleGrey">
-				推荐APP
-			</h3>
+			<h3 class="titleGrey">推荐APP</h3>
 			<div class="wrapGrey appFocusSuggest clear">
 				{pc:content  action="position" posid="18" order="listorder DESC" num="6"}
 				<ul>
@@ -261,9 +252,6 @@ endforeach;
 		</div>
 	</div>
 </div>
-
-
-
 <script>
 	seajs.use(['ui'], function(){
 		$('#suggestApp').tabs();
@@ -271,6 +259,7 @@ endforeach;
 		$('#tabSuggest-16').tabs();
 		$('#tabSuggest-15').tabs();
 		$('#tabSuggest-17').tabs();
+		$('#tabSuggest-20').tabs();
 		$('#phoneSuggest').tabs();
 		$('#fitSuggest').tabs();
 	});
