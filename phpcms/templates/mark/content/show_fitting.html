@@ -1,0 +1,33 @@
+{template "content", "header"}
+{template "content", "tpl_selectPhone"}
+{template "content", "tpl_topAd1"}
+{template "content", "tpl_topAd2"}
+{php $poFitting = true}
+{template "content", "tpl_position"}
+{template "content", "tpl_fitting_config"}
+<div class="layout clear bdbOrange">
+	<div class="{if $catid ==33}titleTab{else}titleTabNone{/if} fl">
+		<span><a href="{$CATEGORYS[33][url]}">{$CATEGORYS[33][catname]}</a></span>
+	</div>
+</div>
+<div class="layout article articleReview clear">
+	<div class="col-list-left">
+		<div class="showLab">
+			<div class="content">
+				<h3>{$title}</h3>
+				<p class="info">
+					<?php echo preg_replace("/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})/", '$1年 $2月 $3日  $4:$5',$inputtime);?>&nbsp;&nbsp;
+				</p>
+				<div>
+					{$content}
+				</div>
+				{template 'content', 'tpl_pages'}
+			</div>
+
+		</div>
+	</div>
+	<div class="col-list-right">
+		{template "content", "tpl_fit_side"}
+	</div>
+</div>
+{template "content", "footer"}

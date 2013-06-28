@@ -1,0 +1,35 @@
+<?php
+$lType = getcache(3461, 'linkage');
+$lprice  = array(
+	'1'=>"1-49",
+	'50'=>"50-100",
+	'100'=>"100-150",
+	'150'=>"150-200",
+	'200'=>"200-300",
+	'300'=>"300-500",
+	'500'=>"500以上",
+);
+$uty=intval($_GET['uty']);
+$upr=intval($_GET['upr']);
+
+$condition = '';
+if ($uty) $condition .= " and p.mtype=$uty";
+if ($ubr) $condition .= " and p.brand=$ubr";
+if ($upr) {
+	if ($upr == 1) $condition .= " and 1<= pd.price and pd.price <= 50";
+	if ($upr == 50) $condition .= " and 50<= pd.price and pd.price <= 100";
+	if ($upr == 100) $condition .= " and 100<= pd.price and pd.price <= 150";
+	if ($upr == 150) $condition .= " and 150<= pd.price and pd.price <= 200";
+	if ($upr == 200) $condition .= " and 200<= pd.price and pd.price <= 300";
+	if ($upr == 300) $condition .= " and 300<= pd.price and pd.price <= 500";
+	if ($upr == 500) $condition .= " and 500<= pd.price";
+} else {
+	if ($pMax) $condition .= " and pd.price <= " . $pMax;
+	if ($pMin) $condition .= " and ".$pMin." <= pd.price ";
+}
+$lorders = array(
+	'1' => 'p.listorder desc',
+	'2' => 'p.updatetime desc',
+	'3' => 'pd.price asc',
+);
+?>

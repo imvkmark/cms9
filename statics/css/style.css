@@ -159,6 +159,156 @@ body {
   width: 200px;
   float: right;
 }
+.layout .col-pmain-left{
+	float: left;
+	width: 290px;
+	padding: 5px;
+	background: #E9F3F8;
+}
+.layout .col-pmain-right{
+	float: right;
+	width: 440px;
+}
+.productMain .imgWrapper{
+	background: #fff;
+}
+.productMain  .imgWrapper .imgMain{
+	width: 280px;
+	height: 210px;
+	padding: 5px;
+}
+.productMain  .imgWrapper .imgSmall{
+	background: #fff;
+}
+.productMain  .imgWrapper .imgSmallA{
+	float: left;
+	display: inline-block;
+	margin-left: 5px;
+	margin-top: 5px;
+}
+
+.productMain .proname {
+	position: relative;
+	_zoom: 1;
+	padding-bottom: 9px;
+	border-bottom: 2px solid #64a4d1;
+}
+.productMain .proname h3 {
+	padding: 5px 80px 5px 0;
+	font: bold 16px/20px "Microsoft YaHei";
+}
+.productMain .proattr {
+	padding-top: 2px;
+	height: 18px;
+	margin: 0;
+}
+.productMain .ranknum {
+	position: absolute;
+	right: 0;
+	top: 23px;
+	height: 32px;
+	line-height: 20px;
+	padding: 0 5px;
+}
+.productMain .proprice {
+	padding-top: 10px;
+}
+
+.productMain .proprice li{
+	line-height: 24px;
+	height: 24px;
+}
+.productMain .proprice .pricetype {
+	color: #999;
+}
+.productMain .proprice .price-sign {
+	font-size: 12px;
+	color: #c00;
+}
+.productMain .proprice .price-type {
+	font-size: 18px;
+	font-weight: bold;
+	color: #c00;
+}
+.productMain .mainPing h2{
+	line-height: 32px;
+	height: 32px;
+	padding-left: 2em;
+	font-size: 12px;
+	color: #fff;
+	background: #EA6A11;
+}
+.productMain .pingDetail {
+	border:1px solid #EA6A11;
+	border-top: none;
+	padding: 15px;
+}
+.productMain .bigTitle {
+	height: 120px;
+	padding: 2px;
+}
+.productMain .bigTitle img {
+	float: left;
+	height: 105px;
+	margin-right: 15px;
+}
+.productMain .bigTitle h3 a .cat {
+	color: #666;
+	font-weight: normal;
+}
+.productMain .bigTitle h3 a {
+	color: #CD0200;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 35px;
+	height: 35px;
+}
+.productMain .smallTitle li{
+	width: 360px;
+	float: left;
+	font-size: 14px;
+	height: 28px;
+	line-height: 28px;
+}
+.productMain .smallTitle li .cat{
+	color: #666;
+	padding-right: 10px;
+}
+.productMain .smallTitle li a{
+	color: #000;
+}
+.productMain .intro{
+	line-height: 24px;
+	padding: 10px;
+}
+.productMain .param_more {
+	margin: 0;
+	float: left;
+	height: 24px;
+	overflow: hidden;
+	line-height: 24px;
+	padding: 0 30px 0 60px;
+	width: 150px;
+	vertical-align: baseline;
+}
+.productMain .pro_compare {
+	position: relative;
+	z-index: 9;
+	float: left;
+	width: 200px;
+}
+.productMain .pro_comp_btn {
+	display: block;
+	width: 80px;
+	height: 22px;
+	line-height: 20px;
+	border: 1px solid #afcae4;
+	background: #eaf2fb;
+	color: #0368a8;
+	text-align: center;
+	cursor: pointer;
+	overflow: hidden;
+}
 .mt8 {
   margin-top: 8px;
 }
@@ -2759,4 +2909,86 @@ body {
 .appScore img{
 	width: 8px;
 	height: 8px;
+}
+.fitList .searchList {
+	border: 1px solid #ccc;
+}
+.fitList .searchList .items {
+	padding: 8px 0;
+}
+.fitList .searchList .item {
+	padding: 10px 24px;
+	height: 140px;
+}
+.fitList .searchList .item .img {
+	display: block;
+}
+.fitList .searchList .item .img img {
+	width: 180px;
+	float: left;
+	margin-right: 10px;
+}
+.fitList .searchList .item .title {
+	line-height: 30px;
+	height: 30px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #08529b;
+}
+.fitList .searchList .item .title:hover {
+	color: #5a5a5a;
+}
+.fitList .searchList .item .title strong {
+	color: #ff801f;
+	font-weight: normal;
+	padding-left: 4px;
+}
+.fitList .searchList .item p {
+	margin: 0;
+	line-height: 25px;
+}
+.fitList .searchList .item .tips {
+	background: url('images/imgUnicomPremium.jpg') no-repeat 0 0 ;
+	width: 34px;
+	height: 14px;
+	display: inline-block;
+	line-height: 14px;
+	color: #fff;
+}
+.fitList .searchList .item p .old {
+	color: #9D9D9D;
+}
+.fitList .searchList .item p .new {
+	color: #cb0200;
+	font-weight: bold;
+	font-size: 14px;
+	padding: 0 8px;
+}
+.fitList .searchList .item p img {
+	vertical-align: middle;
+}
+.fitList .hotPhone,
+.fitList .netHotPost {
+	margin-top: 8px;
+}
+.fitList .hotPhoneList, .unicomList .userComments{
+	border: 1px solid #ccc;
+	border-top: none;
+}
+.fitList .userComments{
+	padding:5px;
+}
+.fitList .userCommentWrapper{
+	margin-top: 8px;
+}
+.fitList .col-list-right .iContent h4{
+	line-height: 25px;
+	height: 25px;
+	padding-left: 25px;
+}
+.fitList .col-list-right .iContent .tylist a{
+	display: inline-block;
+	padding:0 8px;
+	line-height: 24px;
+	height: 24px;
 }

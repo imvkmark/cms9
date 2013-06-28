@@ -346,6 +346,8 @@ class index {
 				break;
 			case 'main':
 			default:
+				$lbrand = getcache(3360, 'linkage');
+				$lbrand = $lbrand['data'];
 				include template('content', 'phone_main');
 
 		}

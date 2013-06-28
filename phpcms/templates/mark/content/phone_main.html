@@ -1,0 +1,112 @@
+{template "content", "header"}
+{template "content", "tpl_selectPhone"}
+{template "content", "tpl_topAd1"}
+{template "content", "tpl_topAd2"}
+{template "content", "phone_menu"}
+<div class="layout productCommon productMain clear">
+	<div class="col-product-left mt8">
+		<div class="clear">
+			<div class="col-pmain-left">
+				<div class="imgWrapper">
+					<div class="imgMain">
+						<img id="imgMainA" src="" alt="">
+					</div>
+					<div class="imgSmall clear">
+						{pc:get sql="select * from mk_picture p, mk_picture_data pd where p.id=pd.id and pd.phoneid=$phone[id]" num="8"  cache="0"}
+						{loop $data $k $v}
+						<a class="imgSmallA" data-big="{thumb($v[pic], 280, 210)}" >
+							<img src="{thumb($v[pic], 65, 45)}" alt="{$v[title]}">
+						</a>
+						{/loop}
+						{/pc}
+					</div>
+					<script>
+						seajs.use([], function(){
+							$('#imgMainA').attr('src', $('.imgSmallA').eq(0).attr('data-big'));
+							$('.imgSmallA').hover(function(){
+								$('#imgMainA').attr('src', $(this).attr('data-big'));
+							})
+						})
+					</script>
+				</div>
+
+			</div>
+			<div class="col-pmain-right">
+				<div class="proname">
+					<h3 itemprop="itemreviewed">{$phone[title]}</h3>
+					<p class="proattr">
+						品牌：<a href="index.php?m=content&c=index&a=lists&catid=10&ubr={$phone[brand]}">{$lbrand[$phone[brand]][name]}</a>
+					</p>
+				</div>
+				<ul class="proprice">
+					<li><span class="pricetype">参考价格：</span><span class="price price-normal"><b class="price-sign">￥</b><b class="price-type">{$phone[price]}</b></span></li>
+					<li>
+						{pc:get sql="select min(p.price) as miprice , max(p.price) mxprice, count(*) as cnt from mk_price p, mk_price_data pd where p.id=pd.id and pd.phoneid=$phone[id]" num="1"}
+						{loop $data $k $v}
+						<span class="pricetype">商家报价：</span>￥
+						{$v[miprice]}<strong> 至 </strong>￥{$v[mxprice]}
+						<a class="mer-cart-ico" href="{phoneUrl('price', $phone[id])}">共有{$v[cnt]}个商家</a>
+						{/loop}
+						{/pc}
+					</li>
+				</ul>
+				<div class="proparam">
+					<div class="intro">
+						{$phone[description]}
+					</div>
+					<div class="pro_other clear">
+						<p class="param_more" style="padding-right:10px;"><a href="{phoneUrl('param', $phone[id])}">查看{$phone[title]}详细参数<b>&gt;&gt;</b></a></p>
+						<!--<div class="pro_compare">-->
+							<!--<span id="proComp" class="pro_comp_btn" data-rel="{$phone[id]},{$phone[thumb]}">产品对比<b>+</b></span>-->
+						<!--</div>-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="mt8">
+			<script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=20"></script>
+		</div>
+		<div class="mainPing mt8">
+			<h2>{$phone[title]} 购买指南</h2>
+			<div class="pingDetail">
+				{pc:get sql="select * from mk_lab p, mk_lab_data pd where p.id=pd.id and pd.phoneid=$phone[id]" num="5" cache="0"}
+				{php $t = 0;}
+				{loop $data $k $v}
+				{if $k==0}
+				<div class="bigTitle clear">
+					<img src="{$v[thumb]}" alt="{$v[title]}">
+					<h3><a href="{$v[url]}"><span class="cat">[{$CATEGORYS[$v[catid]][catname]}]</span>{$v[title]}</a></h3>
+					<div class="desc">
+						{$v[description]}<a href="{$v[url]}">[详细信息]</a>
+					</div>
+				</div>
+				{else}
+				{if !$t}
+				<ul class="smallTitle clear">
+					{php $t=true}
+				{/if}
+					<li><span class="cat">[{$CATEGORYS[$v[catid]][catname]}]</span><a href="{$v[url]}">{$v[title]}</a></li>
+				{/if}
+				{/loop}
+				</ul>
+				{/pc}
+			</div>
+		</div>
+		{if module_exists('comment')}
+		<iframe src="{APP_PATH}index.php?m=comment&c=index&a=init&commentid={id_encode("content_10",$phone['id'],$siteid)}&iframe=1" width="100%" height="100%" id="comment_iframe" frameborder="0" scrolling="no"></iframe>
+		{/if}
+	</div>
+	<div class="col-product-right">
+		<div class="mt8">
+			<script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=18"></script>
+		</div>
+		<div class="mt8">
+			<script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=19"></script>
+		</div>
+		{template 'content','phone_side_hot'}
+		{template 'content','phone_side_suggest'}
+		{template 'content','phone_side_ad'}
+		{template 'content','phone_side_viewother'}
+	</div>
+</div>
+{template "content","footer"}

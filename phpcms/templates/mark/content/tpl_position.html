@@ -17,4 +17,20 @@
 	<span class="cutter">&gt;</span> {$title}
 	{/if}
 {/if}
+{if $poQuation==true}
+	您当前的位置是:
+	<a href="{siteurl($siteid)}">{$SEO['site_title']}</a> <span class="cutter">&gt;</span>
+	<a href="{$CATEGORYS[32][url]}">{$CATEGORYS[32][catname]}</a>
+	{if $title}
+	<span class="cutter">&gt;</span> {$title}
+	{/if}
+{/if}
+{if $poFitting==true}
+	您当前的位置是:
+	<a href="{siteurl($siteid)}">{$SEO['site_title']}</a> <span class="cutter">&gt;</span>
+	<a href="{$CATEGORYS[33][url]}">{$CATEGORYS[33][catname]}</a>
+	{if $title}
+	<span class="cutter">&gt;</span> {$title}
+	{/if}
+{/if}
 </div>

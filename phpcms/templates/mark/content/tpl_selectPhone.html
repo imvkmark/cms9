@@ -31,12 +31,10 @@
 				</p>
 				<p>
 					<a href="javascript:void(0)" class="title">热门机</a>
-					<a href="#">小米2A</a> |
-					<a href="#">MX3</a> |
-					<a href="#">小米</a>|
-					<a href="#">联想</a>|
-					<a href="#">魅族</a>|
-					<a href="#">中兴</a>
+					{pc:get sql="SELECT * FROM mk_link where typeid=66 and  passed =1" num="10"}
+					{loop $data $k $link}
+					<a href="{$link[url]}" title="{$link[name]}">{$link[name]}</a>{if $k != count($data)-1}|{/if}
+					{/loop}
 				</p>
 			</div>
 		</div>

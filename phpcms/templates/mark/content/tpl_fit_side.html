@@ -1,0 +1,19 @@
+<div class="iContent">
+	<h3 class="titleGrey">
+		配件搜索
+	</h3>
+	<div class="hotPhoneList">
+		<h4>品牌</h4>
+		<div class="tylist">
+			{loop $lType[data] $k $v}
+			<a href="javascript:go('utp', '{$v[linkageid]}')">{$v[name]}</a>
+			{/loop}
+		</div>
+		<h4>价格</h4>
+		<div class="tylist">
+			{loop $lprice $k $v}
+			<a href="javascript:go('upr', '{$k}')">{$v}</a>
+			{/loop}
+		</div>
+	</div>
+</div>
