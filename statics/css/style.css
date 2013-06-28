@@ -2921,7 +2921,10 @@ body {
 	height: 140px;
 }
 .fitList .searchList .item .img {
-	display: block;
+	display: inline-block;
+	float: left;
+	border: 1px solid #ccc;
+	margin-right: 15px;
 }
 .fitList .searchList .item .img img {
 	width: 180px;
@@ -2982,13 +2985,42 @@ body {
 	margin-top: 8px;
 }
 .fitList .col-list-right .iContent h4{
-	line-height: 25px;
-	height: 25px;
+	line-height: 27px;
+	height: 27px;
 	padding-left: 25px;
+	font-size: 13px;
+}
+.fitList .col-list-right .iContent .tylist{
+	padding:5px 10px;
 }
 .fitList .col-list-right .iContent .tylist a{
 	display: inline-block;
 	padding:0 8px;
 	line-height: 24px;
 	height: 24px;
+}
+.fitList .col-list-right .iContent .tylist .active{
+	background: #ff801f;
+	color: #fff;
+}
+
+.fitList .showLab .content {
+	border: 1px solid #ccc;
+	padding: 20px 50px;
+	font-size: 14px;
+	color: #666;
+	line-height: 28px;
+}
+.fitList .showLab .content h3 {
+	color: #000;
+	text-align: center;
+	font-weight: bold;
+	font-family: '微软雅黑', '黑体';
+	font-size: 24px;
+}
+.fitList .showLab .content .info {
+	font-size: 12px;
+	color: #959595;
+	text-align: center;
+	margin-left: 0;
 }

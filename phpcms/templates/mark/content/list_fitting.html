@@ -2,27 +2,28 @@
 {template "content", "tpl_selectPhone"}
 {template "content", "tpl_topAd1"}
 {template "content", "tpl_topAd2"}
-{php $poLab = true}
+{php $poFitting = true}
 {template "content", "tpl_position"}
 {template "content", "tpl_fitting_config"}
 <div class="layout fitList clear">
 	<div class="col-list-left">
 		<div class="searchList">
 			<div class="items clear">
-				{pc:content action="lists" catid="$catid" num="12" page="$page" moreinfo="1"}
+				{pc:get sql="select p.id, pd.desc, p.title, p.thumb, p.url,p.price from mk_fitting p , mk_fitting_data pd where p.id=pd.id $condition" page="$page" num="9" cache="0"}
 				{loop $data $r}
 				<div class="item">
-					<a class="img" href="{$r[url]}"><img src="{$r[thumb]}" alt="{$r[title]}"></a>
+					<a class="img" href="{$r[url]}"><img src="{thumb($v[thumb], 185, 140)}" width="185" height="140" alt="{$v[title]}"></a>
 					<a class="title" href="{$r[url]}">{$r[title]}<strong>{$r[second_title]}</strong></a>
-					<p class="info">{$r[description]}</p>
-					<p class="price">
-						<span class="new">￥:{$r[price]}</span>
-					</p>
+					<p class="info">{$r[desc]}</p>
+					<p class="price"><span class="new">￥:{$r[price]}</span></p>
 				</div>
 				{/loop}
+				<div class="listPages page">
+					{template 'content', 'tpl_pages'}
+				</div>
 				{/pc}
 			</div>
-			{template 'content', 'tpl_pages'}
+
 		</div>
 	</div>
 	<div class="col-list-right pt8">

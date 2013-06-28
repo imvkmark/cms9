@@ -5,14 +5,15 @@
 	<div class="hotPhoneList">
 		<h4>品牌</h4>
 		<div class="tylist">
+			<a {if $utp==0} class="active" {/if}href="javascript:go('utp', '0')">不限</a>
 			{loop $lType[data] $k $v}
-			<a href="javascript:go('utp', '{$v[linkageid]}')">{$v[name]}</a>
+			<a {if $v[linkageid]==$utp} class="active" {/if}href="javascript:go('utp', '{$v[linkageid]}')">{$v[name]}</a>
 			{/loop}
 		</div>
 		<h4>价格</h4>
 		<div class="tylist">
 			{loop $lprice $k $v}
-			<a href="javascript:go('upr', '{$k}')">{$v}</a>
+			<a{if $upr==$k} class="active" {/if} href="javascript:go('upr', '{$k}')">{$v}</a>
 			{/loop}
 		</div>
 	</div>

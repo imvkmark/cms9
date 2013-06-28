@@ -69,3 +69,8 @@ function mkThumb($thumb, $ext = ''){
 	}
 	return $url;
 }
+
+
+function appKeyUrl($linkid){
+	return 'index.php?m=content&c=index&a=app&i='.$linkid;
+}

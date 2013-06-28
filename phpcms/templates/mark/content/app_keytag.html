@@ -1,0 +1,38 @@
+{template "content", "header"}
+{template "content", "tpl_selectPhone"}
+{template "content", "tpl_topAd1"}
+{template "content", "tpl_topAd2"}
+{php $poApp = true}
+{template "content", "tpl_position"}
+{template "content", "tpl_app_config"}
+<div class="layout article articleReview appReview clear">
+	<div class="col-list-left">
+		<div class="items">
+			{pc:get sql="select * from mk_app where appcat=$i" page="$page" num="20"}
+			{loop $data $v}
+			<div class="item clear">
+				<div class="img">
+					<a href="{$v[url]}">
+						<img src="{$v[thumb]}" alt="{$v[title]}">
+					</a>
+				</div>
+				<div class="info">
+					<h3><a href="{$v[url]}">{$v[title]}</a></h3>
+					<p class="intro">
+						{$v[description]} <a href="{$v[url]}" class="more">查看详情&gt;&gt;</a>
+					</p>
+				</div>
+			</div>
+			{/loop}
+			<div class="listPages page">
+				{template 'content', 'tpl_pages'}
+			</div>
+			{/pc}
+		</div>
+
+	</div>
+	<div class="col-list-right">
+		{template "content", "tpl_lab_side"}
+	</div>
+</div>
+{template "content","footer"}

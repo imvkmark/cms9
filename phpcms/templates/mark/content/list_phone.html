@@ -137,11 +137,7 @@
 					{loop $data $v}
 					<div class="iItem">
 						<a href="{phoneUrl('main', $v[id])}" class="img">
-							{if $v[thumb]}
-							<img src="{$v[thumb]}" alt="{$v[title]}">
-							{else}
-							<img src="{IMG_PATH}web/nopic.jpg" alt="{$v[title]}">
-							{/if}
+							<img src="{thumb($v[thumb], 185, 139)}" alt="{$v[title]}">
 						</a>
 						<a href="{phoneUrl('main', $v[id])}" class="title">{$v[title]}</a>
 						<span class="price">￥:{$v[price]}</span>
@@ -151,7 +147,7 @@
 							<a href="{phoneUrl('bbs', $v[id])}" class="bbs">论坛</a>
 							<a href="{phoneUrl('param', $v[id])}" class="params">参数</a>
 							<a href="{phoneUrl('pics', $v[id])}" class="picture">图片</a>
-							<a href="javascript:addCompare({$v[id]})" class="compare">对比</a>
+							<!--<a href="javascript:addCompare({$v[id]})" class="compare">对比</a>-->
 						</p>
 					</div>
 					{/loop}
