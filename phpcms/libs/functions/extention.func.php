@@ -74,3 +74,9 @@ function mkThumb($thumb, $ext = ''){
 function appKeyUrl($linkid){
 	return 'index.php?m=content&c=index&a=app&i='.$linkid;
 }
+
+function getChildids($v){
+	$arr = explode(',', $v);
+	array_shift($arr);
+	return $arr;
+}

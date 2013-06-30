@@ -282,11 +282,13 @@
 			HOT PHONE CASE
 		</span>
 		<div class="cats">
-			<a href="#">三星</a>|
-			<a href="#">小米</a>|
-			<a href="#">魅族</a>|
-			<a href="#">中兴</a>|
-			<a href="#">联想</a>
+			{pc:get sql="select * from mk_phone" num="4" order="rand()"}
+			{php $count=1}
+			{loop $data $k $v}
+			<a href="{phoneUrl('main',$v[id])}">{$v[title]}</a>{if $count != count($data)}|{/if}
+			{php $count++}
+			{/loop}
+			{/pc}
 		</div>
 	</div>
 </div>
@@ -295,28 +297,28 @@
 		<div class="col-main-left">
 			<div class="iContent clear">
 				<div class="col-hotcaseinfo">
+					{pc:content  action="position" posid="20" order="listorder DESC" num="7"}
+					{php $count=0}
+					{loop $data $key $val}
+					{if $count==0}
 					<div class="focusInfo">
-						<h3 class="infoTitle"><a href="#">R::getTitle(1)}</a></h3>
-						<p>R::getDesc(160)}<a href="#" class="more">查看详细</a></p>
+						<h3 class="infoTitle"><a href="{$val[url]}">{$val[title]}</a></h3>
+						<p>{$val[desc]}<a href="{$val[url]}" class="more">查看详细</a></p>
 					</div>
+					{else}
+					{if $count==1 || $count==3 || $count == 5}
 					<div class="hotcaselist">
 						<ul class="listBigCat">
-							<li><span class="iCat"><a href="#">资讯</a></span><a href="#">R::getTitle(1)}</a></li>
-							<li><span class="iCat"><a href="#">资讯</a></span><a href="#">R::getTitle(1)}</a></li>
+							{/if}
+							<li><span class="iCat"><a href="{$CATEGORYS[$val[catid]][url]}">{$CATEGORYS[$val[catid]][catname]}</a></span><a href="{$val[url]}">{$val[title]}</a></li>
+							{if $count==2 || $count==4 || $count == 6}
 						</ul>
 					</div>
-					<div class="hotcaselist">
-						<ul class="listBigCat">
-							<li><span class="iCat"><a href="#">资讯</a></span><a href="#">R::getTitle(1)}</a></li>
-							<li><span class="iCat"><a href="#">资讯</a></span><a href="#">R::getTitle(1)}</a></li>
-						</ul>
-					</div>
-					<div class="hotcaselist">
-						<ul class="listBigCat">
-							<li><span class="iCat"><a href="#">资讯</a></span><a href="#">R::getTitle(1)}</a></li>
-							<li><span class="iCat"><a href="#">资讯</a></span><a href="#">R::getTitle(1)}</a></li>
-						</ul>
-					</div>
+					{/if}
+					{/if}
+					{php $count++}
+					{/loop}
+					{/pc}
 				</div>
 				<div class="col-hotcasecompare">
 					<div class="iContent">
@@ -379,12 +381,6 @@
 
 
 
-
-
-
-
-
-
 <!--app-->
 <?php
 $linkageApp = getcache(3384, 'linkage');
@@ -400,11 +396,13 @@ $linkageApp = $linkageApp['data'];
 			PHONE APPS
 		</span>
 		<div class="cats">
-			<a href="#">三星</a>|
-			<a href="#">小米</a>|
-			<a href="#">魅族</a>|
-			<a href="#">中兴</a>|
-			<a href="#">联想</a>
+			{pc:get sql="select * from mk_app" num="4" order="rand()"}
+			{php $count=1}
+			{loop $data $k $v}
+			<a href="{$v[url]}">{$v[title]}</a>{if $count != count($data)}|{/if}
+			{php $count++}
+			{/loop}
+			{/pc}
 		</div>
 	</div>
 </div>
@@ -414,58 +412,57 @@ $linkageApp = $linkageApp['data'];
 			<div class="iContent clear">
 				<div class="clear">
 					<div class="col-hotapp-info">
+						{pc:content  action="position" posid="19" order="listorder DESC" num="7"}
+						{php $count=0}
+						{loop $data $key $val}
+						{if $count==0}
 						<div class="focusInfo">
-							<h3 class="infoTitle"><a href="#">R::getTitle(1)}</a></h3>
-							<p>R::getDesc(160)}<a href="#" class="more">查看详细</a></p>
+							<h3 class="infoTitle"><a href="{$val[url]}">{$val[title]}</a></h3>
+							<p>{$val[description]}<a href="{$val[url]}" class="more">查看详细</a></p>
 						</div>
+						{else}
+						{if $count==1 || $count==3 || $count == 5}
 						<div class="hotcaselist">
 							<ul class="listBigCat">
-								<li><span class="iCat"><a href="#">资讯</a></span><a href="#">R::getTitle(1)}</a></li>
-								<li><span class="iCat"><a href="#">资讯</a></span><a href="#">R::getTitle(1)}</a></li>
+						{/if}
+								<li><span class="iCat"><a href="{$CATEGORYS[$val[catid]][url]}">{$CATEGORYS[$val[catid]][catname]}</a></span><a href="{$val[url]}">{$val[title]}</a></li>
+						{if $count==2 || $count==4 || $count == 6}
 							</ul>
 						</div>
-						<div class="hotcaselist">
-							<ul class="listBigCat">
-								<li><span class="iCat"><a href="#">资讯</a></span><a href="#">R::getTitle(1)}</a></li>
-								<li><span class="iCat"><a href="#">资讯</a></span><a href="#">R::getTitle(1)}</a></li>
-							</ul>
-						</div>
-						<div class="hotcaselist">
-							<ul class="listBigCat">
-								<li><span class="iCat"><a href="#">资讯</a></span><a href="#">R::getTitle(1)}</a></li>
-								<li><span class="iCat"><a href="#">资讯</a></span><a href="#">R::getTitle(1)}</a></li>
-							</ul>
-						</div>
+						{/if}
+						{/if}
+						{php $count++}
+						{/loop}
+						{/pc}
 					</div>
 					<div class="col-hotapp-cat">
 						<div class="iContent">
 							<div class="slider">
-								<img src="{DT_PROJECT}images/imgSlider.jpg" alt="#">
+								<script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=21"></script>
 							</div>
 							<div class="appCat">
 								<h4 class="title">
 									软件分类
 								</h4>
 								<ul class="catDetail clear">
-									{php $count==0}
+									{php $count=0}
 									{loop $linkageApp $k $v}
-									{if $count++<9 && $v[parentid]==0}
+									{if $count++<8 && $v[parentid]==0}
 									<li><a href="{appKeyUrl($v[linkageid])}">{$v[name]}</a></li>
 									{/if}
 									{/loop}
 								</ul>
 								<h4 class="title">
-									软件分类
+									游戏
 								</h4>
 								<ul class="catDetail clear">
-									<li><a href="#">系统工具</a></li>
-									<li><a href="#">系统工具</a></li>
-									<li><a href="#">系统工具</a></li>
-									<li><a href="#">系统工具</a></li>
-									<li><a href="#">系统工具</a></li>
-									<li><a href="#">系统工具</a></li>
-									<li><a href="#">系统工具</a></li>
-									<li><a href="#">系统工具</a></li>
+									{php $childids = getChildids($linkageApp[3397][arrchildid])}
+									{php $count=0}
+									{loop $childids $cid}
+									{if $count++<8}
+									<li><a href="{appKeyUrl($cid)}">{$linkageApp[$cid][name]}</a></li>
+									{/if}
+									{/loop}
 								</ul>
 							</div>
 						</div>

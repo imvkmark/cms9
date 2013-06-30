@@ -5,10 +5,11 @@
 {php $poApp = true}
 {template "content", "tpl_position"}
 {template "content", "tpl_app_config"}
-<div class="layout article articleReview appReview clear">
+<div class="layout article articleReview appReview fitList clear">
 	<div class="col-list-left">
 		<div class="items">
-			{pc:get sql="select * from mk_app where appcat=$i" page="$page" num="20"}
+			{php $wherein = $linkageApp[$i][arrchildid];}
+			{pc:get sql="select * from mk_app where appcat in ($wherein)" page="$page" num="20"}
 			{loop $data $v}
 			<div class="item clear">
 				<div class="img">
@@ -32,6 +33,25 @@
 
 	</div>
 	<div class="col-list-right">
+		<div class="iContent">
+			<h3 class="titleGrey">
+				软件分类
+			</h3>
+			<div class="hotPhoneList">
+				{loop $linkageApp $k $v}
+				{if $v[parentid]==0}
+				<h4 {if $i==$v[linkageid]} class="active" {/if}>{$v[name]}</h4>
+				<div class="tylist">
+					{php $childids = getChildids($v[arrchildid])}
+					{loop $childids $cid}
+					<a {if $i==$cid} class="active" {/if}href="javascript:go('i', '{$cid}')">{$linkageApp[$cid][name]}</a>
+					{/loop}
+				</div>
+				{/if}
+				{/loop}
+			</div>
+		</div>
+		<div class="mt8">   </div>
 		{template "content", "tpl_lab_side"}
 	</div>
 </div>
