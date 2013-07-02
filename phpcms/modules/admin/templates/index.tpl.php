@@ -69,10 +69,10 @@ var pc_hash = '<?php echo $_SESSION['pc_hash']?>'
 			    <a href="http://forum.grandcloud.cn/index.php" target="_blank"><?php echo L('help')?></a>
 		    </div>
 			<ul id="Skin">
-				<li class="s1 styleswitch" rel="styles1"></li>
-				<li class="s2 styleswitch" rel="styles2"></li>
-				<li class="s3 styleswitch" rel="styles3"></li>
-		        <li class="s4 styleswitch" rel="styles4"></li>
+<!--				<li class="s1 styleswitch" rel="styles1"></li>-->
+<!--				<li class="s2 styleswitch" rel="styles2"></li>-->
+<!--				<li class="s3 styleswitch" rel="styles3"></li>-->
+<!--		        <li class="s4 styleswitch" rel="styles4"></li>-->
 			</ul>
         </div>
     </div>
