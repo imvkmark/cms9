@@ -344,6 +344,7 @@ body {
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   overflow: hidden;
+  width: 100%;
 }
 .listBigCat li a {
   padding: 0 10px;
@@ -938,6 +939,7 @@ body {
 .header .sdinfo .search li {
   font-size: 16px;
   float: left;
+  _display:inline;
 }
 .header .sdinfo .search .sel {
   width: 38px;
@@ -978,9 +980,12 @@ body {
  }
 .header .sdinfo .search .searchInput {
   border: none;
-  height: 20px;
+  height: 19px;
   padding: 5px;
   width: 344px;
+	_border:none;
+	_position:relative;
+	_top:1px;
 }
 .header .sdinfo .search .searchButton {
   text-align: center;
@@ -988,6 +993,7 @@ body {
   display: inline-block;
   color: #fff;
   cursor: pointer;
+  _width:64px;
 }
 .header .sdinfo .search .searchButton:hover {
   color: #000;
@@ -1011,6 +1017,10 @@ body {
 }
 .header .sdinfo .fav a {
   display: inline-block;
+}
+.header .sdinfoTop {
+	height: 68px;
+	overflow: hidden;
 }
 .nav {
   height: 35px;
@@ -1140,6 +1150,7 @@ body {
   line-height: 28px;
   margin: 0;
   padding-right: 10px;
+  height: 28px;
 }
 .selectPhone .iContent a {
   padding: 0 5px;
@@ -1149,15 +1160,15 @@ body {
   color: #fd7b03;
 }
 .selectPhone .iContent .title {
-  background: url('../images/bgSelectPhoneTitle.gif') no-repeat 0 0;
-  width: 55px;
-  height: 20px;
-  text-align: center;
-  color: #364c71;
-  line-height: 20px;
-  display: inline-block;
-  font-weight: bold;
-  padding: 0;
+	background: url('../images/bgSelectPhoneTitle.gif') no-repeat 0 4px;
+	width: 55px;
+	height: 28px;
+	text-align: center;
+	color: #364c71;
+	line-height: 28px;
+	display: inline-block;
+	font-weight: bold;
+	padding: 0;
 }
 .selectPhone .iContent .more {
   float: right;
@@ -2490,12 +2501,13 @@ body {
   padding: 0 10px;
 }
 .focus .focusNews h3 {
-  line-height: 43px;
-  font-family: '微软雅黑', 'Arial', '宋体';
-  white-space: nowrap;
-  -o-text-overflow: ellipsis;
-  text-overflow: ellipsis;
-  text-align: center;
+	line-height: 36px;
+	font-family: '微软雅黑', 'Arial', '宋体';
+	white-space: nowrap;
+	-o-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	text-align: center;
+	height: 36px;
 }
 .focus .focusNews h3 a {
   color: #CB0200;
@@ -2760,6 +2772,9 @@ body {
   background: #f2f0f1;
   margin: 10px 0;
 }
+.hotphonecase .caseTab li {
+	display: inline;
+}
 .hotphonecase .caseTab a {
   display: inline-block;
   width: 119px;
@@ -2767,9 +2782,10 @@ body {
   line-height: 23px;
   float: left;
   text-align: center;
+	_position:relative;
+	_top:5px;
 }
 .hotphonecase .caseTab .active a, .hotphonecase .caseTab .ui-state-active a {
-  position: relative;
   color: #fff;
   background: url('../images/bgMenuNarrow.jpg') no-repeat center 0;
 }

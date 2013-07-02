@@ -7,7 +7,7 @@
 					<a href="javascript:void(0)" class="title">品牌</a>
 					{pc:get sql="SELECT * FROM mk_link where typeid=63 and  passed =1" num="10"}
 					{loop $data $k $link}
-					<a href="{$link[url]}" title="{$link[name]}">{$link[name]}</a>{if $k != count($data)-1}|{/if}
+					<a href="{$link[url]}" title="{$link[name]}">{$link[name]}</a>{if $k != count($data)-1}<span>|</span>{/if}
 					{/loop}
 					{/pc}
 				</p>

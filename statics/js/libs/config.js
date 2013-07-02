@@ -22,6 +22,8 @@ var alias = {
 	'easyui': 'libs/easyui/1.3.3/jquery.easyui.min',
 	'ms': 'libs/multiselect/1.13/jquery.multiselect',
 	'ms-filter': 'libs/multiselect/1.13/jquery.multiselect.filter.min',
+
+	// http://down.admin5.com/demo/code_pop/16/73/index.html
 	'kinslideshow': 'libs/kinslideshow/1.2.1/kinslideshow',
 	'jd': 'libs/jDiaporama/2.0.0/jquery.jDiaporama',
 	'raty': 'libs/raty/2.5.2/jquery.raty',

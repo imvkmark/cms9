@@ -8,25 +8,44 @@
 		<div class="col-focus-left">
 			<div class="iContent">
 				<div class="focusBanner">
-					<img src="{DT_PROJECT}images/imgFocusBanners.jpg" alt="">
+					{pc:get sql="select * from mk_poster where spaceid = 22"}
+					<ul id="kss" style="visibility:hidden;">
+						{loop $data $v}
+						{php $sa = string2array($v[setting])}
+						<li><a href="{$sa[1][linkurl]}"><img width="535" height="330" src="{$sa[1][imageurl]}" alt="{$sa[1][alt]}"></a></li>
+						{/loop}
+					</ul>
+					{/pc}
+					<script>
+						seajs.use(['kinslideshow'], function(){
+							$('#kss').KinSlideshow({
+								moveStyle:"right",
+								titleBar:{titleBar_height:30,titleBar_bgColor:"#08355c",titleBar_alpha:0.5},
+								titleFont:{TitleFont_size:12,TitleFont_color:"#FFFFFF",TitleFont_weight:"normal"},
+								btn:{btn_bgColor:"#FFFFFF",btn_bgHoverColor:"#1072aa",btn_fontColor:"#000000",
+									btn_fontHoverColor:"#FFFFFF",btn_borderColor:"#cccccc",
+									btn_borderHoverColor:"#1188c0",btn_borderWidth:1}
+							})
+						})
+					</script>
 				</div>
-				<div class="hotBBS">
+				<div class="hotBBS clear mt8">
 					<div class="col-hotBBS-left">
 						<h2 class="focusTitle">
 							论坛热帖
 						</h2>
 						<div class="bbsContent">
 							<ul class="listSubleft">
-								<li><span class="num">1</span><a href="#">R::getTitle(1)}</a></li>
-								<li><span class="num">2</span><a href="#">R::getTitle(1)}</a></li>
-								<li><span class="num">3</span><a href="#">R::getTitle(1)}</a></li>
-								<li><span class="num">4</span><a href="#">R::getTitle(1)}</a></li>
-								<li><span class="num">5</span><a href="#">R::getTitle(1)}</a></li>
+								<li><span class="num">1</span><a href="#">论坛热帖论坛热帖论坛热帖</a></li>
+								<li><span class="num">2</span><a href="#">论坛热帖论坛热帖论坛热帖</a></li>
+								<li><span class="num">3</span><a href="#">论坛热帖论坛热帖论坛热帖</a></li>
+								<li><span class="num">4</span><a href="#">论坛热帖论坛热帖论坛热帖</a></li>
+								<li><span class="num">5</span><a href="#">论坛热帖论坛热帖论坛热帖</a></li>
 							</ul>
 						</div>
 					</div>
 					<div class="col-hotBBS-right">
-						<img src="{DT_PROJECT}images/imgDownPrice.jpg" alt="">
+						<img src="{IMG_PATH}imgDownPrice.jpg" alt="">
 					</div>
 				</div>
 			</div>
@@ -36,7 +55,7 @@
 				<h2 class="focusTitle">
 					今日焦点
 				</h2>
-                {pc:get sql="select a.id, a.title, a.catid, a.url,a.thumb from mk_lab a,mk_position_data p where p.posid = 22 and a.id = p.id" num="2" cache="0"}
+                {pc:get sql="select a.id,a.description, a.title, a.catid, a.url,a.thumb from mk_lab a,mk_position_data p where p.posid = 22 and a.id = p.id" num="2" cache="0"}
                 {loop $data $key $val}
                 <div class="focusNews">
                     <h3><a href="#">{$val[title]}</a></h3>
@@ -66,7 +85,7 @@
 					<ul class="listBigCat">
                         {pc:get sql="select a.id, a.title, a.catid, a.url,a.thumb from mk_fitting a,mk_position_data p where p.posid = 22 and a.id = p.id" num="4" cache="0"}
                         {loop $data $key $val}
-                        <li><span class="iCat"><a href="{$CATEGORYS[$val[catid]][url]}">{$CATEGORYS[$val[catid]][catname]}</a></span><a href="{$val[url]}">{$val[title]}</a></li>
+                        <li><span class="iCat"><a href="{$CATEGORYS[$val[catid]][url]}">{$CATEGORYS[$val[catid]][catname]}</a></span><a href="{$val[url]}">{str_cut($val[title], 60)}</a></li>
                         {/loop}
                         {/pc}
 					</ul>
@@ -77,7 +96,7 @@
 </div>
 
 <div class="layout">
-	<div class="trade clear">
+	<div class="trade clear mt8">
 		<div class="col-trade-left">
 			<div class="iContent clear">
 				<div class="clear">
@@ -99,7 +118,7 @@
 					</div>
 					<div class="col-isp-right">
 						<div class="ispAd">
-							<img src="{DT_PROJECT}images/imgTradePhone.jpg" alt="#">
+							<img src="{IMG_PATH}imgTradePhone.jpg" alt="#">
 						</div>
 					</div>
 				</div>
@@ -128,27 +147,27 @@
 
 <div class="layout">
 	<div class="catTitle">
+		<div class="cats">
+			{pc:get sql="select * from mk_phone" num="4" order="rand()"}
+			{php $count=1}
+			{loop $data $k $v}
+			<a href="{phoneUrl('main',$v[id])}">{$v[title]}</a>{if $count != count($data)}|{/if}
+			{php $count++}
+			{/loop}
+			{/pc}
+		</div>
 		<span class="tCat">
 			热销手机产品
 		</span>
 		<span class="tEng">
 			HOT PHONES
 		</span>
-		<div class="cats">
-            {pc:get sql="select * from mk_phone" num="4" order="rand()"}
-            {php $count=1}
-            {loop $data $k $v}
-            <a href="{phoneUrl('main',$v[id])}">{$v[title]}</a>{if $count != count($data)}|{/if}
-            {php $count++}
-            {/loop}
-            {/pc}
-		</div>
 	</div>
 </div>
 <div class="layout">
 	<div class="hotPhones clear">
 		<div class="col-main-left">
-			<div class="iContent clear">
+			<div class="iContent clear" style="padding:11px 0;">
                 {pc:get sql="SELECT p.title, p.url,pd.price, c.total
                 FROM mk_hits h, mk_phone p
                 LEFT JOIN mk_comment c ON c.commentid = CONCAT('content_10-',p.id,'-1'), mk_phone_data pd
@@ -165,7 +184,7 @@
                         <span class="priceItem">￥:{$val[price]}</span>
                         <span class="commentTitle">评价: {if $val[total]}{$val[total]}{else}0{/if}条</span>
 						<!--<span class="commentResult">-->
-							<!--<img src="{DT_PROJECT}images/imgStar4.jpg" alt="">-->
+							<!--<img src="{IMG_PATH}imgStar4.jpg" alt="">-->
 						<!--</span>-->
                     </p>
                     <p class="buy">
@@ -181,7 +200,7 @@
 				<h3 class="titleGrey" style="border:none;border-bottom: 1px solid #ccc">手机推荐排行榜</h3>
 				<div class="phoneList">
 					<ul class="listProductMore">
-                        {pc:get sql="select a.id, a.title, a.catid, a.url,a.thumb from mk_phone a,mk_position_data p where p.posid = 21 and a.id = p.id" num="9"" cache="0"}
+                        {pc:get sql="select a.id, a.title, a.catid, a.url,a.thumb,pd.price from mk_phone a,mk_phone_data pd,mk_position_data p where a.id =pd.id and  p.posid = 21 and a.id = p.id" num="9"" cache="0"}
                         {loop $data $key $val}
                         {if $key == 0}
 						<li class="bigItem">
@@ -204,14 +223,8 @@
 
 <div class="layout">
 	<div class="catTitle">
-		<span class="tCat">
-			热销手机配件
-		</span>
-		<span class="tEng">
-			HOT PHONE CASE
-		</span>
 		<div class="cats">
-			{pc:get sql="select * from mk_phone" num="4" order="rand()"}
+			{pc:get sql="select p.id, p.title, pd.price from mk_phone p , mk_phone_data pd where p.id = pd.id" num="4" order="rand()"}
 			{php $count=1}
 			{loop $data $k $v}
 			<a href="{phoneUrl('main',$v[id])}">{$v[title]}</a>{if $count != count($data)}|{/if}
@@ -219,13 +232,19 @@
 			{/loop}
 			{/pc}
 		</div>
+		<span class="tCat">
+			热销手机配件
+		</span>
+		<span class="tEng">
+			HOT PHONE CASE
+		</span>
 	</div>
 </div>
 <div class="layout">
 	<div class="hotphonecase mt8 clear">
 		<div class="col-main-left">
-			<div class="iContent clear">
-				<div class="col-hotcaseinfo">
+			<div class="iContent clear" style="padding:5px 0">
+				<div class="col-hotcaseinfo" style="overflow: hidden;">
                     {pc:get sql="select a.title, a.catid, a.url, ad.desc from mk_fitting a, mk_fitting_data ad,mk_position_data p where a.id = ad.id and p.posid = 20 and a.id = p.id" num="7"}
 					{php $count=0}
 					{loop $data $key $val}
@@ -276,7 +295,7 @@
 					<li><a href="#phoneNew">新品推荐</a></li>
 				</ul>
 				<div id="phoneNew" class="caseSuggest clear">
-                    {pc:get sql="select * from mk_phone" num="4" order="hits ASC" cache="0"}
+                    {pc:get sql="select p.*, pd.price from mk_phone p , mk_phone_data pd where p.id = pd.id" num="4" order="hits ASC" cache="0"}
                     {loop $data $key $v}
                     <div class="suggestItem">
                         <div class="imgWrapper">
@@ -289,7 +308,7 @@
                     {/pc}
 				</div>
                 <div id="phoneHot" class="caseSuggest clear">
-                    {pc:get sql="select * from mk_phone" num="4" order="hits DESC" cache="0"}
+                    {pc:get sql="select p.*, pd.price from mk_phone p , mk_phone_data pd where p.id = pd.id" num="4" order="hits DESC" cache="0"}
                     {loop $data $key $v}
                     <div class="suggestItem">
                         <div class="imgWrapper">
@@ -321,12 +340,6 @@ $linkageApp = $linkageApp['data'];
 
 <div class="layout">
 	<div class="catTitle">
-		<span class="tCat">
-			手机应用
-		</span>
-		<span class="tEng">
-			PHONE APPS
-		</span>
 		<div class="cats">
 			{pc:get sql="select * from mk_app" num="4" order="rand()"}
 			{php $count=1}
@@ -336,12 +349,18 @@ $linkageApp = $linkageApp['data'];
 			{/loop}
 			{/pc}
 		</div>
+		<span class="tCat">
+			手机应用
+		</span>
+		<span class="tEng">
+			PHONE APPS
+		</span>
 	</div>
 </div>
 <div class="layout">
 	<div class="hotapp mt8 clear">
 		<div class="col-main-left">
-			<div class="iContent clear">
+			<div class="iContent clear" style="padding: 2px 0;">
 				<div class="clear">
 					<div class="col-hotapp-info">
 						{pc:content  action="position" posid="19" order="listorder DESC" num="7"}
@@ -417,7 +436,7 @@ $linkageApp = $linkageApp['data'];
 			<h3 class="titleGrey">软件下载周排行榜</h3>
 			<div class="appDown wrapGrey">
 				<ul class="listAppDown">
-					{pc:get sql="select url, appcat, title, thumb,fee, downhits,score from mk_app order by downhits desc" cache="0" num="8"}
+					{pc:get sql="select url, appcat, title, thumb,fee, downhits,score from mk_app order by downhits desc" cache="0" num="10"}
 					{loop $data $k $v}
 					{if $k<=2}
 					<li class="bignum">

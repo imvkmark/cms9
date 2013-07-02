@@ -164,3 +164,8 @@ Error
     详细：
     (1) phpsso应用管理-通信密钥-点击自动生成
     (2) 然后复制该密钥到后台-设置-相关设置-phpsso配置-粘贴进加密密钥里即可
+
+emmet
+===========================
+	Kinslideshow
+	ul[style=visibility:hidden;]>(li>a>img[width=300 height=200])
