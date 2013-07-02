@@ -7,9 +7,9 @@ translation save at the array:$LANG
 */
 
 //index
-$LANG['admin_site_title'] = 'phpcmsV9 - Content Management System';
+$LANG['admin_site_title'] = 'Content Management System';
 $LANG['expand_or_contract'] = 'Show or Hide';
-$LANG['phpcms_title'] = 'PHPCMS V9 Content Management System';
+$LANG['phpcms_title'] = 'Content Management System';
 $LANG['official_site'] = 'Official site';
 $LANG['authorization'] = 'Authorization';
 $LANG['igenus_for_postfix'] = 'Support Forum';

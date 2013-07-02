@@ -6,7 +6,7 @@ translation save at the array:$LANG
 */
 
 $LANG['no_language'] = 'Lack of language pack';
-$LANG['website_manage'] = 'phpcmsV9 - Administration';
+$LANG['website_manage'] = 'Administration';
 $LANG['lockscreen'] = 'Screen lock';
 $LANG['submit'] = 'Submit';
 $LANG['yes'] = 'Yes';
