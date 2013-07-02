@@ -134,16 +134,19 @@ class index {
 				case '1'://正
 					$total = $comment['square'];
 					break;
-					
 				case '2'://反
 					$total = $comment['anti'];
 					break;
-					
 				case '3'://中
 					$total = $comment['neutral'];
 					break;
-					
-				default:
+                case '4'://4
+                    $total = $comment['cfour'];
+                    break;
+                case '5'://5
+                    $total = $comment['cfive'];
+                    break;
+                default:
 					$total = $comment['total'];
 					break;
 			}

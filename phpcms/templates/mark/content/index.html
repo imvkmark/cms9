@@ -36,34 +36,39 @@
 				<h2 class="focusTitle">
 					今日焦点
 				</h2>
-				<div class="focusNews">
-					<h3><a href="#">R::getTitle(1)}</a></h3>
-					<p>R::getDesc(160)}[<a href="#" class="more">查看详细</a>]</p>
-				</div>
-				<div class="focusNews">
-					<h3><a href="#">R::getTitle(1)}</a></h3>
-					<p>R::getDesc(160)}[<a href="#" class="more">查看详细</a>]</p>
-				</div>
+                {pc:get sql="select a.id, a.title, a.catid, a.url,a.thumb from mk_lab a,mk_position_data p where p.posid = 22 and a.id = p.id" num="2" cache="0"}
+                {loop $data $key $val}
+                <div class="focusNews">
+                    <h3><a href="#">{$val[title]}</a></h3>
+                    <p>{$val[description]}[<a href="{$val[url]}" class="more">查看详细</a>]</p>
+                </div>
+                {/loop}
+                {/pc}
 				<div class="focusBigCat" style="margin-top:4px;">
 					<ul class="listBigCat">
-						<li><span class="iCat"><a href="#">资讯</a></span><a href="#">R::getTitle(1)}</a></li>
-						<li><span class="iCat"><a href="#">资讯</a></span><a href="#">R::getTitle(1)}</a></li>
-						<li><span class="iCat"><a href="#">资讯</a></span><a href="#">R::getTitle(1)}</a></li>
+                        {pc:get sql="select a.id, a.title, a.catid, a.url,a.thumb from mk_app a,mk_position_data p where p.posid = 22 and a.id = p.id" num="2" cache="0"}
+                        {loop $data $key $val}
+                        <li><span class="iCat"><a href="{$CATEGORYS[$val[catid]][url]}">{$CATEGORYS[$val[catid]][catname]}</a></span><a href="{$val[url]}">{$val[title]}</a></li>
+                        {/loop}
+                        {/pc}
 					</ul>
 				</div>
 				<div class="focusBigCat">
 					<ul class="listBigCat">
-						<li><span class="iCat"><a href="#">资讯</a></span><a href="#">R::getTitle(1)}</a></li>
-						<li><span class="iCat"><a href="#">资讯</a></span><a href="#">R::getTitle(1)}</a></li>
-						<li><span class="iCat"><a href="#">资讯</a></span><a href="#">R::getTitle(1)}</a></li>
+                        {pc:get sql="select a.id, a.title, a.catid, a.url,a.thumb from mk_quotation a,mk_position_data p where p.posid = 22 and a.id = p.id" num="3" cache="0"}
+                        {loop $data $key $val}
+                        <li><span class="iCat"><a href="{$CATEGORYS[$val[catid]][url]}">{$CATEGORYS[$val[catid]][catname]}</a></span><a href="{$val[url]}">{$val[title]}</a></li>
+                        {/loop}
+                        {/pc}
 					</ul>
 				</div>
 				<div class="focusBigCat">
 					<ul class="listBigCat">
-						<li><span class="iCat"><a href="#">资讯</a></span><a href="#">R::getTitle(1)}</a></li>
-						<li><span class="iCat"><a href="#">资讯</a></span><a href="#">R::getTitle(1)}</a></li>
-						<li><span class="iCat"><a href="#">资讯</a></span><a href="#">R::getTitle(1)}</a></li>
-						<li><span class="iCat"><a href="#">资讯</a></span><a href="#">R::getTitle(1)}</a></li>
+                        {pc:get sql="select a.id, a.title, a.catid, a.url,a.thumb from mk_fitting a,mk_position_data p where p.posid = 22 and a.id = p.id" num="4" cache="0"}
+                        {loop $data $key $val}
+                        <li><span class="iCat"><a href="{$CATEGORYS[$val[catid]][url]}">{$CATEGORYS[$val[catid]][catname]}</a></span><a href="{$val[url]}">{$val[title]}</a></li>
+                        {/loop}
+                        {/pc}
 					</ul>
 				</div>
 			</div>
@@ -84,11 +89,11 @@
 						</h3>
 						<div class="ispInfo">
 							<ul class="listBlackDot">
-								<li><a href="#">R::getTitle(1)}</a></li>
-								<li><a href="#">R::getTitle(1)}</a></li>
-								<li><a href="#">R::getTitle(1)}</a></li>
-								<li><a href="#">R::getTitle(1)}</a></li>
-								<li><a href="#">R::getTitle(1)}</a></li>
+								<li><a href="#">交易平台数据调用</a></li>
+								<li><a href="#">交易平台数据调用</a></li>
+								<li><a href="#">交易平台数据调用</a></li>
+								<li><a href="#">交易平台数据调用</a></li>
+								<li><a href="#">交易平台数据调用</a></li>
 							</ul>
 						</div>
 					</div>
@@ -106,14 +111,14 @@
 				<h3>交易平台</h3>
 				<div class="iTradeInfo">
 					<ul class="listBlackDot">
-						<li><a href="#">R::getTitle(1)}</a></li>
-						<li><a href="#">R::getTitle(1)}</a></li>
-						<li><a href="#">R::getTitle(1)}</a></li>
-						<li><a href="#">R::getTitle(1)}</a></li>
-						<li><a href="#">R::getTitle(1)}</a></li>
-						<li><a href="#">R::getTitle(1)}</a></li>
-						<li><a href="#">R::getTitle(1)}</a></li>
-						<li><a href="#">R::getTitle(1)}</a></li>
+						<li><a href="#">交易平台数据调用</a></li>
+						<li><a href="#">交易平台数据调用</a></li>
+						<li><a href="#">交易平台数据调用</a></li>
+						<li><a href="#">交易平台数据调用</a></li>
+						<li><a href="#">交易平台数据调用</a></li>
+						<li><a href="#">交易平台数据调用</a></li>
+						<li><a href="#">交易平台数据调用</a></li>
+						<li><a href="#">交易平台数据调用</a></li>
 					</ul>
 				</div>
 			</div>
@@ -130,11 +135,13 @@
 			HOT PHONES
 		</span>
 		<div class="cats">
-			<a href="#">三星</a>|
-			<a href="#">小米</a>|
-			<a href="#">魅族</a>|
-			<a href="#">中兴</a>|
-			<a href="#">联想</a>
+            {pc:get sql="select * from mk_phone" num="4" order="rand()"}
+            {php $count=1}
+            {loop $data $k $v}
+            <a href="{phoneUrl('main',$v[id])}">{$v[title]}</a>{if $count != count($data)}|{/if}
+            {php $count++}
+            {/loop}
+            {/pc}
 		</div>
 	</div>
 </div>
@@ -142,128 +149,50 @@
 	<div class="hotPhones clear">
 		<div class="col-main-left">
 			<div class="iContent clear">
-				<div class="hotPhoneItem">
-					<div class="imgWrapper">
-						<img src="{DT_PROJECT}images/imgHotPhone.jpg" alt="#">
-					</div>
-					<a href="#" class="itemName">R::getTitle(1)}</a>
-					<p class="info">
-						<span class="priceTitle">价格:</span>
-						<span class="priceItem">￥:2500</span>
-						<span class="commentTitle">评价:</span>
-						<span class="commentResult">
-							<img src="{DT_PROJECT}images/imgStar4.jpg" alt="">
-						</span>
-					</p>
-					<p class="buy">
-						<a href="#" class="buyButton"></a>
-					</p>
-				</div>
-				<div class="hotPhoneItem">
-					<div class="imgWrapper">
-						<img src="{DT_PROJECT}images/imgHotPhone.jpg" alt="#">
-					</div>
-					<a href="#" class="itemName">R::getTitle(1)}</a>
-					<p class="info">
-						<span class="priceTitle">价格:</span>
-						<span class="priceItem">￥:2500</span>
-						<span class="commentTitle">评价:</span>
-						<span class="commentResult">
-							<img src="{DT_PROJECT}images/imgStar4.jpg" alt="">
-						</span>
-					</p>
-					<p class="buy">
-						<a href="#" class="buyButton"></a>
-					</p>
-				</div>
-				<div class="hotPhoneItem">
-					<div class="imgWrapper">
-						<img src="{DT_PROJECT}images/imgHotPhone.jpg" alt="#">
-					</div>
-					<a href="#" class="itemName">R::getTitle(1)}</a>
-					<p class="info">
-						<span class="priceTitle">价格:</span>
-						<span class="priceItem">￥:2500</span>
-						<span class="commentTitle">评价:</span>
-						<span class="commentResult">
-							<img src="{DT_PROJECT}images/imgStar4.jpg" alt="">
-						</span>
-					</p>
-					<p class="buy">
-						<a href="#" class="buyButton"></a>
-					</p>
-				</div>
-				<div class="hotPhoneItem">
-					<div class="imgWrapper">
-						<img src="{DT_PROJECT}images/imgHotPhone.jpg" alt="#">
-					</div>
-					<a href="#" class="itemName">R::getTitle(1)}</a>
-					<p class="info">
-						<span class="priceTitle">价格:</span>
-						<span class="priceItem">￥:2500</span>
-						<span class="commentTitle">评价:</span>
-						<span class="commentResult">
-							<img src="{DT_PROJECT}images/imgStar4.jpg" alt="">
-						</span>
-					</p>
-					<p class="buy">
-						<a href="#" class="buyButton"></a>
-					</p>
-				</div>
-				<div class="hotPhoneItem">
-					<div class="imgWrapper">
-						<img src="{DT_PROJECT}images/imgHotPhone.jpg" alt="#">
-					</div>
-					<a href="#" class="itemName">R::getTitle(1)}</a>
-					<p class="info">
-						<span class="priceTitle">价格:</span>
-						<span class="priceItem">￥:2500</span>
-						<span class="commentTitle">评价:</span>
-						<span class="commentResult">
-							<img src="{DT_PROJECT}images/imgStar4.jpg" alt="">
-						</span>
-					</p>
-					<p class="buy">
-						<a href="#" class="buyButton"></a>
-					</p>
-				</div>
-				<div class="hotPhoneItem">
-					<div class="imgWrapper">
-						<img src="{DT_PROJECT}images/imgHotPhone.jpg" alt="#">
-					</div>
-					<a href="#" class="itemName">R::getTitle(1)}</a>
-					<p class="info">
-						<span class="priceTitle">价格:</span>
-						<span class="priceItem">￥:2500</span>
-						<span class="commentTitle">评价:</span>
-						<span class="commentResult">
-							<img src="{DT_PROJECT}images/imgStar4.jpg" alt="">
-						</span>
-					</p>
-					<p class="buy">
-						<a href="#" class="buyButton"></a>
-					</p>
-				</div>
+                {pc:get sql="SELECT p.title, p.url,pd.price, c.total
+                FROM mk_hits h, mk_phone p
+                LEFT JOIN mk_comment c ON c.commentid = CONCAT('content_10-',p.id,'-1'), mk_phone_data pd
+                WHERE h.hitsid = CONCAT('c-13-',p.id) AND p.id = pd.id AND p.catid=10
+                ORDER BY h.monthviews DESC, p.updatetime DESC" cache="0" num="6"}
+                {loop $data $key $val}
+                <div class="hotPhoneItem">
+                    <div class="imgWrapper">
+                        {mkThumb($val[thumb], 'alt="'.$val[title].'"')}
+                    </div>
+                    <a href="#" class="itemName">{$val['title']}</a>
+                    <p class="info">
+                        <span class="priceTitle">价格:</span>
+                        <span class="priceItem">￥:{$val[price]}</span>
+                        <span class="commentTitle">评价: {if $val[total]}{$val[total]}{else}0{/if}条</span>
+						<!--<span class="commentResult">-->
+							<!--<img src="{DT_PROJECT}images/imgStar4.jpg" alt="">-->
+						<!--</span>-->
+                    </p>
+                    <p class="buy">
+                        <a href="{phoneUrl('main', $val[id])}" class="paramButton"></a>
+                    </p>
+                </div>
+                {/loop}
+                {/pc}
 			</div>
 		</div>
 		<div class="col-main-right">
 			<div class="iContent">
-				<h3>手机推荐排行榜</h3>
+				<h3 class="titleGrey" style="border:none;border-bottom: 1px solid #ccc">手机推荐排行榜</h3>
 				<div class="phoneList">
 					<ul class="listProductMore">
+                        {pc:get sql="select a.id, a.title, a.catid, a.url,a.thumb from mk_phone a,mk_position_data p where p.posid = 21 and a.id = p.id" num="9"" cache="0"}
+                        {loop $data $key $val}
+                        {if $key == 0}
 						<li class="bigItem">
-							<a class="title" href="#">R::getTitle(1)}</a>
-							<img src="{DT_PROJECT}images/imgHotPhone.jpg" width="89" height="89" alt="#">
+							<a class="title" href="{phoneUrl('main', $val[id])}">{$val[title]}</a>
+                            {mkThumb($v[thumb], 'alt="'.$v[title].'" width="89" height="89"')}
 						</li>
-						<li class="bnormal"><a href="#">R::getTitle(1)}</a></li>
-						<li class="bnormal"><a href="#">R::getTitle(1)}</a></li>
-						<li class="normal"><a href="#">R::getTitle(1)}</a></li>
-						<li class="normal"><a href="#">R::getTitle(1)}</a></li>
-						<li class="normal"><a href="#">R::getTitle(1)}</a></li>
-						<li class="normal"><a href="#">R::getTitle(1)}</a></li>
-						<li class="normal"><a href="#">R::getTitle(1)}</a></li>
-						<li class="normal"><a href="#">R::getTitle(1)}</a></li>
-						<li class="normal"><a href="#">R::getTitle(1)}</a></li>
+                        {else}
+						<li class="{if $key<3 || $key>1}bnormal{elseif $key>=3}bnormal{/if}"><a href="{phoneUrl('main', $val[id])}">{$val[title]}</a></li>
+                        {/if}
+                        {/loop}
+                        {/pc}
 					</ul>
 				</div>
 			</div>
@@ -297,13 +226,13 @@
 		<div class="col-main-left">
 			<div class="iContent clear">
 				<div class="col-hotcaseinfo">
-					{pc:content  action="position" posid="20" order="listorder DESC" num="7"}
+                    {pc:get sql="select a.title, a.catid, a.url, ad.desc from mk_fitting a, mk_fitting_data ad,mk_position_data p where a.id = ad.id and p.posid = 20 and a.id = p.id" num="7"}
 					{php $count=0}
 					{loop $data $key $val}
 					{if $count==0}
 					<div class="focusInfo">
 						<h3 class="infoTitle"><a href="{$val[url]}">{$val[title]}</a></h3>
-						<p>{$val[desc]}<a href="{$val[url]}" class="more">查看详细</a></p>
+						<p>{strip_tags($val[desc])}<a href="{$val[url]}" class="more">查看详细</a></p>
 					</div>
 					{else}
 					{if $count==1 || $count==3 || $count == 5}
@@ -323,34 +252,17 @@
 				<div class="col-hotcasecompare">
 					<div class="iContent">
 						<ul class="listBignum">
+                            {pc:get sql="select a.title, a.catid, a.url, ad.desc, a.thumb from mk_fitting a, mk_fitting_data ad  where a.id = ad.id and a.thumb != ''" num="4"}
+                            {loop $data $k $v}
 							<li>
 								<div class="titleWrapper">
-									<a class="title" href="#">R::getTitle(1)}</a>
-									<span class="intro">R::getDesc(100)}</span>
+									<a class="title" href="#">{$v[title]}</a>
+									<span class="intro">{strip_tags($val[desc])}</span>
 								</div>
-								<img src="{DT_PROJECT}images/imgHotPhone.jpg" alt="#">
+                                {mkThumb($v[thumb], 'alt="'.$v[title].'"')}
 							</li>
-							<li>
-								<div class="titleWrapper">
-									<a class="title" href="#">R::getTitle(1)}</a>
-									<span class="intro">R::getDesc(100)}</span>
-								</div>
-								<img src="{DT_PROJECT}images/imgHotPhone.jpg" alt="#">
-							</li>
-							<li>
-								<div class="titleWrapper">
-									<a class="title" href="#">R::getTitle(1)}</a>
-									<span class="intro">R::getDesc(100)}</span>
-								</div>
-								<img src="{DT_PROJECT}images/imgHotPhone.jpg" alt="#">
-							</li>
-							<li>
-								<div class="titleWrapper">
-									<a class="title" href="#">R::getTitle(1)}</a>
-									<span class="intro">R::getDesc(100)}</span>
-								</div>
-								<img src="{DT_PROJECT}images/imgHotPhone.jpg" alt="#">
-							</li>
+                            {/loop}
+                            {/pc}
 						</ul>
 					</div>
 				</div>
@@ -358,22 +270,42 @@
 		</div>
 		<div class="col-main-right">
 			<h3 class="titleGrey">手机推荐排行榜</h3>
-			<div class="wrapGrey clear">
-				<p class="caseTab">
-					<a href="#">热门推荐</a>
-					<a href="#" class="active">新品推荐</a>
-				</p>
-				<div class="caseSuggest clear">
-					{for $i=0; $i<=3; $i++}
-					<div class="suggestItem">
-						<div class="imgWrapper">
-							<img src="{DT_PROJECT}images/imgHotPhone.jpg" alt="#">
-						</div>
-						<a class="suggestTitle" href="">眼镜蛇耳机</a>
-						<span class="suggestPrice">￥30.00</span>
-					</div>
-					{/for}
+			<div class="wrapGrey clear" id="phoneSuggest">
+				<ul class="caseTab">
+					<li><a href="#phoneHot">热门推荐</a></li>
+					<li><a href="#phoneNew">新品推荐</a></li>
+				</ul>
+				<div id="phoneNew" class="caseSuggest clear">
+                    {pc:get sql="select * from mk_phone" num="4" order="hits ASC" cache="0"}
+                    {loop $data $key $v}
+                    <div class="suggestItem">
+                        <div class="imgWrapper">
+                            {mkThumb($v[thumb], 'alt="'.$v[title].'"')}
+                        </div>
+                        <a class="suggestTitle" href="{$v[url]}">{$v[title]}</a>
+                        <span class="suggestPrice">￥{$v[price]}</span>
+                    </div>
+                    {/loop}
+                    {/pc}
 				</div>
+                <div id="phoneHot" class="caseSuggest clear">
+                    {pc:get sql="select * from mk_phone" num="4" order="hits DESC" cache="0"}
+                    {loop $data $key $v}
+                    <div class="suggestItem">
+                        <div class="imgWrapper">
+                            {mkThumb($v[thumb], 'alt="'.$v[title].'"')}
+                        </div>
+                        <a class="suggestTitle" href="{$v[url]}">{$v[title]}</a>
+                        <span class="suggestPrice">￥{$v[price]}</span>
+                    </div>
+                    {/loop}
+                    {/pc}
+                </div>
+                <script type="text/javascript">
+                    seajs.use(['ui'], function(){
+                        $('#phoneSuggest').tabs();
+                    })
+                </script>
 			</div>
 		</div>
 	</div>

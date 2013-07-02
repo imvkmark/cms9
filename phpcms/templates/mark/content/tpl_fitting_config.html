@@ -24,6 +24,7 @@ if ($upr) {
 	if ($upr == 300) $condition .= ' and 300<= p.price and p.price <= 500';
 	if ($upr == 500) $condition .= ' and 500<= p.price';
 }
+if ($kw)  $condition .= " and p.title like '%$kw%'";
 $lorders = array(
 	'1' => 'p.listorder desc',
 	'2' => 'p.updatetime desc',

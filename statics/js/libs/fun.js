@@ -10,6 +10,8 @@ function go(param, value, tripFile) {
 	}
 	if (param != 'page')
 		stringObj = stringObj.replace(/page=[0-9]*/, '');
+    if (param == 'kw')
+        stringObj = stringObj.replace(/kw=[^`]*/, 'kw=');
 	var reg = new RegExp(param + "=[0-9a-zA-Z,-]*", "g"); //创建正则RegExp对象
 	var urlGo = "";
 	var ch = stringObj.indexOf(param+'=');

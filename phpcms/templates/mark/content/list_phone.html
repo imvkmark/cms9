@@ -13,6 +13,22 @@
 </div>
 
 <div class="layout selection">
+    <dl class="iItem clear">
+        <dt class="iTitle">
+           关键词:
+        </dt>
+        <dd>
+            <input id="phoneSearchKw" type="text" name="kw" value="{$kw}"/>
+            <a id="phoneSearchBtn">搜索</a>
+        </dd>
+    </dl>
+    <script type="text/javascript">
+        seajs.use([], function(){
+            $('#phoneSearchBtn').click(function(){
+                go('kw', $('#phoneSearchKw').val());
+            })
+        })
+    </script>
 	<dl class="iItem clear">
 		<dt class="iTitle">
 			{$lbrand[title]}:

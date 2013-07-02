@@ -15,6 +15,7 @@
 <div class="layout article articleReview clear">
 	<div class="col-list-left">
 		<div class="items">
+            {if !$kw}
 			{pc:content action="lists" catid="$catid" num="20" page="$page"}
 			{loop $data $v}
 			<div class="item clear">
@@ -35,6 +36,25 @@
 			</div>
 			{/loop}
 			{/pc}
+            {else}
+            {pc:get sql="select * from mk_lab where title like '%$kw%'" num="20" page="$page"}
+            {loop $data $v}
+            <div class="item clear">
+                <div class="img">
+                    <a href="{$v[url]}">
+                        <img src="{$v[thumb]}" alt="{$v[title]}">
+                    </a>
+                </div>
+                <div class="info">
+                    <h3><a href="{$v[url]}">{$v[title]}</a></h3>
+                    <p class="intro">
+                        {$v[description]} <a href="{$v[url]}" class="more">查看详情&gt;&gt;</a>
+                    </p>
+                </div>
+            </div>
+            {/loop}
+            {/pc}
+            {/if}
 		</div>
 		{template 'content', 'tpl_pages'}
 	</div>

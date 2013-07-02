@@ -29,14 +29,49 @@
 			<a href="{APP_PATH}"><img src="{IMG_PATH}logo.jpg" alt="{$SEO['title']}"></a>
 		</div>
 		<div class="search">
-			<form action="post" name="search">
+			<form action="?" name="search" id="searchForm" method="get">
 				<ul>
-					<li class="sel">全部</li>
-					<li><input type="text" name="kw" class="searchInput"></li>
-					<li><a class="searchButton" href="javascript:document.form[search].submit()">搜索</a></li>
+					<li id="searchSelect" class="sel">
+                        <span id="searchSelectValue">手机</span>
+                        <ul class="sub" id="searchSelectSub">
+                            <li data-type="phone"><a>手机</a></li>
+                            <li data-type="app"><a>APP</a></li>
+                            <li data-type="lab"><a>评测</a></li>
+                            <li data-type="quotation"><a>行情</a></li>
+                            <li data-type="apparticle"><a>应用</a></li>
+                            <li data-type="fitting"><a>配件</a></li>
+                        </ul>
+                    </li>
+                    <input type="hidden" id="searchType" name="ctp" value="phone"/>
+                    <input type="hidden" name="m" value="content"/>
+                    <input type="hidden" name="c" value="index"/>
+                    <input type="hidden" name="a" value="search"/>
+					<li><input id="searchKw" type="text" name="kw" class="searchInput"></li>
+					<li><span id="searchSubmit" class="searchButton">搜索</span></li>
 				</ul>
 			</form>
 		</div>
+        <script type="text/javascript">
+            seajs.use([], function(){
+                $('#searchSelect').click(function(){
+                    $(this).find('ul').show();
+                }).find('li').click(function(e){
+                    var dtype = $(this).attr('data-type');
+                    var name = $(this).text();
+                    $('#searchType').val(dtype);
+                    $('#searchSelectValue').text(name);
+                    $('#searchSelectSub').hide();
+                    e.stopPropagation();
+                });
+                $('#searchSubmit').click(function(){
+                    if($('#searchKw').val() == '') {
+                        alert('请输入关键词！')
+                    } else {
+                        $('#searchForm').submit();
+                    }
+                })
+            })
+        </script>
 		<div class="hot">
 			<strong>热门搜索</strong>:
 			<a href="#">西游记</a>

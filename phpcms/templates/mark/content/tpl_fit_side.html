@@ -3,6 +3,18 @@
 		配件搜索
 	</h3>
 	<div class="hotPhoneList">
+        <h4>关键词</h4>
+        <div class="tylist">
+            <input type="text" id="fittingSearchKw" name="kw" value="{$kw}"/>
+            <a id="fittingSearchBtn" >搜索</a>
+        </div>
+        <script type="text/javascript">
+            seajs.use([], function(){
+                $('#fittingSearchBtn').click(function(){
+                    go('kw', $('#fittingSearchKw').val());
+                })
+            })
+        </script>
 		<h4>品牌</h4>
 		<div class="tylist">
 			<a {if $utp==0} class="active" {/if}href="javascript:go('utp', '0')">不限</a>

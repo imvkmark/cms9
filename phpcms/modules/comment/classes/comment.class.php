@@ -119,6 +119,12 @@ class comment {
 					case 3://中立方
 						$sql['neutral'] = '+=1';
 						break;
+                    case 4://4
+                        $sql['cfour'] = '+=1';
+                        break;
+                    case 5://5
+                        $sql['cfive'] = '+=1';
+                        break;
 				}
 			}
 			$this->comment_db->update($sql, array('commentid'=>$commentid));

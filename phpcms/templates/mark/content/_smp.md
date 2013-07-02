@@ -109,6 +109,19 @@ seajs
 	{/loop}
 	{/pc}
 
+自定义调用推荐位
+-------------
+    {pc:get sql="select a.title, a.appcat, a.url, a.thumb from mk_app a ,mk_position_data p where p.posid = 18 and p.catid=$r[catid] and a.id = p.id" num="8"}
+        {loop $data $key $val}
+        <div class="item">
+            <img src="{$val['thumb']}" alt="{$val[title]}">
+            <h4><a href="{$val['url']}">{$val[title]}</a></h4>
+            <span class="star">评分:</span>
+            <span class="cat">分类:{$linkageApp[$val[appcat]][name]}</span>
+        </div>
+        {/loop}
+    {/pc}
+
 无图片
 -------
 
@@ -124,3 +137,30 @@ seajs
 万能字段
 -------
 	{FUNC(sendQuery~~{FIELD_VALUE})}
+
+
+Error
+-----
+密码重试次数太多，请过-22561967分钟后重新登录！
+======================================
+
+找到文件 \phpcms\modules\admin\index.php
+
+    将如下代码注释掉：
+
+    if($rtime['times'] >= $maxloginfailedtimes) {
+      $minute = 60-floor((SYS_TIME-$rtime['logintime'])/60);
+      showmessage(L('wait_1_hour',array('minute'=>$minute)));
+    }
+
+    注意哦，一共是4行
+
+    然后再次登录后台，更新全站缓存就好了。
+
+禁止注册或用户已存在的解决方法
+========================
+    可能是因为程序默认是开启phpsso的，所以密钥要生成一样的。
+
+    详细：
+    (1) phpsso应用管理-通信密钥-点击自动生成
+    (2) 然后复制该密钥到后台-设置-相关设置-phpsso配置-粘贴进加密密钥里即可

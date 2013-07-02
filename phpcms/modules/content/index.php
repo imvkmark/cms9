@@ -205,6 +205,7 @@ class index {
 	}
 	//列表页
 	public function lists() {
+        $kw = htmlspecialchars($_GET['kw']);
 		$catid = $_GET['catid'] = intval($_GET['catid']);
 		$_priv_data = $this->_category_priv($catid);
 		if($_priv_data=='-1') {
@@ -281,6 +282,7 @@ class index {
 	}
 
 	public function app(){
+        $kw = htmlspecialchars($_GET['kw']);
 		//		common start
 		if(isset($_GET['siteid'])) {
 			$siteid = intval($_GET['siteid']);
@@ -303,8 +305,55 @@ class index {
 		include template('content', 'app_keytag');
 	}
 
-	public function phone() {
 
+    public function search(){
+        //		common start
+        $ctp = $_GET['ctp'];
+        $kw = htmlspecialchars($_GET['kw']);
+        if(isset($_GET['siteid'])) {
+            $siteid = intval($_GET['siteid']);
+        } else {
+            $siteid = 1;
+        }
+        $siteid = $GLOBALS['siteid'] = max($siteid,1);
+        define('SITEID', $siteid);
+        $_userid = $this->_userid;
+        $_username = $this->_username;
+        $_groupid = $this->_groupid;
+        //SEO
+        $SEO = seo($siteid);
+        $sitelist  = getcache('sitelist','commons');
+        $default_style = $sitelist[$siteid]['default_style'];
+        $CATEGORYS = getcache('category_content_'.$siteid,'commons');
+        $page = intval($_GET['page']);
+//      common end
+        switch($ctp) {
+            case 'phone':
+                header('location:?m=content&c=index&a=lists&catid=10&kw='.$kw);
+                break;
+            case 'app':
+                include template('content', 'list_app');
+                break;
+            case 'lab':
+                header('location:?m=content&c=index&a=lists&catid=12&kw='.$kw);
+                break;
+            case 'quotation':
+                header('location:?m=content&c=index&a=lists&catid=32&kw='.$kw);
+                break;
+            case 'apparticle':
+                header('location:?m=content&c=index&a=lists&catid=29&kw='.$kw);
+                break;
+            case 'fitting':
+                include template('content', 'list_fitting');
+                break;
+
+        }
+
+    }
+
+
+	public function phone() {
+        $kw = htmlspecialchars($_GET['kw']);
 //		common start
 		if(isset($_GET['siteid'])) {
 			$siteid = intval($_GET['siteid']);

@@ -343,6 +343,7 @@ body {
   white-space: nowrap;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
+  overflow: hidden;
 }
 .listBigCat li a {
   padding: 0 10px;
@@ -943,7 +944,38 @@ body {
   padding-left: 10px;
   padding-right: 32px;
   text-align: center;
+  position: relative;
+  cursor: pointer;
 }
+.header .sdinfo .search ul .sub {
+    position: absolute;
+    font-size: 12px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    background: #fff;
+    height: auto;
+    top: 33px;
+    left: 5px;
+    width: 49px;
+    text-align: center;
+    display: none;
+}
+.header .sdinfo .search ul .sub li{
+    clear: both;
+    font-size: 12px;
+    display: block;
+    width: auto;
+    float: none;
+    height: 25px;
+    line-height: 25px;
+    cursor: pointer;
+}
+.header .sdinfo .search ul .sub li a{
+    color: #000;
+}
+.header .sdinfo .search ul .sub li a:hover{
+     color: #fd7b03;
+ }
 .header .sdinfo .search .searchInput {
   border: none;
   height: 20px;
@@ -955,6 +987,7 @@ body {
   width: 66px;
   display: inline-block;
   color: #fff;
+  cursor: pointer;
 }
 .header .sdinfo .search .searchButton:hover {
   color: #000;
@@ -2656,6 +2689,12 @@ body {
   width: 90px;
   display: inline-block;
 }
+.hotPhones .buy .paramButton {
+    background: url('../images/bgParamButton.jpg') no-repeat 0 2px;
+    height: 25px;
+    width: 90px;
+    display: inline-block;
+}
 .hotPhones .phoneList {
   padding: 6px 10px;
 }
@@ -3026,4 +3065,8 @@ body {
 	color: #959595;
 	text-align: center;
 	margin-left: 0;
+}
+
+.hotPhones .hotPhoneItem .imgWrapper img{
+    width: 170px;
 }

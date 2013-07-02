@@ -38,6 +38,7 @@ if ($upr) {
 	if ($pMax) $condition .= " and pd.price <= " . $pMax;
 	if ($pMin) $condition .= " and ".$pMin." <= pd.price ";
 }
+if ($kw)  $condition .= " and p.title like '%$kw%'";
 if ($ude) $condition .= " and p.design=$ude";
 if ($une) $condition .= " and p.mnet=$une";
 if ($usy) $condition .= " and p.sys=$uty";

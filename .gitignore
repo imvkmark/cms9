@@ -46,5 +46,11 @@ Thumbs.db
 
 # Project #
 ###########
-/caches
+/caches/caches_admin
+/caches/caches_commons
+/caches/caches_linkage
+/caches/caches_member
+/caches/caches_model
+/caches/caches_search
+/caches/error_log.php
 
