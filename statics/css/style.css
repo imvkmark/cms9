@@ -2661,6 +2661,7 @@ body {
 }
 .hotPhones .imgWrapper {
   padding-left: 44px;
+  height:140px;
 }
 .hotPhones .itemName {
   display: inline-block;

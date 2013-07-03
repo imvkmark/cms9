@@ -55,7 +55,7 @@
 				<h2 class="focusTitle">
 					今日焦点
 				</h2>
-                {pc:get sql="select a.id,a.description, a.title, a.catid, a.url,a.thumb from mk_lab a,mk_position_data p where p.posid = 22 and a.id = p.id" num="2" cache="0"}
+                {pc:get sql="select a.id,a.description, a.title, a.catid, a.url,a.thumb from mk_lab a,mk_position_data p where p.posid = 22 and a.id = p.id order by a.listorder DESC" num="2" cache="0"}
                 {loop $data $key $val}
                 <div class="focusNews">
                     <h3><a href="#">{$val[title]}</a></h3>
@@ -65,7 +65,7 @@
                 {/pc}
 				<div class="focusBigCat" style="margin-top:4px;">
 					<ul class="listBigCat">
-                        {pc:get sql="select a.id, a.title, a.catid, a.url,a.thumb from mk_app a,mk_position_data p where p.posid = 22 and a.id = p.id" num="2" cache="0"}
+                        {pc:get sql="select a.id, a.title, a.catid, a.url,a.thumb from mk_app a,mk_position_data p where p.posid = 22 and a.id = p.id order by a.listorder DESC" num="2" cache="0"}
                         {loop $data $key $val}
                         <li><span class="iCat"><a href="{$CATEGORYS[$val[catid]][url]}">{$CATEGORYS[$val[catid]][catname]}</a></span><a href="{$val[url]}">{$val[title]}</a></li>
                         {/loop}
@@ -74,7 +74,7 @@
 				</div>
 				<div class="focusBigCat">
 					<ul class="listBigCat">
-                        {pc:get sql="select a.id, a.title, a.catid, a.url,a.thumb from mk_quotation a,mk_position_data p where p.posid = 22 and a.id = p.id" num="3" cache="0"}
+                        {pc:get sql="select DISTINCT(a.id), a.title, a.catid, a.url,a.thumb from mk_quotation a inner JOIN mk_position_data p ON (a.id = p.id) where p.posid = 22 order by a.listorder DESC" num="3" cache="0"}
                         {loop $data $key $val}
                         <li><span class="iCat"><a href="{$CATEGORYS[$val[catid]][url]}">{$CATEGORYS[$val[catid]][catname]}</a></span><a href="{$val[url]}">{$val[title]}</a></li>
                         {/loop}
@@ -83,7 +83,7 @@
 				</div>
 				<div class="focusBigCat">
 					<ul class="listBigCat">
-                        {pc:get sql="select a.id, a.title, a.catid, a.url,a.thumb from mk_fitting a,mk_position_data p where p.posid = 22 and a.id = p.id" num="4" cache="0"}
+                        {pc:get sql="select DISTINCT(a.id), a.title, a.catid, a.url,a.thumb from mk_fitting a inner JOIN mk_position_data p ON (a.id = p.id) where p.posid = 22 order by a.listorder DESC" num="4" cache="0"}
                         {loop $data $key $val}
                         <li><span class="iCat"><a href="{$CATEGORYS[$val[catid]][url]}">{$CATEGORYS[$val[catid]][catname]}</a></span><a href="{$val[url]}">{str_cut($val[title], 60)}</a></li>
                         {/loop}
@@ -168,17 +168,21 @@
 	<div class="hotPhones clear">
 		<div class="col-main-left">
 			<div class="iContent clear" style="padding:11px 0;">
-                {pc:get sql="SELECT p.title, p.url,pd.price, c.total
+                {pc:get sql="SELECT p.id,p.title, p.url,pd.price, c.total, p.thumb
                 FROM mk_hits h, mk_phone p
                 LEFT JOIN mk_comment c ON c.commentid = CONCAT('content_10-',p.id,'-1'), mk_phone_data pd
                 WHERE h.hitsid = CONCAT('c-13-',p.id) AND p.id = pd.id AND p.catid=10
-                ORDER BY h.monthviews DESC, p.updatetime DESC" cache="0" num="6"}
+                ORDER BY p.listorder DESC, p.updatetime DESC" cache="0" num="6"}
                 {loop $data $key $val}
                 <div class="hotPhoneItem">
                     <div class="imgWrapper">
-                        {mkThumb($val[thumb], 'alt="'.$val[title].'"')}
+                    	<a href="{phoneUrl('main', $val[id])}">
+                       		{mkThumb($val[thumb], 'alt="'.$val[title].'"')}
+                        </a>
                     </div>
-                    <a href="#" class="itemName">{$val['title']}</a>
+                    <p class="info">
+                    	<a href="{phoneUrl('main', $val[id])}" class="itemName">{$val['title']}</a>
+                    </p>
                     <p class="info">
                         <span class="priceTitle">价格:</span>
                         <span class="priceItem">￥:{$val[price]}</span>
