@@ -375,6 +375,14 @@ class index {
 
 		$t = $_GET['t'];
 		$id = $_GET['id'];
+		$pid = $_GET['pid'];
+		if ($pid) {
+			$this->db->table_name = 'mk_param_data';
+			$r = $this->db->get_one(array('id'=>$pid));
+			if ($r) {
+				$id = $r['phoneid'];
+			}
+		}
 		if (!$id || !$t) {
 			showmessage('错误链接, 请联系管理员');
 		}
