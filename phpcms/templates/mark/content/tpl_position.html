@@ -33,4 +33,20 @@
 	<span class="cutter">&gt;</span> {$title}
 	{/if}
 {/if}
+{if $poFee==true}
+	您当前的位置是:
+	<a href="{siteurl($siteid)}">{$SEO['site_title']}</a> <span class="cutter">&gt;</span>
+	<a href="{$CATEGORYS[9][url]}">{$CATEGORYS[9][catname]}</a>
+	{if $title}
+	<span class="cutter">&gt;</span> {$title}
+	{/if}
+{/if}
+{if $poFeeArticle==true}
+	您当前的位置是:
+	<a href="{siteurl($siteid)}">{$SEO['site_title']}</a> <span class="cutter">&gt;</span>
+	<a href="{$CATEGORYS[40][url]}">{$CATEGORYS[40][catname]}</a>
+	{if $title}
+	<span class="cutter">&gt;</span> {$title}
+	{/if}
+{/if}
 </div>

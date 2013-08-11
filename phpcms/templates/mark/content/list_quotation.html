@@ -13,12 +13,12 @@
 	<div class="col-list-left">
 		<div class="items">
             {if !$kw}
-			{pc:content action="lists" catid="$catid" num="20" page="$page"}
+			{pc:content action="lists" catid="$catid" num="20" order="inputtime DESC" page="$page"}
 			{loop $data $v}
 			<div class="item clear">
 				<div class="img">
 					<a href="{$v[url]}">
-						<img src="{$v[thumb]}" alt="{$v[title]}">
+						{mkThumb($v[thumb], 'alt="'.$v[title].'"')}
 					</a>
 				</div>
 				<div class="info">

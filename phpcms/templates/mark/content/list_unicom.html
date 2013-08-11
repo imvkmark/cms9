@@ -2,13 +2,13 @@
 {template "content", "tpl_selectPhone"}
 {template "content", "tpl_topAd1"}
 {template "content", "tpl_topAd2"}
-{php $poLab = true}
+{php $poFee = true}
 {template "content", "tpl_position"}
 <div class="layout unicomList clear">
 	<div class="col-list-left">
 		<div class="searchList">
 			<div class="items clear">
-				{pc:content action="lists" catid="$catid" num="12" page="$page" moreinfo="1"}
+				{pc:content action="lists" catid="$catid" order="inputtime DESC" num="12" page="$page" moreinfo="1"}
 				{loop $data $r}
 				<div class="item">
 					<a class="img" href="{$r[url]}"><img src="{$r[thumb]}" alt="{$r[title]}"></a>

@@ -105,14 +105,14 @@ endforeach;
 					<li><a href="#phoneSuggest-hot">热门推荐</a></li>
 					<li><a href="#phoneSuggest-new">新品推荐</a></li>
 				</ul>
-				{pc:get sql="select p.title,p.thumb, p.url,pd.price from mk_hits h, mk_phone p, mk_phone_data pd where h.hitsid = concat('c-13-',p.id) and p.id = pd.id and p.catid=10 order by h.monthviews desc, p.updatetime desc" num=4}
+				{pc:get sql="select p.title,p.thumb,p.id, p.url,pd.price from mk_hits h, mk_phone p, mk_phone_data pd where h.hitsid = concat('c-13-',p.id) and p.id = pd.id and p.catid=10 order by h.monthviews desc, p.updatetime desc" num=4}
 				<div class="caseSuggest" id="phoneSuggest-hot">
 					{loop $data $key $val}
 					<div class="suggestItem">
 						<div class="imgWrapper">
 							<img src="{$val['thumb']}" alt="{$val['title']}">
 						</div>
-						<a class="suggestTitle" href="{$val['url']}">{$val['title']}</a>
+						<a class="suggestTitle" href="{phoneUrl('main',$val[id])}">{$val['title']}</a>
 						<span class="suggestPrice">￥{$val['price']}</span>
 					</div>
 					{/loop}
@@ -125,7 +125,7 @@ endforeach;
 						<div class="imgWrapper">
 							<img src="{$val['thumb']}" alt="{$val['title']}">
 						</div>
-						<a class="suggestTitle" href="{$val['url']}">{$val['title']}</a>
+						<a class="suggestTitle" href="{phoneUrl('main',$val[id])}">{$val['title']}</a>
 						<span class="suggestPrice">￥{$val['price']}</span>
 					</div>
 					{/loop}
@@ -189,19 +189,11 @@ endforeach;
 	</div>
 	<div class="col-main-right">
 		<h3 class="titleGrey">
-			--网友交流热帖--
+			网友交流热帖
 		</h3>
 		<div class="wrapGrey">
 			<ul class="listBlueDot">
-				<li><a href="#">标题标题</a></li>
-				<li><a href="#">标题标题</a></li>
-				<li><a href="#">标题标题</a></li>
-				<li><a href="#">标题标题</a></li>
-				<li><a href="#">标题标题</a></li>
-				<li><a href="#">标题标题</a></li>
-				<li><a href="#">标题标题</a></li>
-				<li><a href="#">标题标题</a></li>
-				<li><a href="#">标题标题</a></li>
+				<script type="text/javascript" src="http://cmall.sdinfo.net/bbs/api.php?mod=js&bid=4"></script>
 			</ul>
 		</div>
 	</div>
@@ -216,20 +208,20 @@ endforeach;
 	</div>
 	<div class="col-main-right">
 		<div class="hotphonecase">
-			<h3 class="titleGrey">---手机配件排行榜---</h3>
+			<h3 class="titleGrey">手机排行榜</h3>
 			<div class="clear wrapGrey" id="fitSuggest">
 				<ul class="caseTab">
 					<li><a href="#fitSuggest-hot">热门推荐</a></li>
 					<li><a href="#fitSuggest-new">新品推荐</a></li>
 				</ul>
-				{pc:get sql="select p.title,p.thumb, p.url,pd.price from mk_hits h, mk_phone p, mk_phone_data pd where h.hitsid = concat('c-13-',p.id) and p.id = pd.id and p.catid=10 order by h.monthviews desc, p.updatetime desc" num=4}
+				{pc:get sql="select p.title,p.thumb,p.id, p.url,pd.price from mk_hits h, mk_phone p, mk_phone_data pd where h.hitsid = concat('c-13-',p.id) and p.id = pd.id and p.catid=10 order by h.monthviews desc, p.updatetime desc" num=4}
 				<div class="caseSuggest" id="fitSuggest-hot">
 					{loop $data $key $val}
 					<div class="suggestItem">
 						<div class="imgWrapper">
 							<img src="{$val['thumb']}" alt="{$val['title']}">
 						</div>
-						<a class="suggestTitle" href="{$val['url']}">{$val['title']}</a>
+						<a class="suggestTitle" href="{phoneUrl('main',$val[id])}">{$val['title']}</a>
 						<span class="suggestPrice">￥{$val['price']}</span>
 					</div>
 					{/loop}
@@ -242,7 +234,7 @@ endforeach;
 						<div class="imgWrapper">
 							<img src="{$val['thumb']}" alt="{$val['title']}">
 						</div>
-						<a class="suggestTitle" href="{$val['url']}">{$val['title']}</a>
+						<a class="suggestTitle" href="{phoneUrl('main',$val[id])}">{$val['title']}</a>
 						<span class="suggestPrice">￥{$val['price']}</span>
 					</div>
 					{/loop}

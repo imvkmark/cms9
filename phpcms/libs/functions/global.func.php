@@ -161,6 +161,10 @@ function get_url() {
  * @param $dot
  */
 function str_cut($string, $length, $dot = '...') {
+	preg_match_all("/[0-9a-z]/", $string, $matches);
+	if (count($matches[0])>3) {
+		$length -= intval(count($matches[0])/5);
+	}
 	$strlen = strlen($string);
 	if($strlen <= $length) return $string;
 	$string = str_replace(array(' ','&nbsp;', '&amp;', '&quot;', '&#039;', '&ldquo;', '&rdquo;', '&mdash;', '&lt;', '&gt;', '&middot;', '&hellip;'), array('∵',' ', '&', '"', "'", '“', '”', '—', '<', '>', '·', '…'), $string);

@@ -104,6 +104,7 @@ class index {
 	
 	public function support() {
 		$id = isset($_GET['id']) && intval($_GET['id']) ? intval($_GET['id']) : $this->_show_msg(L('illegal_parameters'), HTTP_REFERER);
+		unset($_GET);
 		if (param::get_cookie('comment_'.$id)) {
 			$this->_show_msg(L('dragonforce'), HTTP_REFERER);
 		}
@@ -134,19 +135,16 @@ class index {
 				case '1'://正
 					$total = $comment['square'];
 					break;
+					
 				case '2'://反
 					$total = $comment['anti'];
 					break;
+					
 				case '3'://中
 					$total = $comment['neutral'];
 					break;
-                case '4'://4
-                    $total = $comment['cfour'];
-                    break;
-                case '5'://5
-                    $total = $comment['cfive'];
-                    break;
-                default:
+					
+				default:
 					$total = $comment['total'];
 					break;
 			}

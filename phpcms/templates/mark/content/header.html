@@ -12,6 +12,7 @@
 	</script>
 	<script src="{JS_PATH}libs/seajs/2.0.0/sea.js" data-config="config"></script>
 	<script src="{JS_PATH}libs/fun.js" data-config="config"></script>
+	<base target="_blank">
 </head>
 <body>
 <div class="layout header">
@@ -21,15 +22,12 @@
 		<a href="#" class="fr"><img src="{IMG_PATH}topQQ.jpg" alt="#"></a>
 		<a href="#" class="fr"><img src="{IMG_PATH}topSina.jpg" alt="#"></a>
 	</div>
-	<div class="sdinfoTop">
-		<iframe src="http://www.sdinfo.net/include/indexhead1.htm" frameborder="0" height="65" width="1000"></iframe>
-	</div>
 	<div class="sdinfo fc">
 		<div class="logo">
 			<a href="{APP_PATH}"><img src="{IMG_PATH}logo.jpg" alt="{$SEO['title']}"></a>
 		</div>
 		<div class="search">
-			<form action="?" name="search" id="searchForm" method="get">
+			<form action="index.php" name="search" id="searchForm" method="get">
 				<ul>
 					<li id="searchSelect" class="sel">
                         <span id="searchSelectValue">手机</span>
@@ -46,7 +44,7 @@
                     <input type="hidden" name="m" value="content"/>
                     <input type="hidden" name="c" value="index"/>
                     <input type="hidden" name="a" value="search"/>
-					<li><input id="searchKw" type="text" name="kw" style="_border:1px solid #fff;" class="searchInput"></li>
+					<li><input id="searchKw" type="text" name="kw" style="_border:1px solid #fff;+border:0 none;" class="searchInput"></li>
 					<li><span id="searchSubmit" class="searchButton">搜索</span></li>
 				</ul>
 			</form>
@@ -90,20 +88,22 @@
 </div>
 <div class="layout">
 	<ul class="nav">
-		<li><a href="{APP_PATH}">首页</a></li>
+		<li><a href="{APP_PATH}" target="_blank">首页</a></li>
 		<li class="line"></li>
-		<li><a href="{$CATEGORYS[12][url]}">{$CATEGORYS[11][catname]}</a></li>
+		<li><a href="{$CATEGORYS[12][url]}" target="_blank">{$CATEGORYS[11][catname]}</a></li>
 		<li class="line"></li>
-		<li><a href="{$CATEGORYS[32][url]}">{$CATEGORYS[32][catname]}</a></li>
+		<li><a href="{$CATEGORYS[32][url]}" target="_blank">{$CATEGORYS[32][catname]}</a></li>
 		<li class="line"></li>
-		<li><a href="{$CATEGORYS[33][url]}">{$CATEGORYS[33][catname]}</a></li>
+		<li><a href="{$CATEGORYS[33][url]}" target="_blank">{$CATEGORYS[33][catname]}</a></li>
 		<li class="line"></li>
-		<li><a href="{$CATEGORYS[9][url]}">{$CATEGORYS[9][catname]}</a></li>
+		<li><a href="{$CATEGORYS[9][url]}" target="_blank">{$CATEGORYS[9][catname]}</a></li>
 		<li class="line"></li>
-		<li><a href="{$CATEGORYS[31][url]}">{$CATEGORYS[31][catname]}</a></li>
+		<li><a href="{$CATEGORYS[31][url]}" target="_blank">{$CATEGORYS[31][catname]}</a></li>
+		<!--
 		<li class="line"></li>
 		<li><a href="{$CATEGORYS[14][url]}">{$CATEGORYS[14][catname]}</a></li>
+		-->
 		<li class="line"></li>
-		<li><a href="{$CATEGORYS[29][url]}">{$CATEGORYS[28][catname]}</a></li>
+		<li><a href="{$CATEGORYS[41][url]}" target="_blank">{$CATEGORYS[41][catname]}</a></li>
 	</ul>
 </div>

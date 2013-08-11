@@ -6,14 +6,14 @@
 		</ul>
 		<div>
 			<ul id="footerTabs-1" class="linkContents clear">
-				{pc:get sql="SELECT * FROM mk_link where typeid=56 and linktype=0 and passed =1" num="999"}
+				{pc:get sql="SELECT * FROM mk_link where typeid=56 and linktype=0 and passed =1 order by listorder DESC" cache="0" num="999"}
 				{loop $data $link}
 				<li><a href="{$link[url]}" title="{$link[name]}">{$link[name]}</a></li>
 				{/loop}
 				{/pc}
 			</ul>
 			<ul id="footerTabs-2" class="linkContents-logo clear">
-				{pc:get sql="SELECT * FROM mk_link where typeid=57 and linktype=1 and passed =1" num="999"}
+				{pc:get sql="SELECT * FROM mk_link where typeid=57 and linktype=1 and passed =1 order by listorder DESC" cache="0" num="999"}
 				{loop $data $link}
 				<li>
 					<a href="{$link[url]}" title="{$link[name]}">
@@ -27,7 +27,7 @@
 	</div>
 </div>
 <script>
-	seajs.use(['ui'], function(){$('#footerTabs').tabs();})
+	seajs.use(['ui'], function(){$('#footerTabs').tabs({event: "mouseover"});})
 </script>
 <div class="layout sdinfoBottom">
 	<iframe src="http://www.sdinfo.net/include/indexfloor1.htm" frameborder="0" height="120" width="1000"></iframe>

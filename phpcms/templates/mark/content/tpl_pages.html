@@ -1,3 +1,4 @@
 <div class="listPages page">
+	{php $pages = preg_replace('/<a (.*?)>/', '<a target="_self"$1>', $pages);}
 	{$pages}
 </div>

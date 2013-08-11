@@ -82,7 +82,7 @@ body {
   color: #000000;
 }
 a {
-  color: #5a5a5a;
+  color: #000;
   text-decoration: none;
 }
 a:hover {
@@ -341,13 +341,20 @@ body {
 }
 .listBigCat li {
   white-space: nowrap;
-  -o-text-overflow: ellipsis;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  width: 100%;
+  width: 100%;                  /* IE6 需要定义宽度 */
+  overflow: hidden;             
+
+  -o-text-overflow: ellipsis;    /* Opera */
+  text-overflow:    ellipsis;    /* IE, Safari (WebKit) */
 }
 .listBigCat li a {
   padding: 0 10px;
+  white-space: nowrap;
+  width: 100%;                  /* IE6 需要定义宽度 */
+  overflow: hidden;             
+
+  -o-text-overflow: ellipsis;    /* Opera */
+  text-overflow:    ellipsis;    /* IE, Safari (WebKit) */
 }
 .listBigCat .iCat {
   padding-right: 10px;
@@ -368,6 +375,9 @@ body {
   line-height: 30px;
   height: 30px;
   overflow: hidden;
+}
+.listBlackDot li a{
+  white-space: nowrap;
 }
 .listGreyDot {
   font-size: 14px;
@@ -404,7 +414,7 @@ body {
   padding-left: 32px;
 }
 .listProductMore .bigItem {
-  height: 139px;
+  height: 142px;
 }
 .listProductMore .bigItem .title {
   display: block;
@@ -421,8 +431,8 @@ body {
   overflow: hidden;
 }
 .listProductMore .bnormal {
-  height: 35px;
-  line-height: 35px;
+  height: 31px;
+  line-height: 31px;
   overflow: hidden;
 }
 .listBignum {
@@ -451,7 +461,7 @@ body {
 }
 .listBignum li .intro {
   padding-top: 5px;
-  color: #CCCCCC;
+  color: #000;
 }
 .listNum {
   background: url('../images/bgListNum.jpg') no-repeat 0 3px;
@@ -508,6 +518,7 @@ body {
   color: #003365;
   height: 25px;
   line-height: 25px;
+  overflow: hidden;
 }
 .listAppDown .bignum .title:hover {
   color: #5a5a5a;
@@ -983,8 +994,8 @@ body {
   height: 19px;
   padding: 5px;
   width: 344px;
-	_border:none;
-	_position:relative;
+  _border:none;
+  _position:relative;
 	_top:1px;
 }
 .header .sdinfo .search .searchButton {
@@ -1082,11 +1093,12 @@ body {
 	display: none;
 }
 .friendLink .linkContents-logo li {
-	width: 102px;
-	overflow: hidden;
-	float: left;
-	line-height: 47px;
-	height: 47px;
+  width: 115px;
+  overflow: hidden;
+  float: left;
+  line-height: 47px;
+  height: 47px;
+  _display:inline;
 }
 .friendLink .linkContents-logo li img{
 	width: 100px;
@@ -2508,6 +2520,7 @@ body {
 	text-overflow: ellipsis;
 	text-align: center;
 	height: 36px;
+  font-size: 14px;
 }
 .focus .focusNews h3 a {
   color: #CB0200;
@@ -2551,26 +2564,42 @@ body {
   line-height: 27px;
   width: 62px;
   text-align: center;
+  margin: 0 7px;
+  font-size: 14px;
+  color:#344D6B;
 }
 .trade .col-trade-left .iisp .active {
   color: #fff;
   background: #ffffff url('../images/bgTradeIsp.jpg') no-repeat 0 0;
-  margin: 0 14px;
+
 }
 .trade .col-trade-left .ispInfo {
   padding: 10px;
+  _height: 180px;
+  min-height: 180px;
 }
 .trade .col-isp-left {
   float: left;
   width: 270px;
+  overflow: hidden;
 }
 .trade .col-isp-right {
   float: right;
   width: 430px;
   overflow: hidden;
+  padding-top: 47px;
 }
 .trade .col-isp-right .ispAd {
   padding-top: 5px;
+}
+.trade .col-isp-right .ispAd a{
+  border: 1px solid #fff;
+  display: inline-block;
+  width: 136px;
+  height: 136px;
+}
+.trade .col-isp-right .ispAd a:hover{
+  border: 1px solid #ccc;
 }
 .trade .ispBottom {
   font-size: 14px;
@@ -2590,6 +2619,7 @@ body {
   font-family: '微软雅黑', 'Arial', '宋体';
   height: 30px;
   line-height: 30px;
+  color: #344D6B;
 }
 .trade .col-trade-right .iTradeInfo {
   padding: 5px 10px;
@@ -2728,6 +2758,7 @@ body {
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   text-align: center;
+  font-size: 14px;
 }
 .hotphonecase .col-hotcaseinfo .infoTitle a {
   color: #CB0200;
@@ -2795,7 +2826,8 @@ body {
   padding-left: 15px;
   float: left;
   padding-top: 10px;
-  padding-bottom: 9px;
+  padding-bottom: 4px;
+  _padding-bottom: 5px;
 }
 .hotphonecase .suggestItem .imgWrapper {
   padding-left: 17px;
@@ -2806,6 +2838,9 @@ body {
 }
 .hotphonecase .suggestTitle {
   display: block;
+  height: 28px;
+  line-height: 28px;
+  overflow: hidden;
   text-align: center;
 }
 .hotphonecase .suggestPrice {
@@ -2831,6 +2866,7 @@ body {
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   text-align: center;
+  font-size: 14px;
 }
 .hotapp .col-hotapp-info .infoTitle a {
   color: #CB0200;
@@ -2878,7 +2914,7 @@ body {
 }
 .hotapp .softSuggest {
   background: url('../images/bgSoftSuggest.jpg') no-repeat 0 0;
-  padding: 8px 0 8px 50px;
+  padding: 0px 0 0px 50px;
 }
 .hotapp .softSuggest .softWrapper li {
   float: left;
@@ -2886,6 +2922,7 @@ body {
   height: : 60px;
   padding: 0 5px;
   text-align: center;
+  width: 60px;
 }
 .hotapp .softSuggest .softWrapper li a {
   color: #003365;
@@ -2899,9 +2936,12 @@ body {
 }
 .hotapp .softSuggest .softWrapper li span {
   display: block;
+  height: 40px;
+  line-height: 40px;
+  overflow: hidden;
 }
 .hotapp .appDown {
-  padding-top: 10px;
+  padding-top: 17px;
   padding-bottom: 8px;
 }
 .hotapp .appDown p {
@@ -2974,7 +3014,7 @@ body {
 }
 .fitList .searchList .item {
 	padding: 10px 24px;
-	height: 140px;
+	height: 130px;
 }
 .fitList .searchList .item .img {
 	display: inline-block;
@@ -2983,16 +3023,18 @@ body {
 	margin-right: 15px;
 }
 .fitList .searchList .item .img img {
-	width: 180px;
+	width: 150px;
+  height: 120px;
 	float: left;
 	margin-right: 10px;
 }
 .fitList .searchList .item .title {
 	line-height: 30px;
 	height: 30px;
-	font-size: 14px;
+	font-size: 16px;
 	font-weight: bold;
-	color: #08529b;
+  font-family: '微软雅黑';
+	color: #1E376D;
 }
 .fitList .searchList .item .title:hover {
 	color: #5a5a5a;
@@ -3025,6 +3067,19 @@ body {
 }
 .fitList .searchList .item p img {
 	vertical-align: middle;
+}
+.fitList .searchList  .item .pub {
+  margin: 0;
+  height: 25px;
+  line-height: 25px;
+}
+.fitList .searchList  .item .author {
+  color: #000;
+  font-weight: normal;
+}
+.fitList .searchList .item .time {
+  color: #989898;
+  padding: 0 15px;
 }
 .fitList .hotPhone,
 .fitList .netHotPost {
@@ -3086,4 +3141,58 @@ body {
 
 .hotPhones .hotPhoneItem .imgWrapper img{
     width: 170px;
+}
+.listWithCat{
+  font-size: 14px;
+  padding: 0 10px;
+}
+.listWithCat li{
+  height: 25px;
+  line-height: 25px;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;                  /* IE6 需要定义宽度 */           
+  -o-text-overflow: ellipsis;    /* Opera */
+  text-overflow:    ellipsis;    /* IE, Safari (WebKit) */
+}
+.listWithCat li a{
+  text-decoration: none;
+  padding: 0;
+}
+.listWithCat .cut{
+  padding: 0 10px;
+  color: #ccc;
+}
+.listWithCat .cat{
+  color: #fd7b03;
+}
+.listWithCat .cat:hover{
+  color: #5a5a5a;
+}
+.bbsData {
+	font-size:14px;
+    border-top: 1px solid #74A5C6;
+	border-left: 1px solid #74A5C6;
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+.bbsData td,
+.bbsData th {
+	border-right: 1px solid #74A5C6;
+	border-bottom: 1px solid #74A5C6;
+	line-height: 30px;
+	height: 30px;
+	padding: 5px;
+}
+.bbsData th {
+	background-color: #f1faff;
+	font-weight: bold;
+	text-align: center;
+}
+.bbsData .cola{
+	width:510px;
+}
+.bbsData .colb{
+	width:110px;
+	text-align:center;
 }

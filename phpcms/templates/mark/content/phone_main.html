@@ -69,6 +69,7 @@
 		<div class="mainPing mt8">
 			<h2>{$phone[title]} 购买指南</h2>
 			<div class="pingDetail">
+				{html_entity_decode($phone[bbsdata])}
 				{pc:get sql="select * from mk_lab p, mk_lab_data pd where p.id=pd.id and pd.phoneid=$phone[id]" num="5" cache="0"}
 				{php $t = 0;}
 				{loop $data $k $v}

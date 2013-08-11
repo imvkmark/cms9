@@ -8,20 +8,20 @@
 	<div class="{if $catid ==12}titleTab{else}titleTabNone{/if} fl">
 		<span><a href="{$CATEGORYS[12][url]}">{$CATEGORYS[12][catname]}</a></span>
 	</div>
-	<div class="{if $catid ==13}titleTab{else}titleTabNone{/if} fl">
+<!-- 	<div class="{if $catid ==13}titleTab{else}titleTabNone{/if} fl">
 		<span><a href="{$CATEGORYS[13][url]}">{$CATEGORYS[13][catname]}</a></span>
-	</div>
+	</div> -->
 </div>
 <div class="layout article articleReview clear">
 	<div class="col-list-left">
 		<div class="items">
             {if !$kw}
-			{pc:content action="lists" catid="$catid" num="20" page="$page"}
+			{pc:content action="lists" catid="$catid" order="inputtime DESC" num="10" page="$page"}
 			{loop $data $v}
 			<div class="item clear">
 				<div class="img">
 					<a href="{$v[url]}">
-						<img src="{$v[thumb]}" alt="{$v[title]}">
+						{mkThumb($v[thumb], 'alt="'.$v[title].'"')}
 					</a>
 				</div>
 				<div class="info">

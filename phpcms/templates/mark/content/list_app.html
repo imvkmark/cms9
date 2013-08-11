@@ -9,7 +9,7 @@
 	<div class="col-list-left">
 		<div class="items">
             {if !$kw}
-			{pc:content action="lists" catid="$catid" num="20" page="$page"}
+			{pc:content action="lists" catid="$catid" order="inputtime DESC" num="20" page="$page"}
 			{loop $data $v}
 			<div class="item clear">
 				<div class="img">
@@ -19,6 +19,9 @@
 				</div>
 				<div class="info">
 					<h3><a href="{$v[url]}">{$v[title]}</a></h3>
+					<div class="pub">
+						<strong>{$v[username]}</strong><span class="time">发布于 {date("d 日 H 时", $v[inputtime])}</span>
+					</div>
 					<p class="intro">
 						{$v[description]} <a href="{$v[url]}" class="more">查看详情&gt;&gt;</a>
 					</p>
@@ -37,6 +40,9 @@
                 </div>
                 <div class="info">
                     <h3><a href="{$v[url]}">{$v[title]}</a></h3>
+                    <div class="pub">
+						<strong>{$v[username]}</strong><span class="time">发布于 {date("d 日 H 时", $v[inputtime])}</span>
+					</div>
                     <p class="intro">
                         {$v[description]} <a href="{$v[url]}" class="more">查看详情&gt;&gt;</a>
                     </p>

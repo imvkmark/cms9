@@ -148,7 +148,7 @@
 						<a href="javascript:go('page', {$pageNext})" class="next"><span>下一页</span></a>
 					</div>
 				</div>
-				{pc:get sql="select p.id, p.description, p.title, p.thumb, p.url,pd.price from mk_phone p , mk_phone_data pd where p.id=pd.id $condition" page="$page" num="9" cache="0" order="$lorders[$uod]"}
+				{pc:get sql="select p.id, p.description, p.title, p.thumb, p.url,pd.price from mk_phone p , mk_phone_data pd where p.id=pd.id $condition order by $lorders[$uod]" page="$page" num="9" cache="0"}
 				<div class="iItems clear">
 					{loop $data $v}
 					<div class="iItem">

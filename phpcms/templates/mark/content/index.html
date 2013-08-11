@@ -2,6 +2,7 @@
 {template "content", "tpl_selectPhone"}
 {template "content", "tpl_topAd1"}
 {template "content", "tpl_topAd2"}
+{template "content", "tpl_topAd3"}
 
 <div class="layout">
 	<div class="focus clear">
@@ -9,10 +10,10 @@
 			<div class="iContent">
 				<div class="focusBanner">
 					{pc:get sql="select * from mk_poster where spaceid = 22"}
-					<ul id="kss" style="visibility:hidden;">
+					<ul id="kss" style="visibility:hidden;border:5px solid #feaf62;">
 						{loop $data $v}
 						{php $sa = string2array($v[setting])}
-						<li><a href="{$sa[1][linkurl]}"><img width="535" height="330" src="{$sa[1][imageurl]}" alt="{$sa[1][alt]}"></a></li>
+						<li><a href="{$sa[1][linkurl]}"><img width="525" height="320" src="{$sa[1][imageurl]}" alt="{$sa[1][alt]}"></a></li>
 						{/loop}
 					</ul>
 					{/pc}
@@ -20,6 +21,7 @@
 						seajs.use(['kinslideshow'], function(){
 							$('#kss').KinSlideshow({
 								moveStyle:"right",
+								mouseEvent:"mouseover",
 								titleBar:{titleBar_height:30,titleBar_bgColor:"#08355c",titleBar_alpha:0.5},
 								titleFont:{TitleFont_size:12,TitleFont_color:"#FFFFFF",TitleFont_weight:"normal"},
 								btn:{btn_bgColor:"#FFFFFF",btn_bgHoverColor:"#1072aa",btn_fontColor:"#000000",
@@ -35,17 +37,11 @@
 							论坛热帖
 						</h2>
 						<div class="bbsContent">
-							<ul class="listSubleft">
-								<li><span class="num">1</span><a href="#">论坛热帖论坛热帖论坛热帖</a></li>
-								<li><span class="num">2</span><a href="#">论坛热帖论坛热帖论坛热帖</a></li>
-								<li><span class="num">3</span><a href="#">论坛热帖论坛热帖论坛热帖</a></li>
-								<li><span class="num">4</span><a href="#">论坛热帖论坛热帖论坛热帖</a></li>
-								<li><span class="num">5</span><a href="#">论坛热帖论坛热帖论坛热帖</a></li>
-							</ul>
+							<script type="text/javascript" src="http://cmall.sdinfo.net/bbs/api.php?mod=js&bid=3"></script>
 						</div>
 					</div>
 					<div class="col-hotBBS-right">
-						<img src="{IMG_PATH}imgDownPrice.jpg" alt="">
+						<script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=24"></script>
 					</div>
 				</div>
 			</div>
@@ -55,37 +51,40 @@
 				<h2 class="focusTitle">
 					今日焦点
 				</h2>
-                {pc:get sql="select a.id,a.description, a.title, a.catid, a.url,a.thumb from mk_lab a,mk_position_data p where p.posid = 22 and a.id = p.id order by a.listorder DESC" num="2" cache="0"}
-                {loop $data $key $val}
+                {pc:get sql="select distinct(a.id),a.description, a.title, a.catid, a.url,a.thumb from mk_lab a,mk_position_data p where p.posid = 22 and a.id = p.id order by a.listorder DESC" num="5" cache="0"}
+                {php $data1 = array_slice($data, 0, 2)}
+                {php $data2 = array_slice($data, 2, 2)}
+                {loop $data1 $key $val}
                 <div class="focusNews">
-                    <h3><a href="#">{$val[title]}</a></h3>
-                    <p>{$val[description]}[<a href="{$val[url]}" class="more">查看详细</a>]</p>
+                    <h3><a href="{$val[url]}">{str_cut($val[title], 60, '')}</a></h3>
+                    <p>{str_cut($val[description], 250)} [<a href="{$val[url]}" class="more">查看详细</a>]</p>
                 </div>
                 {/loop}
                 {/pc}
 				<div class="focusBigCat" style="margin-top:4px;">
-					<ul class="listBigCat">
-                        {pc:get sql="select a.id, a.title, a.catid, a.url,a.thumb from mk_app a,mk_position_data p where p.posid = 22 and a.id = p.id order by a.listorder DESC" num="2" cache="0"}
-                        {loop $data $key $val}
-                        <li><span class="iCat"><a href="{$CATEGORYS[$val[catid]][url]}">{$CATEGORYS[$val[catid]][catname]}</a></span><a href="{$val[url]}">{$val[title]}</a></li>
+					<ul class="listBigCat listWithCat">
+                        {loop $data2 $key $val}
+                        <li><a class="cat" href="{$CATEGORYS[$val[catid]][url]}">{$CATEGORYS[$val[catid]][catname]}</a>
+                        	<span class="cut">|</span><a href="{$val[url]}">{$val[title]}</a></li>
                         {/loop}
-                        {/pc}
 					</ul>
 				</div>
 				<div class="focusBigCat">
-					<ul class="listBigCat">
+					<ul class="listBigCat listWithCat">
                         {pc:get sql="select DISTINCT(a.id), a.title, a.catid, a.url,a.thumb from mk_quotation a inner JOIN mk_position_data p ON (a.id = p.id) where p.posid = 22 order by a.listorder DESC" num="3" cache="0"}
                         {loop $data $key $val}
-                        <li><span class="iCat"><a href="{$CATEGORYS[$val[catid]][url]}">{$CATEGORYS[$val[catid]][catname]}</a></span><a href="{$val[url]}">{$val[title]}</a></li>
+                        <li><a class="cat" href="{$CATEGORYS[$val[catid]][url]}">{$CATEGORYS[$val[catid]][catname]}</a>
+                        	<span class="cut">|</span><a href="{$val[url]}">{$val[title]}</a></li>
                         {/loop}
                         {/pc}
 					</ul>
 				</div>
 				<div class="focusBigCat">
-					<ul class="listBigCat">
+					<ul class="listBigCat listWithCat">
                         {pc:get sql="select DISTINCT(a.id), a.title, a.catid, a.url,a.thumb from mk_fitting a inner JOIN mk_position_data p ON (a.id = p.id) where p.posid = 22 order by a.listorder DESC" num="4" cache="0"}
                         {loop $data $key $val}
-                        <li><span class="iCat"><a href="{$CATEGORYS[$val[catid]][url]}">{$CATEGORYS[$val[catid]][catname]}</a></span><a href="{$val[url]}">{str_cut($val[title], 60)}</a></li>
+                        <li><a class="cat" href="{$CATEGORYS[$val[catid]][url]}">{$CATEGORYS[$val[catid]][catname]}</a>
+                        	<span class="cut">|</span><a href="{$val[url]}">{$val[title]}</a></li>
                         {/loop}
                         {/pc}
 					</ul>
@@ -101,44 +100,82 @@
 			<div class="iContent clear">
 				<div class="clear">
 					<div class="col-isp-left">
-						<h3 class="iisp">
-							<a href="#" class="active">联通</a> |
-							<a href="#">移动</a> |
-							<a href="#">电信</a>
+						<h3 class="iisp" id="iisp">
+							<a href="javascript:void(0)" data-relation="#iisLiantong" data-r-img="#imgLiantong" class="active">联通</a> |
+							<a href="javascript:void(0)" data-relation="#iisYidong" data-r-img="#imgYidong" >移动</a> |
+							<a href="javascript:void(0)" data-relation="#iisDianxin" data-r-img="#imgDianxin" >电信</a>
 						</h3>
-						<div class="ispInfo">
-							<ul class="listBlackDot">
-								<li><a href="#">交易平台数据调用</a></li>
-								<li><a href="#">交易平台数据调用</a></li>
-								<li><a href="#">交易平台数据调用</a></li>
-								<li><a href="#">交易平台数据调用</a></li>
-								<li><a href="#">交易平台数据调用</a></li>
+						<div id="iispContent" class="ispInfo">
+							<ul id="iisLiantong" class="listBlackDot">
+								{pc:get sql="select * from mk_feearticle where feetype=3 order by listorder desc" num="6"}
+								{loop $data $v}
+								<li><a href="{$v[url]}">{str_cut($v[title],60,'')}</a></li>
+								{/loop}
+								{/pc}
+							</ul>
+							<ul id="iisYidong" class="listBlackDot" style="display: none;">
+								{pc:get sql="select * from mk_feearticle where feetype=1 order by listorder desc" num="6"}
+								{loop $data $v}
+								<li><a href="{$v[url]}">{str_cut($v[title],60,'')}</a></li>
+								{/loop}
+								{/pc}
+							</ul>
+							<ul id="iisDianxin" class="listBlackDot" style="display: none;">
+								{pc:get sql="select * from mk_feearticle where feetype=2 order by listorder desc" num="6"}
+								{loop $data $v}
+								<li><a href="{$v[url]}">{str_cut($v[title],60,'')}</a></li>
+								{/loop}
+								{/pc}
 							</ul>
 						</div>
+						<script>
+							seajs.use([], function(){
+								$('#iisp>a').mouseover(function(e){
+//									console.log(e);
+									$('#iisp a').removeClass('active');
+									$(this).addClass('active');
+									var ele = $(this).attr('data-relation');
+									var imgEle = $(this).attr('data-r-img');
+									$('#iispContent>ul').hide();
+									$('#imgContent>div').hide();
+									$(ele).show();
+									$(imgEle).show();
+								});
+							})
+						</script>
 					</div>
-					<div class="col-isp-right">
-						<div class="ispAd">
-							<img src="{IMG_PATH}imgTradePhone.jpg" alt="#">
+					<div class="col-isp-right" id="imgContent">
+						<div class="ispAd clear" id="imgLiantong">
+							{pc:get sql="select * from mk_fee where feetype=3 order by listorder desc" num="3"}
+							{loop $data $v}
+							<a href="{$v[url]}"><img src="{thumb($v[thumb], 136, 136)}" alt="{$v[title]}"></a>
+							{/loop}
+							{/pc}
+						</div>
+						<div class="ispAd clear" id="imgYidong"  style="display: none;">
+							{pc:get sql="select * from mk_fee where feetype=1 order by listorder desc" num="3"}
+							{loop $data $v}
+							<a href="{$v[url]}"><img src="{thumb($v[thumb], 136, 136)}" alt="{$v[title]}"></a>
+							{/loop}
+							{/pc}
+						</div>
+						<div class="ispAd clear" id="imgDianxin" style="display: none;">
+							{pc:get sql="select * from mk_fee where feetype=2 order by listorder desc" num="3"}
+							{loop $data $v}
+							<a href="{$v[url]}"><img src="{thumb($v[thumb], 136, 136)}" alt="{$v[title]}"></a>
+							{/loop}
+							{/pc}
 						</div>
 					</div>
 				</div>
-				<p class="ispBottom">电话:0531-8888888</p>
 			</div>
 		</div>
 		<div class="col-trade-right">
+
 			<div class="iContent">
 				<h3>交易平台</h3>
 				<div class="iTradeInfo">
-					<ul class="listBlackDot">
-						<li><a href="#">交易平台数据调用</a></li>
-						<li><a href="#">交易平台数据调用</a></li>
-						<li><a href="#">交易平台数据调用</a></li>
-						<li><a href="#">交易平台数据调用</a></li>
-						<li><a href="#">交易平台数据调用</a></li>
-						<li><a href="#">交易平台数据调用</a></li>
-						<li><a href="#">交易平台数据调用</a></li>
-						<li><a href="#">交易平台数据调用</a></li>
-					</ul>
+					<iframe src="http://wotao.sdinfo.net/getcont.php?tpl=tx" width="215" height="197" scrolling="no" frameborder="0"></iframe>
 				</div>
 			</div>
 		</div>
@@ -148,10 +185,10 @@
 <div class="layout">
 	<div class="catTitle">
 		<div class="cats">
-			{pc:get sql="select * from mk_phone" num="4" order="rand()"}
+			{pc:get sql="select * from mk_phone order by rand()" num="4" cache="3600"}
 			{php $count=1}
 			{loop $data $k $v}
-			<a href="{phoneUrl('main',$v[id])}">{$v[title]}</a>{if $count != count($data)}|{/if}
+			<a href="{phoneUrl('main',$v[id])}">{str_cut($v[title],60,'')}</a>{if $count != count($data)}|{/if}
 			{php $count++}
 			{/loop}
 			{/pc}
@@ -192,7 +229,7 @@
 						<!--</span>-->
                     </p>
                     <p class="buy">
-                        <a href="{phoneUrl('main', $val[id])}" class="paramButton"></a>
+                        <a href="{phoneUrl('param', $val[id])}" class="paramButton"></a>
                     </p>
                 </div>
                 {/loop}
@@ -204,15 +241,15 @@
 				<h3 class="titleGrey" style="border:none;border-bottom: 1px solid #ccc">手机推荐排行榜</h3>
 				<div class="phoneList">
 					<ul class="listProductMore">
-                        {pc:get sql="select a.id, a.title, a.catid, a.url,a.thumb,pd.price from mk_phone a,mk_phone_data pd,mk_position_data p where a.id =pd.id and  p.posid = 21 and a.id = p.id" num="9"" cache="0"}
+                        {pc:get sql="select a.id, a.title, a.catid, a.url,a.thumb,pd.price from mk_phone a,mk_phone_data pd,mk_position_data p where a.id =pd.id and  p.posid = 21 and a.id = p.id" num="10"" cache="0"}
                         {loop $data $key $val}
                         {if $key == 0}
 						<li class="bigItem">
-							<a class="title" href="{phoneUrl('main', $val[id])}">{$val[title]}</a>
+							<a class="title" href="{phoneUrl('main', $val[id])}">{str_cut($val[title],60,'')}</a>
                             {mkThumb($v[thumb], 'alt="'.$v[title].'" width="89" height="89"')}
 						</li>
                         {else}
-						<li class="{if $key<3 || $key>1}bnormal{elseif $key>=3}bnormal{/if}"><a href="{phoneUrl('main', $val[id])}">{$val[title]}</a></li>
+						<li class="{if $key<3 || $key>1}bnormal{elseif $key>=3}bnormal{/if}"><a href="{phoneUrl('main', $val[id])}">{str_cut($val[title],60,'')}</a></li>
                         {/if}
                         {/loop}
                         {/pc}
@@ -228,7 +265,7 @@
 <div class="layout">
 	<div class="catTitle">
 		<div class="cats">
-			{pc:get sql="select p.id, p.title, pd.price from mk_phone p , mk_phone_data pd where p.id = pd.id" num="4" order="rand()"}
+			{pc:get sql="select p.id, p.title, pd.price from mk_phone p , mk_phone_data pd where p.id = pd.id  order by rand()" num="4" cache="1800"}
 			{php $count=1}
 			{loop $data $k $v}
 			<a href="{phoneUrl('main',$v[id])}">{$v[title]}</a>{if $count != count($data)}|{/if}
@@ -249,27 +286,42 @@
 		<div class="col-main-left">
 			<div class="iContent clear" style="padding:5px 0">
 				<div class="col-hotcaseinfo" style="overflow: hidden;">
-                    {pc:get sql="select a.title, a.catid, a.url, ad.desc from mk_fitting a, mk_fitting_data ad,mk_position_data p where a.id = ad.id and p.posid = 20 and a.id = p.id" num="7"}
-					{php $count=0}
-					{loop $data $key $val}
-					{if $count==0}
+                    {pc:get sql="select a.title, a.catid, a.url, ad.desc from mk_fitting a, mk_fitting_data ad,mk_position_data p where a.id = ad.id and p.posid = 20 and a.id = p.id order by a.listorder desc" num="7"}
+                    {php $__i = array_shift($data)}
 					<div class="focusInfo">
-						<h3 class="infoTitle"><a href="{$val[url]}">{$val[title]}</a></h3>
-						<p>{strip_tags($val[desc])}<a href="{$val[url]}" class="more">查看详细</a></p>
+						<h3 class="infoTitle"><a href="{$__i[url]}">{str_cut($__i[title], 60, '')}</a></h3>
+						<p>{str_cut(strip_tags($__i[desc]), 120)}<a href="{$__i[url]}" class="more">查看详细</a></p>
 					</div>
-					{else}
-					{if $count==1 || $count==3 || $count == 5}
 					<div class="hotcaselist">
-						<ul class="listBigCat">
-							{/if}
-							<li><span class="iCat"><a href="{$CATEGORYS[$val[catid]][url]}">{$CATEGORYS[$val[catid]][catname]}</a></span><a href="{$val[url]}">{$val[title]}</a></li>
-							{if $count==2 || $count==4 || $count == 6}
+						<ul class="listBigCat listWithCat">
+							{php $__i = array_shift($data)}
+								<li><a class="cat" href="{$CATEGORYS[$__i[catid]][url]}">{$CATEGORYS[$__i[catid]][catname]}</a>
+                        	<span class="cut">|</span><a href="{$__i[url]}">{$__i[title]}</a></li>
+							{php $__i = array_shift($data)}
+								<li><a class="cat" href="{$CATEGORYS[$__i[catid]][url]}">{$CATEGORYS[$__i[catid]][catname]}</a>
+                        	<span class="cut">|</span><a href="{$__i[url]}">{$__i[title]}</a></li>
 						</ul>
 					</div>
-					{/if}
-					{/if}
-					{php $count++}
-					{/loop}
+					<div class="hotcaselist">
+						<ul class="listBigCat listWithCat">
+							{php $__i = array_shift($data)}
+								<li><a class="cat" href="{$CATEGORYS[$__i[catid]][url]}">{$CATEGORYS[$__i[catid]][catname]}</a>
+                        	<span class="cut">|</span><a href="{$__i[url]}">{$__i[title]}</a></li>
+                        	{php $__i = array_shift($data)}
+								<li><a class="cat" href="{$CATEGORYS[$__i[catid]][url]}">{$CATEGORYS[$__i[catid]][catname]}</a>
+                        	<span class="cut">|</span><a href="{$__i[url]}">{$__i[title]}</a></li>
+						</ul>
+					</div>
+					<div class="hotcaselist">
+						<ul class="listBigCat listWithCat">
+							{php $__i = array_shift($data)}
+								<li><a class="cat" href="{$CATEGORYS[$__i[catid]][url]}">{$CATEGORYS[$__i[catid]][catname]}</a>
+                        	<span class="cut">|</span><a href="{$__i[url]}">{$__i[title]}</a></li>
+                        	{php $__i = array_shift($data)}
+								<li><a class="cat" href="{$CATEGORYS[$__i[catid]][url]}">{$CATEGORYS[$__i[catid]][catname]}</a>
+                        	<span class="cut">|</span><a href="{$__i[url]}">{$__i[title]}</a></li>
+						</ul>
+					</div>
 					{/pc}
 				</div>
 				<div class="col-hotcasecompare">
@@ -279,8 +331,8 @@
                             {loop $data $k $v}
 							<li>
 								<div class="titleWrapper">
-									<a class="title" href="#">{$v[title]}</a>
-									<span class="intro">{strip_tags($val[desc])}</span>
+									<a class="title" href="{$v[url]}">{str_cut($v[title], 60, '')}</a>
+									<span class="intro">{str_cut(strip_tags($v[desc]), 60)}</span>
 								</div>
                                 {mkThumb($v[thumb], 'alt="'.$v[title].'"')}
 							</li>
@@ -299,26 +351,26 @@
 					<li><a href="#phoneNew">新品推荐</a></li>
 				</ul>
 				<div id="phoneNew" class="caseSuggest clear">
-                    {pc:get sql="select p.*, pd.price from mk_phone p , mk_phone_data pd where p.id = pd.id" num="4" order="hits ASC" cache="0"}
+                    {pc:get sql="select p.*, pd.price from mk_phone p , mk_phone_data pd where p.id = pd.id order by rand()" num="4" cache="86400"}
                     {loop $data $key $v}
                     <div class="suggestItem">
                         <div class="imgWrapper">
                             {mkThumb($v[thumb], 'alt="'.$v[title].'"')}
                         </div>
-                        <a class="suggestTitle" href="{$v[url]}">{$v[title]}</a>
+                        <a class="suggestTitle" href="{phoneUrl('main',$v[id])}">{str_cut($val[title], 60, '')}</a>
                         <span class="suggestPrice">￥{$v[price]}</span>
                     </div>
                     {/loop}
                     {/pc}
 				</div>
                 <div id="phoneHot" class="caseSuggest clear">
-                    {pc:get sql="select p.*, pd.price from mk_phone p , mk_phone_data pd where p.id = pd.id" num="4" order="hits DESC" cache="0"}
+                    {pc:get sql="select p.*, pd.price from mk_phone p , mk_phone_data pd where p.id = pd.id order by id DESC" num="4" cache="0"}
                     {loop $data $key $v}
                     <div class="suggestItem">
                         <div class="imgWrapper">
                             {mkThumb($v[thumb], 'alt="'.$v[title].'"')}
                         </div>
-                        <a class="suggestTitle" href="{$v[url]}">{$v[title]}</a>
+                        <a class="suggestTitle" href="{phoneUrl('main',$v[id])}">{str_cut($val[title], 60, '')}</a>
                         <span class="suggestPrice">￥{$v[price]}</span>
                     </div>
                     {/loop}
@@ -326,163 +378,12 @@
                 </div>
                 <script type="text/javascript">
                     seajs.use(['ui'], function(){
-                        $('#phoneSuggest').tabs();
+                        $('#phoneSuggest').tabs({event:'mouseover'});
                     })
                 </script>
 			</div>
 		</div>
 	</div>
 </div>
-
-
-
-<!--app-->
-<?php
-$linkageApp = getcache(3384, 'linkage');
-$linkageApp = $linkageApp['data'];
-?>
-
-<div class="layout">
-	<div class="catTitle">
-		<div class="cats">
-			{pc:get sql="select * from mk_app" num="4" order="rand()"}
-			{php $count=1}
-			{loop $data $k $v}
-			<a href="{$v[url]}">{$v[title]}</a>{if $count != count($data)}|{/if}
-			{php $count++}
-			{/loop}
-			{/pc}
-		</div>
-		<span class="tCat">
-			手机应用
-		</span>
-		<span class="tEng">
-			PHONE APPS
-		</span>
-	</div>
-</div>
-<div class="layout">
-	<div class="hotapp mt8 clear">
-		<div class="col-main-left">
-			<div class="iContent clear" style="padding: 2px 0;">
-				<div class="clear">
-					<div class="col-hotapp-info">
-						{pc:content  action="position" posid="19" order="listorder DESC" num="7"}
-						{php $count=0}
-						{loop $data $key $val}
-						{if $count==0}
-						<div class="focusInfo">
-							<h3 class="infoTitle"><a href="{$val[url]}">{$val[title]}</a></h3>
-							<p>{$val[description]}<a href="{$val[url]}" class="more">查看详细</a></p>
-						</div>
-						{else}
-						{if $count==1 || $count==3 || $count == 5}
-						<div class="hotcaselist">
-							<ul class="listBigCat">
-						{/if}
-								<li><span class="iCat"><a href="{$CATEGORYS[$val[catid]][url]}">{$CATEGORYS[$val[catid]][catname]}</a></span><a href="{$val[url]}">{$val[title]}</a></li>
-						{if $count==2 || $count==4 || $count == 6}
-							</ul>
-						</div>
-						{/if}
-						{/if}
-						{php $count++}
-						{/loop}
-						{/pc}
-					</div>
-					<div class="col-hotapp-cat">
-						<div class="iContent">
-							<div class="slider">
-								<script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=21"></script>
-							</div>
-							<div class="appCat">
-								<h4 class="title">
-									软件分类
-								</h4>
-								<ul class="catDetail clear">
-									{php $count=0}
-									{loop $linkageApp $k $v}
-									{if $count++<8 && $v[parentid]==0}
-									<li><a href="{appKeyUrl($v[linkageid])}">{$v[name]}</a></li>
-									{/if}
-									{/loop}
-								</ul>
-								<h4 class="title">
-									游戏
-								</h4>
-								<ul class="catDetail clear">
-									{php $childids = getChildids($linkageApp[3397][arrchildid])}
-									{php $count=0}
-									{loop $childids $cid}
-									{if $count++<8}
-									<li><a href="{appKeyUrl($cid)}">{$linkageApp[$cid][name]}</a></li>
-									{/if}
-									{/loop}
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="clear softSuggest">
-					<ul class="softWrapper">
-						{php $gameIn = $linkageApp[3397][arrchildid]}
-						{pc:get sql="select url, title, thumb, downhits,score from mk_app where appcat in($gameIn) order by downhits desc" cache="0" num="8"}
-						{loop $data $v}
-						<li><a href="{$v[url]}"><img src="{$v[thumb]}" alt="{$v[title]}"><span>{$v[title]}</span></a></li>
-						{/loop}
-						{/pc}
-					</ul>
-				</div>
-			</div>
-
-		</div>
-		<div class="col-main-right">
-			<h3 class="titleGrey">软件下载周排行榜</h3>
-			<div class="appDown wrapGrey">
-				<ul class="listAppDown">
-					{pc:get sql="select url, appcat, title, thumb,fee, downhits,score from mk_app order by downhits desc" cache="0" num="10"}
-					{loop $data $k $v}
-					{if $k<=2}
-					<li class="bignum">
-						<a href="{$v[url]}"><img src="{$v[thumb]}" alt="{$v[title]}"></a>
-						<a href="{$v[url]}" class="title">{$v[title]}</a>
-						<p>软件类型:{$linkageApp[$v[appcat]][name]}</p>
-						<p>收费方式:{if $v[fee]}收费{else}免费{/if}</p>
-					</li>
-					{else}
-					<li><a href="{$v[url]}">{$v[title]}</a></li>
-					{/if}
-					{/loop}
-					{/pc}
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 {template "content", "footer"}
