@@ -1,0 +1,138 @@
+<!--app-->
+<?php
+$linkageApp = getcache(3384, 'linkage');
+$linkageApp = $linkageApp['data'];
+?>
+
+<div class="layout">
+	<div class="catTitle">
+		<div class="cats">
+			{pc:get sql="select * from mk_app" num="4" order="rand()"}
+			{php $count=1}
+			{loop $data $k $v}
+			<a href="{$v[url]}">{str_cut($v[title], 60, '')}</a>{if $count != count($data)}|{/if}
+			{php $count++}
+			{/loop}
+			{/pc}
+		</div>
+		<span class="tCat">
+			手机应用
+		</span>
+		<span class="tEng">
+			PHONE APPS
+		</span>
+	</div>
+</div>
+<div class="layout">
+	<div class="hotapp mt8 clear">
+		<div class="col-main-left">
+			<div class="iContent clear" style="padding: 2px 0;">
+				<div class="clear">
+					<div class="col-hotapp-info">
+						{pc:get sql="select a.id,a.description, a.title, a.catid, a.url,a.thumb from mk_apparticle a,mk_position_data p where p.posid = 19 and a.id = p.id order by a.listorder DESC" num="7" cache="0"}
+						{php $__i = array_shift($data)}
+						<div class="focusInfo">
+							<h3 class="infoTitle"><a href="{$__i[url]}">{str_cut($__i[title],60,'')}</a></h3>
+							<p>{$__i[description]}<a href="{$__i[url]}" class="more">查看详细</a></p>
+						</div>
+						<div class="hotcaselist">
+							<ul class="listBigCat listWithCat">
+								{php $__i = array_shift($data)}
+								<li><a class="cat" href="{$CATEGORYS[$__i[catid]][url]}">{$CATEGORYS[$__i[catid]][catname]}</a>
+                        	<span class="cut">|</span><a href="{$__i[url]}">{$__i[title]}</a></li>
+                        		{php $__i = array_shift($data)}
+								<li><a class="cat" href="{$CATEGORYS[$__i[catid]][url]}">{$CATEGORYS[$__i[catid]][catname]}</a>
+                        	<span class="cut">|</span><a href="{$__i[url]}">{$__i[title]}</a></li>
+							</ul>
+						</div>
+						<div class="hotcaselist">
+							<ul class="listBigCat listWithCat">
+								{php $__i = array_shift($data)}
+								<li><a class="cat" href="{$CATEGORYS[$__i[catid]][url]}">{$CATEGORYS[$__i[catid]][catname]}</a>
+                        	<span class="cut">|</span><a href="{$__i[url]}">{$__i[title]}</a></li>
+                        		{php $__i = array_shift($data)}
+								<li><a class="cat" href="{$CATEGORYS[$__i[catid]][url]}">{$CATEGORYS[$__i[catid]][catname]}</a>
+                        	<span class="cut">|</span><a href="{$__i[url]}">{$__i[title]}</a></li>
+							</ul>
+						</div>
+						<div class="hotcaselist">
+							<ul class="listBigCat listWithCat">
+								{php $__i = array_shift($data)}
+								<li><a class="cat" href="{$CATEGORYS[$__i[catid]][url]}">{$CATEGORYS[$__i[catid]][catname]}</a>
+                        	<span class="cut">|</span><a href="{$__i[url]}">{$__i[title]}</a></li>
+                        		{php $__i = array_shift($data)}
+								<li><a class="cat" href="{$CATEGORYS[$__i[catid]][url]}">{$CATEGORYS[$__i[catid]][catname]}</a>
+                        	<span class="cut">|</span><a href="{$__i[url]}">{$__i[title]}</a></li>
+							</ul>
+						</div>
+						{/pc}
+					</div>
+					<div class="col-hotapp-cat">
+						<div class="iContent">
+							<div class="slider">
+								<script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=21"></script>
+							</div>
+							<div class="appCat">
+								<h4 class="title">
+									软件分类
+								</h4>
+								<ul class="catDetail clear">
+									{php $count=0}
+									{loop $linkageApp $k $v}
+									{if $count++<8 && $v[parentid]==0}
+									<li><a href="{appKeyUrl($v[linkageid])}">{$v[name]}</a></li>
+									{/if}
+									{/loop}
+								</ul>
+								<h4 class="title">
+									游戏
+								</h4>
+								<ul class="catDetail clear">
+									{php $childids = getChildids($linkageApp[3397][arrchildid])}
+									{php $count=0}
+									{loop $childids $cid}
+									{if $count++<8}
+									<li><a href="{appKeyUrl($cid)}">{$linkageApp[$cid][name]}</a></li>
+									{/if}
+									{/loop}
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="clear softSuggest">
+					<ul class="softWrapper">
+						{php $gameIn = $linkageApp[3397][arrchildid]}
+						{pc:get sql="select url, title, thumb, downhits,score from mk_app where appcat in($gameIn) order by downhits desc" cache="0" num="8"}
+						{loop $data $v}
+						<li><a href="{$v[url]}"><img src="{$v[thumb]}" alt="{$v[title]}"><span>{str_cut($val[title], 60, '')}</span></a></li>
+						{/loop}
+						{/pc}
+					</ul>
+				</div>
+			</div>
+
+		</div>
+		<div class="col-main-right">
+			<h3 class="titleGrey">软件下载周排行榜</h3>
+			<div class="appDown wrapGrey">
+				<ul class="listAppDown">
+					{pc:get sql="select url, appcat, title, thumb,fee, downhits,score from mk_app order by downhits desc" cache="0" num="10"}
+					{loop $data $k $v}
+					{if $k<=2}
+					<li class="bignum">
+						<a href="{$v[url]}" style="float:left;"><img src="{$v[thumb]}" alt="{$v[title]}"></a>
+						<a href="{$v[url]}" class="title">{str_cut($v[title], 60, '')}</a>
+						<p>软件类型:{$linkageApp[$v[appcat]][name]}</p>
+						<p>收费方式:{if $v[fee]}收费{else}免费{/if}</p>
+					</li>
+					{else}
+					<li><a href="{$v[url]}">{$v[title]}</a></li>
+					{/if}
+					{/loop}
+					{/pc}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

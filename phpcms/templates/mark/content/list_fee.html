@@ -1,0 +1,62 @@
+{template "content", "header"}
+{template "content", "tpl_selectPhone"}
+{template "content", "tpl_topAd1"}
+{template "content", "tpl_topAd2"}
+{php $poFeeArticle = true}
+{template "content", "tpl_position"}
+<div class="layout clear bdbOrange">
+	<div class="{if $catid ==40}titleTab{else}titleTabNone{/if} fl">
+		<span><a href="{$CATEGORYS[40][url]}">{$CATEGORYS[40][catname]}</a></span>
+	</div>
+</div>
+<div class="layout article articleReview clear">
+	<div class="col-list-left">
+		<div class="items">
+            {if !$kw}
+			{pc:content action="lists" catid="$catid" order="inputtime DESC" num="20" page="$page"}
+			{loop $data $v}
+			<div class="item clear">
+				<div class="img">
+					<a href="{$v[url]}">
+						<img src="{$v[thumb]}" alt="{$v[title]}">
+					</a>
+				</div>
+				<div class="info">
+					<h3><a href="{$v[url]}">{$v[title]}</a></h3>
+					<div class="pub">
+						<strong>{$v[username]}</strong><span class="time">发布于 {date("d 日 H 时", $v[inputtime])}</span>
+					</div>
+					<p class="intro">
+						{$v[description]} <a href="{$v[url]}" class="more">查看详情&gt;&gt;</a>
+					</p>
+				</div>
+			</div>
+			{/loop}
+			{/pc}
+            {else}
+            {pc:get sql="select * from mk_lab where title like '%$kw%'" num="20" page="$page"}
+            {loop $data $v}
+            <div class="item clear">
+                <div class="img">
+                    <a href="{$v[url]}">
+                        <img src="{$v[thumb]}" alt="{$v[title]}">
+                    </a>
+                </div>
+                <div class="info">
+                    <h3><a href="{$v[url]}">{$v[title]}</a></h3>
+                    <p class="intro">
+                        {$v[description]} <a href="{$v[url]}" class="more">查看详情&gt;&gt;</a>
+                    </p>
+                </div>
+            </div>
+            {/loop}
+            {/pc}
+            {/if}
+		</div>
+		{template 'content', 'tpl_pages'}
+	</div>
+	<div class="col-list-right">
+		{template "content", "tpl_lab_side"}
+	</div>
+</div>
+{template "content", "footer"}
