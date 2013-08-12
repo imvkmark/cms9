@@ -91,7 +91,6 @@ class content extends admin {
 				$posids = $_GET['posids']==1 ? intval($_GET['posids']) : 0;
 				$where .= " AND `posids` = '$posids'";
 			}
-			
 			$datas = $this->db->listinfo($where,'id desc',$_GET['page']);
 			$pages = $this->db->pages;
 			$pc_hash = $_SESSION['pc_hash'];
